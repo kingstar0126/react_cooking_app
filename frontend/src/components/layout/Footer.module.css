@@ -1,0 +1,9 @@
+.footer {
+  height: 4rem;
+  background-color: #000036;
+  display: flex;
+}
+
+.footer p {
+  vertical-align: middle;
+}

@@ -1,5 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Lobster&family=Marck+Script&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300&family=Nunito:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400&family=Pacifico&display=swap");
+
 body {
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+/*  
+    font-family: 'Caveat', cursive;
+
+    font-family: 'Lobster', cursive;
+
+    font-family: 'Marck Script', cursive;
+
+    font-family: 'Montserrat', sans-serif;
+
+    font-family: 'Nunito', sans-serif;
+
+    font-family: 'Pacifico', cursive; 
+*/

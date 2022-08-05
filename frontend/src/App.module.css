@@ -1,0 +1,23 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.main__recipe__image {
+  max-width: 720px;
+  max-height: 720px;
+}
+
+.recipeMain {
+  max-width: 720px;
+  margin: auto;
+  margin-top: 60px;
+}
+
+.recipe__list {
+  margin-top: 2rem;
+  margin-bottom: 8rem;
+}

@@ -1,0 +1,46 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.recipesList {
+  max-height: 100px;
+  max-width: 720px;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  margin: auto;
+  margin-top: 4rem;
+  margin-bottom: 8rem;
+}
+
+.recipesList img {
+  max-height: 150px;
+}
+
+.recipeTitle {
+  font-family: "Marck Script", cursive;
+  font-size: 32px;
+}
+
+.recipeExerpt {
+  font-family: "Nunito", sans-serif;
+}
+/*  
+    font-family: 'Pacifico', cursive;
+
+    font-family: 'Caveat', cursive;
+
+    font-family: 'Lobster', cursive;
+
+    font-family: 'Marck Script', cursive;
+
+    font-family: 'Montserrat', sans-serif;
+
+    font-family: 'Nunito', sans-serif;
+
+     
+*/

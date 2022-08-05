@@ -1,0 +1,54 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  width: 100%;
+  height: 100px;
+  background-color: rgb(127, 255, 212);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10%;
+}
+
+.logo {
+  color: black;
+  font-size: 26px;
+  font-weight: 900;
+}
+
+.lis {
+  display: flex;
+  gap: 1rem;
+}
+
+.lis li {
+  list-style: none;
+  text-transform: uppercase;
+}
+
+a {
+  text-decoration: none;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+/*  
+    font-family: 'Caveat', cursive;
+
+    font-family: 'Lobster', cursive;
+
+    font-family: 'Marck Script', cursive;
+
+    font-family: 'Montserrat', sans-serif;
+
+    font-family: 'Nunito', sans-serif;
+
+    font-family: 'Pacifico', cursive; 
+*/
