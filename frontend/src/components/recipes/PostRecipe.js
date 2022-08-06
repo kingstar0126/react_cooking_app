@@ -5,23 +5,45 @@ import SingleIngredient from "./SingleIngredient";
 const PostRecipe = () => {
   const [formData, setFormData] = useState({
     title: "",
+    products: [],
+    preparation: "",
+    suitableFor: "",
   });
+
   const [products, setProducts] = useState([]);
   const [item, setItem] = useState("");
   const [volume, setVolume] = useState("");
-  const { title } = formData;
+  const [type, setType] = useState("грама");
+
+  const { title, preparation, suitableFor } = formData;
 
   const onItemAdd = (e) => {
     setItem(e.target.value);
-    console.log(item);
   };
 
   const onVolumeAdd = (e) => {
     setVolume(e.target.value);
-    console.log(volume);
   };
 
-  const onChange = (e) => {
+  const onSelectType = (e) => {
+    setType(e.target.value);
+  };
+
+  const onAddTitle = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const onAddDesc = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const onSelectSuitable = (e) => {
     setFormData((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
@@ -34,12 +56,20 @@ const PostRecipe = () => {
     const newProduct = {
       item,
       volume,
+      type,
     };
-    console.log(newProduct);
     setProducts((prevState) => [...prevState, newProduct]);
-    console.log(products);
+    setFormData((prevState) => ({
+      ...prevState,
+      products: products,
+    }));
   };
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    console.log(formData);
+  };
   return (
     <Fragment>
       <main className={classes.main}>
@@ -50,7 +80,7 @@ const PostRecipe = () => {
               <div className={classes.line}></div>
             </div>
             <div className={classes.form}>
-              <form className={classes.formInside}>
+              <form className={classes.formInside} onSubmit={onSubmit}>
                 <input
                   className={`${classes.inpitOpacity} ${classes.inputField}`}
                   type="text"
@@ -58,7 +88,7 @@ const PostRecipe = () => {
                   name="title"
                   id="title"
                   value={title}
-                  onChange={onChange}
+                  onChange={onAddTitle}
                   required
                 />
                 <p className={classes.para}>Съставки:</p>
@@ -87,11 +117,16 @@ const PostRecipe = () => {
                     value={volume}
                     onChange={onVolumeAdd}
                   />
-                  <select name="ingredient-type" id="kilo">
-                    <option value="kilo(s).">грама</option>
-                    <option value="ml.">мл.</option>
-                    <option value="piece(s).">брой(я)</option>
-                    <option value="by taste.">На вкус</option>
+                  <select
+                    onChange={onSelectType}
+                    value={type}
+                    name="ingredient-type"
+                    id="kilo"
+                  >
+                    <option value="грама">грама</option>
+                    <option value="мл.">мл.</option>
+                    <option value="брой(я).">брой(я)</option>
+                    <option value="на вкус">На вкус</option>
                   </select>
                   <button
                     className={classes.addIngredient}
@@ -108,23 +143,31 @@ const PostRecipe = () => {
                   id="preparation"
                   cols="10"
                   rows="4"
+                  value={preparation}
+                  onChange={onAddDesc}
                   required
                 ></textarea>
 
-                <p>Добави категории</p>
+                {/* <p>Добави категории</p>
                 <article className={classes.categories}>
                   <ul className={classes.checkboxItems}>
                     <li className={classes.checkbox}>
                       <input type="checkbox" name="item" required />
                     </li>
                   </ul>
-                </article>
+                </article> */}
 
                 <div className={classes.suitable}>
                   <p>
                     Подходяща за
                     <span>
-                      <select name="suitableFor" id="suitable" required>
+                      <select
+                        name="suitableFor"
+                        id="suitable"
+                        onChange={onSelectSuitable}
+                        value={suitableFor}
+                        required
+                      >
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="4">4</option>
