@@ -1,11 +1,13 @@
 .background {
-  background-image: url("../assets/spice-pasta.jpg");
+  background-image: url("../../assets/chushka.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
   height: 110vh;
 }
 
 .content {
-  max-width: 920px;
-  margin: auto;
+  max-width: 720px;
+  margin-left: 15%;
 }
 
 .title {
@@ -43,7 +45,7 @@
   outline: none;
 }
 
-p {
+.para {
   margin-top: 20px;
   font-family: "Josefin Sans", sans-serif;
   color: white;

@@ -1,13 +1,49 @@
 import classes from "./PostRecipe.module.css";
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
+import SingleIngredient from "./SingleIngredient";
 
 const PostRecipe = () => {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    title: "",
+  });
+  const [products, setProducts] = useState([]);
+  const [item, setItem] = useState("");
+  const [volume, setVolume] = useState("");
+  const { title } = formData;
+
+  const onItemAdd = (e) => {
+    setItem(e.target.value);
+    console.log(item);
+  };
+
+  const onVolumeAdd = (e) => {
+    setVolume(e.target.value);
+    console.log(volume);
+  };
+
+  const onChange = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const onProductAdd = (e) => {
+    e.preventDefault();
+
+    const newProduct = {
+      item,
+      volume,
+    };
+    console.log(newProduct);
+    setProducts((prevState) => [...prevState, newProduct]);
+    console.log(products);
+  };
 
   return (
     <Fragment>
-      <main classname={classes.main}>
-        <section className="background">
+      <main className={classes.main}>
+        <section className={classes.background}>
           <section className={classes.content}>
             <div className={classes.title}>
               <h2>Добави своята страхотна рецепта!</h2>
@@ -18,37 +54,54 @@ const PostRecipe = () => {
                 <input
                   className={`${classes.inpitOpacity} ${classes.inputField}`}
                   type="text"
-                  placeholder="Recipe title..."
+                  placeholder="Мусака с тиквички..."
                   name="title"
+                  id="title"
+                  value={title}
+                  onChange={onChange}
                   required
                 />
-                <p>Ingredients:</p>
-                {/* <app-ingredient-list ></app-ingredient-list> */}
+                <p className={classes.para}>Съставки:</p>
+                {products.length > 0
+                  ? products.map((product) => (
+                      <SingleIngredient product={product} key={product.item} />
+                    ))
+                  : null}
                 <article className={classes.ingredient}>
                   <input
                     className={`${classes.inpitOpacity} ${classes.inputField}`}
                     type="text"
-                    placeholder="Carrots, onion, pasta..."
+                    placeholder="Морков, домат, лук, червен пипер..."
                     name="product"
+                    id="product"
+                    value={item}
+                    onChange={onItemAdd}
                     required
                   />
-                  <label for="quantity">Quantity</label>
                   <input
                     className={`${classes.inpitOpacity} ${classes.inputField}`}
                     type="number"
-                    placeholder="quantity..."
+                    placeholder="количество..."
                     name="quantity"
+                    id="quantity"
+                    value={volume}
+                    onChange={onVolumeAdd}
                   />
                   <select name="ingredient-type" id="kilo">
-                    <option value="kilo(s).">Kilo(s).</option>
-                    <option value="ml.">ml.</option>
-                    <option value="piece(s).">Piece(s)</option>
-                    <option value="by taste.">By taste</option>
+                    <option value="kilo(s).">грама</option>
+                    <option value="ml.">мл.</option>
+                    <option value="piece(s).">брой(я)</option>
+                    <option value="by taste.">На вкус</option>
                   </select>
-                  <button className={classes.addIngredient}>+</button>
+                  <button
+                    className={classes.addIngredient}
+                    onClick={onProductAdd}
+                  >
+                    +
+                  </button>
                 </article>
 
-                <p>Preparation - Add the Steps for Cooking Your Masterpiece</p>
+                <p>Добави стъпките за приготвянето на твоя шедьовър</p>
                 <textarea
                   className={classes.inpitOpacity}
                   name="preparation"
@@ -58,7 +111,7 @@ const PostRecipe = () => {
                   required
                 ></textarea>
 
-                <p>Add To Categories</p>
+                <p>Добави категории</p>
                 <article className={classes.categories}>
                   <ul className={classes.checkboxItems}>
                     <li className={classes.checkbox}>
@@ -69,7 +122,7 @@ const PostRecipe = () => {
 
                 <div className={classes.suitable}>
                   <p>
-                    Suitable for
+                    Подходяща за
                     <span>
                       <select name="suitableFor" id="suitable" required>
                         <option value="1">1</option>
@@ -78,13 +131,11 @@ const PostRecipe = () => {
                         <option value="6">6</option>
                       </select>
                     </span>
-                    people.
+                    човека.
                   </p>
                 </div>
 
-                <button className={classes.buttonMain}>
-                  Publish your recipe
-                </button>
+                <button className={classes.buttonMain}>ДОБАВИ РЕЦЕПТА</button>
               </form>
             </div>
           </section>
