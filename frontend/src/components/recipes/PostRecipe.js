@@ -1,6 +1,7 @@
 import classes from "./PostRecipe.module.css";
 import { Fragment, useState, useEffect } from "react";
 import SingleIngredient from "./SingleIngredient";
+import { toast } from "react-toastify";
 
 const PostRecipe = () => {
   const [formData, setFormData] = useState({
@@ -22,7 +23,7 @@ const PostRecipe = () => {
   };
 
   const onVolumeAdd = (e) => {
-    setVolume(e.target.value);
+    setVolume(Number(e.target.value));
   };
 
   const onSelectType = (e) => {
@@ -46,7 +47,7 @@ const PostRecipe = () => {
   const onSelectSuitable = (e) => {
     setFormData((prevState) => ({
       ...prevState,
-      [e.target.name]: e.target.value,
+      [e.target.name]: Number(e.target.value),
     }));
   };
 
@@ -65,10 +66,34 @@ const PostRecipe = () => {
     }));
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(formData);
+    if (!title || !products || !preparation || !suitableFor) {
+      toast.error("Моля въведете всички полета");
+    }
+
+    const recipe = {
+      title,
+      products,
+      preparation,
+      suitableFor,
+    };
+
+    try {
+      const response = await fetch("http://localhost:5000/api/posts", {
+        method: "POST",
+        body: JSON.stringify(recipe),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <Fragment>

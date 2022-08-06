@@ -48,7 +48,6 @@ const Register = (props) => {
       });
 
       const data = await response.json();
-      //console.log(data)
 
       if (data.name === name) {
         navigate("/");
@@ -156,8 +155,9 @@ const Register = (props) => {
             РЕГИСТРИРАЙ СЕ
           </button>
         </form>
-        <p>Ако имаш регистрация вече <Link to="/login">Влез тук</Link></p>
-        
+        <p>
+          Ако имаш регистрация вече <Link to="/login">Влез тук</Link>
+        </p>
       </div>
     </div>
   );
