@@ -1,0 +1,124 @@
+.background {
+  background-image: url("../assets/spice-pasta.jpg");
+  height: 110vh;
+}
+
+.content {
+  max-width: 920px;
+  margin: auto;
+}
+
+.title {
+  font-family: "Josefin Sans", sans-serif;
+  text-align: center;
+  padding-top: 80px;
+  color: white;
+  font-size: 24px;
+  letter-spacing: 2px;
+}
+
+.formInside {
+  margin-top: 40px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.inpitOpacity {
+  background-color: rgba(0, 0, 0, 0.349);
+  border: none;
+  color: white;
+  border-radius: 15px;
+}
+
+.inputField {
+  font-family: "Josefin Sans", sans-serif;
+  padding-top: 12px;
+  padding-bottom: 8px;
+  padding-left: 15px;
+}
+
+.inpitOpacity:focus {
+  outline: none;
+}
+
+p {
+  margin-top: 20px;
+  font-family: "Josefin Sans", sans-serif;
+  color: white;
+  font-size: 20px;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+h2 {
+  font-family: "Josefin Sans", sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.button-main {
+  margin-top: 20px;
+  font-family: "Fredoka", sans-serif;
+  letter-spacing: 2px;
+  background-color: yellowgreen;
+  border: none;
+  border-radius: 10px;
+  color: black;
+  text-transform: uppercase;
+  padding: 15px;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+.categories {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+}
+
+.caterory-list1,
+.category-list2,
+.category-list3,
+.category-list4 {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkboxItems {
+  display: flex;
+  gap: 15px;
+}
+
+.checkbox {
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 500;
+  color: white;
+  font-size: 18px;
+  list-style-type: none;
+}
+
+.suitable {
+  display: flex;
+  justify-content: center;
+}
+
+.suitable span {
+  padding-left: 10px;
+  font-weight: 700;
+}
+
+.addIngredient {
+  padding: 5px;
+  border: none;
+  border-radius: 10px;
+  background-color: yellowgreen;
+  color: black;
+}
+
+.ingredient {
+  display: flex;
+  justify-content: space-between;
+}

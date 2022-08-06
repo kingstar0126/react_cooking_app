@@ -13,7 +13,7 @@ const SmallRecipeItem = (props) => {
         <div>
           <h4 className={classes.recipeTitle}>{props.name}</h4>
           <p className={classes.recipeExerpt}>
-            {props.name} -- {props.weight}
+            {props.name} - {props.description}
           </p>
         </div>
         <button>ВИЖ ПОВЕЧЕ</button>

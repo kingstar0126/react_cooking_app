@@ -15,6 +15,9 @@ const MainNavigation = (props) => {
             <Link to="/">НАЧАЛО</Link>
           </li>
           <li>
+            <Link to="/dobavi">ДОБАВИ РЕЦЕПТА</Link>
+          </li>
+          <li>
             <Link to="/recepti">РЕЦЕПТИ</Link>
           </li>
           <li>
@@ -23,6 +26,7 @@ const MainNavigation = (props) => {
           <li>
             <Link to="/register">РЕГИСТРАЦИЯ</Link>
           </li>
+          
         </ul>
       </nav>
     </header>

@@ -38,7 +38,7 @@ const Home = (props) => {
             <SmallRecipeItem
               key={recipe.id}
               name={recipe.name}
-              weight={recipe.description}
+              description={recipe.description}
             ></SmallRecipeItem>
           ))}
         </ul>

@@ -1,0 +1,127 @@
+.background {
+    background-image: url("../assets/spice-pasta.jpg");
+    height: 110vh;
+  }
+  
+  .reg {
+    padding-top: 6rem;
+    color: white;
+    padding-left: 20%;
+    width: 100%;
+    max-width: 800px;
+  }
+  
+  .reg__title {
+    font-family: "Montserrat", sans-serif;
+    font-size: 38px;
+    margin-bottom: 1rem;
+  }
+  
+  /* INPUT */
+  
+  .genLabel {
+    font-size: 20px;
+    font-family: "Nunito", sans-serif;
+    display: block;
+  }
+  
+  .genRadioLabel {
+    font-size: 20px;
+    font-family: "Nunito", sans-serif;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    text-align: center;
+  }
+  
+  .genInput {
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    height: 2.5rem;
+    transition: 0.2s ease-in-out;
+    background-color: rgba(105, 90, 205, 0.7);
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    color: yellow;
+    font-size: 22px;
+    font-family: "Caveat", cursive;
+  }
+  
+  .genInput:focus {
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    height: 3rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    caret-color: white;
+    color: yellow;
+    font-family: "Caveat", cursive;
+  }
+  
+  .genRadio {
+    margin-top: 0.5rem;
+    display: inline;
+    font-size: 28px;
+    margin-bottom: 1.5rem;
+  }
+  
+  ::placeholder {
+    color: white;
+  }
+  
+  input[type="radio"] {
+    height: 30px;
+    width: 30px;
+    vertical-align: middle;
+  }
+  
+  input[type="radio"]:before {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 2px solid red;
+    border-radius: 15px;
+    position: relative;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+    margin: 0.25rem;
+  }
+  
+  .regButton {
+    display: block;
+    font-family: "Montserrat", sans-serif;
+    padding: 1rem;
+    width: 100%;
+    background-color: yellow;
+    border: none;
+    border-radius: 10px;
+    font-size: 22px;
+    font-weight: 700;
+    transition: 0.2s ease-in-out;
+  }
+  
+  .regButton:hover {
+    background-color: rgb(201, 201, 0);
+    cursor: pointer;
+  }
+  
+  .regButton:focus {
+    background-color: rgb(146, 146, 3);
+  }
+  
+  /*  
+        font-family: 'Caveat', cursive;
+    
+        font-family: 'Lobster', cursive;
+    
+        font-family: 'Marck Script', cursive;
+    
+        font-family: 'Montserrat', sans-serif;
+    
+        font-family: 'Nunito', sans-serif;
+    
+        font-family: 'Pacifico', cursive; 
+    */ ;
+  
