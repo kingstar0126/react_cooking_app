@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import classes from "./Login.module.css";
+import Spinner from "./layout/Spinner";
 
 const Login = (props) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -22,6 +24,7 @@ const Login = (props) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const userData = {
       email,
@@ -29,7 +32,7 @@ const Login = (props) => {
     };
 
     try {
-      const response = await fetch(`http://localhost:5000/api/users`, {
+      const response = await fetch(`http://localhost:5000/api/users/login`, {
         method: "POST",
         body: JSON.stringify(userData),
         headers: {
@@ -38,11 +41,18 @@ const Login = (props) => {
       });
 
       const data = await response.json();
-      //console.log(data)
+      if (data.email === email) {
+        navigate("/");
+      }
     } catch (error) {
-      
+      toast.error(error.message);
     }
+    setLoading(false);
   };
+
+  if (loading) {
+    return <Spinner />;
+  }
 
   return (
     <div className={classes.background}>
@@ -78,8 +88,10 @@ const Login = (props) => {
             ВЛЕЗ
           </button>
         </form>
-        <p>Ако все още нямаш регистрация с нас <Link to="/register">регистрирай се тук</Link></p>
-        
+        <p>
+          Ако все още нямаш регистрация с нас{" "}
+          <Link to="/register">регистрирай се тук</Link>
+        </p>
       </div>
     </div>
   );

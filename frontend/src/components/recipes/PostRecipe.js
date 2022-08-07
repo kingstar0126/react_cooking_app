@@ -1,15 +1,20 @@
 import classes from "./PostRecipe.module.css";
 import { Fragment, useState, useEffect } from "react";
 import SingleIngredient from "./SingleIngredient";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import Spinner from "../layout/Spinner";
 
 const PostRecipe = () => {
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
     products: [],
     preparation: "",
     suitableFor: "",
   });
+
+  const navigate = useNavigate();
 
   const [products, setProducts] = useState([]);
   const [item, setItem] = useState("");
@@ -68,6 +73,7 @@ const PostRecipe = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     if (!title || !products || !preparation || !suitableFor) {
       toast.error("Моля въведете всички полета");
@@ -90,11 +96,26 @@ const PostRecipe = () => {
       });
 
       const data = await response.json();
-      console.log(data);
+      if (data.title === title) {
+        navigate("/");
+      } else {
+        setFormData({
+          title: "",
+          products: [],
+          preparation: "",
+          suitableFor: "",
+        });
+      }
     } catch (error) {
       console.log(error);
     }
+    setLoading(false);
   };
+
+  if (loading) {
+    return <Spinner />;
+  }
+
   return (
     <Fragment>
       <main className={classes.main}>
