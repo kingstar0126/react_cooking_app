@@ -13,7 +13,7 @@ const registerUser = asyncHandler(async (req, res) => {
   // Validation
   if (!name || !email || !password) {
     res.status(400);
-    throw new Error("Please include all fields");
+    throw new Error("Моля въведете всички полета");
   }
 
   // Find if user already exists
@@ -21,7 +21,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   if (userExists) {
     res.status(400);
-    throw new Error("User already exists");
+    throw new Error("Акаунт с такъв имейл адрес вече съществува");
   }
 
   // Hash password
@@ -44,7 +44,7 @@ const registerUser = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(400);
-    throw new Error("Invalid user data");
+    throw new Error("Невалидни данни");
   }
 });
 
@@ -59,14 +59,14 @@ const loginUser = asyncHandler(async (req, res) => {
   // Check user and passwords matchs
   if (user && (await bcrypt.compare(password, user.password))) {
     res.status(200).json({
-      _id: user._id,
+      id: user._id,
       name: user.name,
       email: user.email,
       token: generateToken(user._id),
     });
   } else {
     res.status(401);
-    throw new Error("Invalid credentials");
+    throw new Error("Невалидни имейл или парола");
   }
 });
 

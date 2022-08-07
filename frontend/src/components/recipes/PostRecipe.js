@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import Spinner from "../layout/Spinner";
 
 const PostRecipe = () => {
+  const [activeUser, setActiveUser] = useState(null);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
@@ -13,6 +14,10 @@ const PostRecipe = () => {
     preparation: "",
     suitableFor: "",
   });
+
+  useEffect(() => {
+    setActiveUser(JSON.parse(localStorage.getItem("user")));
+  }, []);
 
   const navigate = useNavigate();
 

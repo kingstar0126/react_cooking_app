@@ -47,9 +47,13 @@ const Register = (props) => {
         },
       });
 
-      const data = await response.json();
+      if (response.status === 400) {
+        throw new Error("Акант с такъв имейл вече съществува");
+      }
 
-      if (data.name === name) {
+      if (response.status === 201) {
+        const user = await response.json();
+        localStorage.setItem("user", JSON.stringify(user));
         navigate("/");
       } else {
         setFormData({

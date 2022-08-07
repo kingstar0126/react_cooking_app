@@ -40,8 +40,17 @@ const Login = (props) => {
         },
       });
 
-      const data = await response.json();
-      if (data.email === email) {
+      if (response.status === 401) {
+        setFormData({
+          email: "",
+          password: "",
+        });
+        throw new Error("Невалидни имейл или парола");
+      }
+
+      if (response.status === 200) {
+        const user = await response.json();
+        localStorage.setItem("user", JSON.stringify(user));
         navigate("/");
       }
     } catch (error) {

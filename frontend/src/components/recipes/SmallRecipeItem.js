@@ -2,7 +2,6 @@ import React from "react";
 import classes from "./SmallRecipeItem.module.css";
 
 const SmallRecipeItem = (props) => {
-  console.log(props);
   return (
     <React.Fragment>
       <div className={classes.recipesList}>
