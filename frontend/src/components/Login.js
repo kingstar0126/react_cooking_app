@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import classes from "./Login.module.css";
 import Spinner from "./layout/Spinner";
+import AuthContext from "../context/authContext";
 
 const Login = (props) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  const { login, isLoggedIn, user } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ const Login = (props) => {
     }));
   };
 
-  const onSubmit = async (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
 
@@ -31,31 +32,11 @@ const Login = (props) => {
       password,
     };
 
-    try {
-      const response = await fetch(`http://localhost:5000/api/users/login`, {
-        method: "POST",
-        body: JSON.stringify(userData),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (response.status === 401) {
-        setFormData({
-          email: "",
-          password: "",
-        });
-        throw new Error("Невалидни имейл или парола");
-      }
-
-      if (response.status === 200) {
-        const user = await response.json();
-        localStorage.setItem("user", JSON.stringify(user));
-        navigate("/");
-      }
-    } catch (error) {
-      toast.error(error.message);
+    login(userData);
+    if (isLoggedIn) {
+      navigate("/");
     }
+
     setLoading(false);
   };
 

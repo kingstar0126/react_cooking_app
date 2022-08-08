@@ -1,9 +1,9 @@
 //import classes from "./App.module.css";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 import { Routes, Route } from "react-router-dom";
-import { Fragment } from "react";
+
 import Footer from "./components/layout/Footer";
 import MainNavigation from "./components/layout/MainNavigation";
 
@@ -11,10 +11,9 @@ import Register from "./components/Register";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import PostRecipe from "./components/recipes/PostRecipe";
+import React from "react";
 
 function App() {
-  
-
   const recipes = [
     {
       id: 1,
@@ -29,7 +28,7 @@ function App() {
   ];
 
   return (
-    <Fragment>
+    <React.Fragment>
       <MainNavigation />
       <Routes>
         <Route path="/" element={<Home recipes={recipes} />}></Route>
@@ -40,7 +39,7 @@ function App() {
 
       <Footer />
       <ToastContainer />
-    </Fragment>
+    </React.Fragment>
   );
 }
 
