@@ -1,18 +1,19 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import classes from "./Login.module.css";
 import Spinner from "./layout/Spinner";
-import AuthContext from "../context/authContext";
+import {useSelector, useDispatch} from 'react-redux';
+import { login } from "../features/auth/authSlice";
 
 const Login = (props) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-  const { login, isLoggedIn, user } = useContext(AuthContext);
-  const [loading, setLoading] = useState(false);
-
   const navigate = useNavigate();
+
+  const dispatch = useDispatch()
+  const {user, isLoading, isSuccess, message} = useSelector(state => state.auth)
 
   const { email, password } = formData;
 
@@ -25,22 +26,16 @@ const Login = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
-
+   
     const userData = {
       email,
       password,
     };
 
-    login(userData);
-    if (isLoggedIn) {
-      navigate("/");
-    }
-
-    setLoading(false);
+    dispatch(login(userData));
   };
 
-  if (loading) {
+  if (isLoading) {
     return <Spinner />;
   }
 

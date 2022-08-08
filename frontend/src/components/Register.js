@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import classes from "./Register.module.css";
+import {useSelector, useDispatch} from 'react-redux';
+import { register, reset } from "../features/auth/authSlice";
+import Spinner from "./layout/Spinner";
 
 const Register = (props) => {
   const [formData, setFormData] = useState({
@@ -15,6 +18,21 @@ const Register = (props) => {
 
   const { name, email, password, repass } = formData;
 
+  const dispatch = useDispatch();
+  const {user, isLoading, isError ,isSuccess, message} = useSelector(state => state.auth)
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message)
+    }
+
+    if (isSuccess || user) {
+      navigate('/')
+    }
+
+    dispatch(reset())
+  }, [isError, isSuccess, user, message, navigate, dispatch])
+
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -27,9 +45,11 @@ const Register = (props) => {
 
     if (password.length < 6 || password.length > 12) {
       toast.error("Паролата трябва да е между 6 и 12 символа");
+      return;
     }
     if (password !== repass) {
       toast.error("Въведените пароли не съвпадат");
+      return;
     }
 
     const userData = {
@@ -38,41 +58,12 @@ const Register = (props) => {
       password,
     };
 
-    try {
-      const response = await fetch(`http://localhost:5000/api/users`, {
-        method: "POST",
-        body: JSON.stringify(userData),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (response.status === 400) {
-        throw new Error("Акант с такъв имейл вече съществува");
-      }
-
-      if (response.status === 201) {
-        const user = await response.json();
-        localStorage.setItem("user", JSON.stringify(user));
-        navigate("/");
-      } else {
-        setFormData({
-          name: "",
-          email: "",
-          password: "",
-          repass: "",
-        });
-      }
-    } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-      toast.error(message);
-    }
+    dispatch(register(userData))
   };
+
+  if (isLoading) {
+    return <Spinner />
+  }
 
   return (
     <div className={classes.background}>

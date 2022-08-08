@@ -7,6 +7,7 @@ import { Routes, Route } from "react-router-dom";
 import Footer from "./components/layout/Footer";
 import MainNavigation from "./components/layout/MainNavigation";
 
+//import PrivateRoute from "./components/PrivateRoute";
 import Register from "./components/Register";
 import Home from "./components/Home";
 import Login from "./components/Login";
@@ -31,10 +32,13 @@ function App() {
     <React.Fragment>
       <MainNavigation />
       <Routes>
-        <Route path="/" element={<Home recipes={recipes} />}></Route>
+        <Route path="/" element={<Home recipes={recipes}/>}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/login" element={<Login />}></Route>
-        <Route path="/dobavi" element={<PostRecipe />} />
+        {/* <Route path="/dobavi" element={<PrivateRoute />}> */}
+          <Route path="/dobavi" element={<PostRecipe />} />
+        {/* </Route> */}
+        
       </Routes>
 
       <Footer />
