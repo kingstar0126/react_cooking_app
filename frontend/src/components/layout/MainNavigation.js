@@ -5,17 +5,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { logout, reset } from "../../features/auth/authSlice";
 
 const MainNavigation = (props) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
 
   const onLogout = () => {
-    dispatch(logout())
-    dispatch(reset())
-    navigate('/')
-  }
+    dispatch(logout());
+    dispatch(reset());
+    navigate("/");
+  };
 
-  
   return (
     <header className={classes.header}>
       <div className={classes.logo}>
@@ -49,6 +48,11 @@ const MainNavigation = (props) => {
               <Link to="/" onClick={onLogout}>
                 ИЗХОД
               </Link>
+            </li>
+          )}
+          {user && (
+            <li>
+              <Link to="/profil">Профил</Link>
             </li>
           )}
         </ul>

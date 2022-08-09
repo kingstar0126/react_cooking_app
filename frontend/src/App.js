@@ -11,6 +11,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Register from "./components/Register";
 import Home from "./components/Home";
 import Login from "./components/Login";
+import MyProfile from "./components/profile/MyProfile";
 import PostRecipe from "./components/recipes/PostRecipe";
 import React from "react";
 
@@ -37,6 +38,9 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/dobavi" element={<PrivateRoute />}>
           <Route path="/dobavi" element={<PostRecipe />} />
+        </Route>
+        <Route path="/profil" element={<PrivateRoute />}>
+          <Route path="/profil" element={<MyProfile />} />
         </Route>
       </Routes>
 

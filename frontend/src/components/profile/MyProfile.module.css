@@ -1,0 +1,6 @@
+.background {
+  background-image: url("../../assets/veggie-quinoa.jpg");
+  height: 110vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
