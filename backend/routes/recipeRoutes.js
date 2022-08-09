@@ -1,8 +1,19 @@
 const express = require("express");
 const router = express.Router();
-const { postRecipe } = require("../controllers/recipesController");
+const { postRecipe, getMyRecipes, editRecipe, getRecipeById, getRecipes, deleteRecipeById } = require("../controllers/recipesController");
+const { protect } = require("../middleware/authMiddleware");
 
-router.post("/", postRecipe);
-//router.put("/edit/:id", editRecipe);
+// POST and EDIT and DELETE a recipe
+router.post("/", protect, postRecipe);
+router.put("/:id", protect, editRecipe);
+router.delete("/:id", protect, deleteRecipeById);
+
+// GET list of user's recipes
+router.get("/myRecipes", protect, getMyRecipes);
+
+// GET public recipes and single recipe
+router.get("/", getRecipes);
+router.get("/:id", getRecipeById);
+
 
 module.exports = router;

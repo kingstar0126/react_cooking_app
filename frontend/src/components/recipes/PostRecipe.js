@@ -4,10 +4,15 @@ import SingleIngredient from "./SingleIngredient";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Spinner from "../layout/Spinner";
+import { useSelector, useDispatch } from "react-redux";
+import { createRecipe, reset } from "../../features/recipes/recipeSlice";
 
 const PostRecipe = () => {
-  const [activeUser, setActiveUser] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const { user } = useSelector((state) => state.auth);
+  const { isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.recipe
+  );
+
   const [formData, setFormData] = useState({
     title: "",
     products: [],
@@ -15,11 +20,8 @@ const PostRecipe = () => {
     suitableFor: "",
   });
 
-  useEffect(() => {
-    setActiveUser(JSON.parse(localStorage.getItem("user")));
-  }, []);
-
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [products, setProducts] = useState([]);
   const [item, setItem] = useState("");
@@ -76,13 +78,23 @@ const PostRecipe = () => {
     }));
   };
 
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+    if (isSuccess) {
+      dispatch(reset());
+      navigate("/recepti");
+    }
+    dispatch(reset());
+  }, [message, isError, isSuccess, navigate, dispatch]);
+
   const onSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
 
-    if (!title || !products || !preparation || !suitableFor) {
-      toast.error("Моля въведете всички полета");
-    }
+    // if (!title || !products || !preparation || !suitableFor) {
+    //   toast.error("Моля въведете всички полета");
+    // }
 
     const recipe = {
       title,
@@ -91,33 +103,10 @@ const PostRecipe = () => {
       suitableFor,
     };
 
-    try {
-      const response = await fetch("http://localhost:5000/api/posts", {
-        method: "POST",
-        body: JSON.stringify(recipe),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      const data = await response.json();
-      if (data.title === title) {
-        navigate("/");
-      } else {
-        setFormData({
-          title: "",
-          products: [],
-          preparation: "",
-          suitableFor: "",
-        });
-      }
-    } catch (error) {
-      console.log(error);
-    }
-    setLoading(false);
+    dispatch(createRecipe(recipe));
   };
 
-  if (loading) {
+  if (isLoading) {
     return <Spinner />;
   }
 
@@ -127,6 +116,7 @@ const PostRecipe = () => {
         <section className={classes.background}>
           <section className={classes.content}>
             <div className={classes.title}>
+              <h1>Здравей, {user.name}</h1>
               <h2>Добави своята страхотна рецепта!</h2>
               <div className={classes.line}></div>
             </div>
