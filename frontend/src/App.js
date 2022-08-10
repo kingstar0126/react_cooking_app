@@ -13,27 +13,17 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import MyProfile from "./components/profile/MyProfile";
 import PostRecipe from "./components/recipes/PostRecipe";
+import Recipes from './components/recipes/Recipes';
+import SingleRecipe from "./components/recipes/SingleRecipe";
+
 import React from "react";
 
 function App() {
-  const recipes = [
-    {
-      id: 1,
-      name: "1st recipe",
-      description: "nice recipe",
-    },
-    {
-      id: 2,
-      name: "1st recipe",
-      description: "nice recipe",
-    },
-  ];
-
   return (
     <React.Fragment>
       <MainNavigation />
       <Routes>
-        <Route path="/" element={<Home recipes={recipes} />}></Route>
+        <Route path="/" element={<Home />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/dobavi" element={<PrivateRoute />}>
@@ -42,6 +32,8 @@ function App() {
         <Route path="/profil" element={<PrivateRoute />}>
           <Route path="/profil" element={<MyProfile />} />
         </Route>
+        <Route path="/recepti" element={<Recipes />}></Route>
+        <Route path="/recepti/:id" element={<SingleRecipe />}></Route>
       </Routes>
 
       <Footer />

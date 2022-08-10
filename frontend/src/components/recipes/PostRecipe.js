@@ -82,10 +82,10 @@ const PostRecipe = () => {
     if (isError) {
       toast.error(message);
     }
-    if (isSuccess) {
-      dispatch(reset());
-      navigate("/recepti");
-    }
+    // if (isSuccess) {
+    //   dispatch(reset());
+    //   navigate("/recepti");
+    // }
     dispatch(reset());
   }, [message, isError, isSuccess, navigate, dispatch]);
 

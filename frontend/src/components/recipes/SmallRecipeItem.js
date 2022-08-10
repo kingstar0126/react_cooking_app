@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import classes from "./SmallRecipeItem.module.css";
 
-const SmallRecipeItem = (props) => {
+const SmallRecipeItem = ({recipe}) => {
   return (
     <React.Fragment>
       <div className={classes.recipesList}>
@@ -10,12 +11,12 @@ const SmallRecipeItem = (props) => {
           alt="chicken-breast"
         ></img>
         <div>
-          <h4 className={classes.recipeTitle}>{props.name}</h4>
+          <h4 className={classes.recipeTitle}>{recipe.title}</h4>
           <p className={classes.recipeExerpt}>
-            {props.name} - {props.description}
+            {recipe.title} - {recipe.preparation}
           </p>
         </div>
-        <button>ВИЖ ПОВЕЧЕ</button>
+        <Link to={`/recepti/${recipe._id}`}>ВИЖ ПОВЕЧЕ</Link>
       </div>
     </React.Fragment>
   );

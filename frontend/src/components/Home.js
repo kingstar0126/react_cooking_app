@@ -1,8 +1,35 @@
-import React from "react";
+import React, {useEffect} from "react";
+import { useSelector, useDispatch } from "react-redux";
 import classes from "./Home.module.css";
 import SmallRecipeItem from "./recipes/SmallRecipeItem";
+import Spinner from "./layout/Spinner";
+import { getAllRecipes, reset } from "../features/recipes/recipeSlice";
 
-const Home = (props) => {
+const Home = () => {
+  const {recipes, isLoading, isSuccess} = useSelector(state => state.recipe)
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getAllRecipes())
+  }, [dispatch])
+
+  useEffect(() => {
+    return () => {
+      if (isSuccess) {
+        dispatch(reset())
+      }
+    }
+  }, [isSuccess, dispatch])
+
+ 
+
+  console.log(recipes)
+
+  if (isLoading) {
+    return <Spinner />
+  }
+
   return (
     <div>
       <h1>Рецепта на деня</h1>
@@ -34,11 +61,10 @@ const Home = (props) => {
 
       <section>
         <ul className={classes.recipe__list}>
-          {props.recipes.map((recipe) => (
+          {recipes.map((recipe) => (
             <SmallRecipeItem
-              key={recipe.id}
-              name={recipe.name}
-              description={recipe.description}
+              key={recipe._id}
+              recipe={recipe}
             ></SmallRecipeItem>
           ))}
         </ul>

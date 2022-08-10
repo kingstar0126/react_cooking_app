@@ -1,0 +1,6 @@
+.background {
+    background-image: url("../../assets/healthy-diet.jpg");
+    height: 110vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
