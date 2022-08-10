@@ -1,6 +1,16 @@
 .background {
-  background-image: url("../../assets/veggie-quinoa.jpg");
-  height: 110vh;
+  background-image: url("../../assets/fresh-raw-meat.jpg");
+  height: 100vh;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.profile_section {
+  max-width: 560px;
+  margin-left: 10%;
+  padding-top: 4rem;
+}
+
+.profile_name {
+  color: white;
 }

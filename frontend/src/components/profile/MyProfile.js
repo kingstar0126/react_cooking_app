@@ -6,7 +6,9 @@ const MyProfile = () => {
 
   return (
     <main className={classes.background}>
-      <div>Hello {user.name}</div>
+      <section className={classes.profile_section}>
+        <h1 className={classes.profile_name}>Здравей, {user.name}</h1>
+      </section>
     </main>
   );
 };
