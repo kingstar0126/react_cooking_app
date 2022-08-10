@@ -10,46 +10,52 @@ import SingleIngredient from "./SingleIngredient";
 
 const SingleRecipe = () => {
   const dispatch = useDispatch();
-  const params = useParams()
-  const {id} = useParams()
+  const params = useParams();
+  const { id } = useParams();
   const [ingredients, setIngredient] = useState([]);
 
-  const {recipe, isSuccess, isLoading, isError, message} = useSelector(state => state.recipe)
-  const {products} = recipe
-  
+  const { recipe, isSuccess, isLoading, isError, message } = useSelector(
+    (state) => state.recipe
+  );
+  const { products } = recipe;
+
   useEffect(() => {
-    setIngredient(products)
-  }, [products])
-  console.log(ingredients)
+    setIngredient(products);
+  }, [products]);
+  console.log(ingredients);
   useEffect(() => {
     return () => {
-      if (isSuccess){
-        dispatch(reset())
+      if (isSuccess) {
+        dispatch(reset());
       }
-    }
-  }, [isSuccess, dispatch])
+    };
+  }, [isSuccess, dispatch]);
 
   useEffect(() => {
     if (isError) {
-      toast.error(message)
+      toast.error(message);
     }
 
-    dispatch(getSingleRecipe(id))
+    dispatch(getSingleRecipe(id));
     // eslint-disable-next-line
-  }, [isError, message, id])
+  }, [isError, message, id]);
 
   if (isLoading) {
-    return <Spinner />
+    return <Spinner />;
   }
 
   return (
     <main className={classes.background}>
-      <section>
+      <section className={classes.center}>
         <h1>{recipe.title}</h1>
         <div className={classes.line}></div>
         <div>
           <h2>Необходими продукти</h2>
-          {/* {ingredients.length>0 ? ingredients.map((ingredient) => (<SingleIngredient key={ingredient.item} product={ingredient}/>)) : null} */}
+          {ingredients !== undefined
+            ? ingredients.map((ingredient) => (
+                <SingleIngredient key={ingredient.item} product={ingredient} />
+              ))
+            : null}
         </div>
       </section>
     </main>

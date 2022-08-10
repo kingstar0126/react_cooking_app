@@ -2,10 +2,11 @@ import classes from "./SingleIngredient.module.css";
 
 const SingleIngredient = ({ product }) => {
   return (
-    <div>
-      <h2>
-        {product.item} - {product.volume} {product.type}
-      </h2>
+    <div className={classes.center}>
+      <h4>
+        <span className={classes.product_name}>{product.item}</span> -{" "}
+        {product.volume} {product.type}
+      </h4>
     </div>
   );
 };

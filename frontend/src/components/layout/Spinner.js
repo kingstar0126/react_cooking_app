@@ -1,9 +1,11 @@
 import spinner from "../../assets/spinner.gif";
+import classes from "./Spinner.module.css";
 
 function Spinner() {
   return (
-    <div>
+    <div className={classes.center}>
       <img
+        className={classes.center}
         width={180}
         src={spinner}
         alt="Loading..."

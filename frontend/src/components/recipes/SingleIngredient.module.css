@@ -1,0 +1,24 @@
+.center {
+  display: flex;
+  justify-content: center;
+  margin: 0.5rem;
+}
+
+.product_name {
+  font-family: "Caveat", cursive;
+  font-size: 30px;
+}
+
+/*  
+      font-family: 'Caveat', cursive;
+  
+      font-family: 'Lobster', cursive;
+  
+      font-family: 'Marck Script', cursive;
+  
+      font-family: 'Montserrat', sans-serif;
+  
+      font-family: 'Nunito', sans-serif;
+  
+      font-family: 'Pacifico', cursive; 
+  */ ;
