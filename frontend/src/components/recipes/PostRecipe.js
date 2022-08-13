@@ -1,17 +1,29 @@
 import classes from "./PostRecipe.module.css";
 import { Fragment, useState, useEffect } from "react";
 import SingleIngredient from "./SingleIngredient";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import Spinner from "../layout/Spinner";
 import { useSelector, useDispatch } from "react-redux";
-import { createRecipe, reset } from "../../features/recipes/recipeSlice";
+import { createRecipe, reset, getSingleRecipe, updateRes } from "../../features/recipes/recipeSlice";
 
 const PostRecipe = () => {
+  const params = useParams()
+  const {recipeId} = params
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+ 
   const { user } = useSelector((state) => state.auth);
-  const { isLoading, isError, isSuccess, message } = useSelector(
+  const { recipe, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.recipe
   );
+
+  useEffect(() => {
+    if (recipeId !== undefined) {
+      dispatch(getSingleRecipe(recipeId))
+    }
+  }, [dispatch, recipeId])
 
   const [formData, setFormData] = useState({
     title: "",
@@ -19,9 +31,6 @@ const PostRecipe = () => {
     preparation: "",
     suitableFor: "",
   });
-
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const [products, setProducts] = useState([]);
   const [item, setItem] = useState("");

@@ -30,6 +30,26 @@ export const createRecipe = createAsyncThunk(
   }
 );
 
+// UPDATE existing recipe
+export const updateRes = createAsyncThunk(
+  "recipe/update",
+  async (recipe, recipeId, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token;
+      return await recipeService.updateRecipe(recipe, recipeId, token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 // GET user's recipes
 export const getMyRecipes = createAsyncThunk(
   "recipe/getAllMy",
@@ -75,6 +95,26 @@ export const getSingleRecipe = createAsyncThunk(
   async (recipeId, thunkAPI) => {
     try {
       return await recipeService.getSingle(recipeId);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+// DELETE recipe
+export const deleteRes = createAsyncThunk(
+  "recipe/deleteRecipe",
+  async (recipeId, thunkAPI) => {
+    const token = thunkAPI.getState().auth.user.token;
+    try {
+      return await recipeService.deleteRecipe(recipeId, token);
     } catch (error) {
       const message =
         (error.response &&
@@ -149,7 +189,21 @@ export const recipeSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
-      });
+      })
+      // DELETE recipe/ private
+      .addCase(deleteRes.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteRes.fulfilled, (state) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.recipe = {};
+      })
+      .addCase(deleteRes.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
   },
 });
 

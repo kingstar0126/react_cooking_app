@@ -2,27 +2,36 @@ import classes from "./SingleRecipe.module.css";
 import Spinner from "../layout/Spinner";
 
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { getSingleRecipe, reset } from "../../features/recipes/recipeSlice";
+import { getSingleRecipe, reset, deleteRes, getAllRecipes } from "../../features/recipes/recipeSlice";
 import SingleIngredient from "./SingleIngredient";
 
 const SingleRecipe = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const params = useParams();
   const { id } = useParams();
   const [ingredients, setIngredient] = useState([]);
+  const [activeUser, setActiveUser] = useState(false)
 
+  const {user} = useSelector(state => state.auth)
   const { recipe, isSuccess, isLoading, isError, message } = useSelector(
     (state) => state.recipe
   );
   const { products } = recipe;
 
   useEffect(() => {
+    if (user) {
+      setActiveUser(user)
+    }
+  }, [user])
+    
+  useEffect(() => {
     setIngredient(products);
   }, [products]);
-  console.log(ingredients);
+  
   useEffect(() => {
     return () => {
       if (isSuccess) {
@@ -40,6 +49,22 @@ const SingleRecipe = () => {
     // eslint-disable-next-line
   }, [isError, message, id]);
 
+  const isOwner = activeUser.id === recipe.user
+
+  const onDelete = (e) => {
+    if (isOwner) {
+      dispatch(deleteRes(id))
+      if (isSuccess) {
+        navigate('/')
+      }
+    }
+  }
+
+  const onUpdate = () => {
+    navigate(`/dobavi/${id}`)
+  }
+
+  
   if (isLoading) {
     return <Spinner />;
   }
@@ -56,6 +81,18 @@ const SingleRecipe = () => {
                 <SingleIngredient key={ingredient.item} product={ingredient} />
               ))
             : null}
+        </div>
+        <div>
+          <p>{recipe.preparation}</p>
+        </div>
+        <div>
+          <div>
+            <button>СГОТВИ</button>
+          </div>
+          {isOwner ? (<div>
+            <button onClick={onUpdate}>РЕДАКТИРАЙ</button>
+            <button onClick={onDelete}>ИЗТРИЙ</button>
+          </div>) : null}
         </div>
       </section>
     </main>

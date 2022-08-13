@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import classes from "./Home.module.css";
 import SmallRecipeItem from "./recipes/SmallRecipeItem";
@@ -7,6 +7,7 @@ import { getAllRecipes, reset } from "../features/recipes/recipeSlice";
 
 const Home = () => {
   const {recipes, isLoading, isSuccess} = useSelector(state => state.recipe)
+  const [threeRecipes, setThreeRecipes] = useState('');
 
   const dispatch = useDispatch()
 
@@ -22,9 +23,6 @@ const Home = () => {
     }
   }, [isSuccess, dispatch])
 
- 
-
-  console.log(recipes)
 
   if (isLoading) {
     return <Spinner />

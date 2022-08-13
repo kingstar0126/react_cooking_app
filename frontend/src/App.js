@@ -34,7 +34,11 @@ function App() {
         </Route>
         <Route path="/recepti" element={<Recipes />}></Route>
         <Route path="/recepti/:id" element={<SingleRecipe />}></Route>
+        <Route path="/dobavi/:recipeId" element={<PrivateRoute />}>
+          <Route path="/dobavi/:recipeId" element={<PostRecipe />} />
+        </Route>
       </Routes>
+
 
       <Footer />
       <ToastContainer />
