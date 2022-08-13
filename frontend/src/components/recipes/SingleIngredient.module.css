@@ -1,12 +1,15 @@
 .center {
   display: flex;
   justify-content: center;
-  margin: 0.5rem;
+  margin: 0.2rem;
 }
 
 .product_name {
   font-family: "Caveat", cursive;
   font-size: 30px;
+  color: white;
+  font-size: 20px;
+  letter-spacing: 1px;
 }
 
 /*  

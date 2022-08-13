@@ -5,7 +5,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { getSingleRecipe, reset, deleteRes, getAllRecipes } from "../../features/recipes/recipeSlice";
+import {
+  getSingleRecipe,
+  reset,
+  deleteRes,
+  getAllRecipes,
+} from "../../features/recipes/recipeSlice";
 import SingleIngredient from "./SingleIngredient";
 
 const SingleRecipe = () => {
@@ -14,9 +19,9 @@ const SingleRecipe = () => {
   const params = useParams();
   const { id } = useParams();
   const [ingredients, setIngredient] = useState([]);
-  const [activeUser, setActiveUser] = useState(false)
+  const [activeUser, setActiveUser] = useState(false);
 
-  const {user} = useSelector(state => state.auth)
+  const { user } = useSelector((state) => state.auth);
   const { recipe, isSuccess, isLoading, isError, message } = useSelector(
     (state) => state.recipe
   );
@@ -24,14 +29,14 @@ const SingleRecipe = () => {
 
   useEffect(() => {
     if (user) {
-      setActiveUser(user)
+      setActiveUser(user);
     }
-  }, [user])
-    
+  }, [user]);
+
   useEffect(() => {
     setIngredient(products);
   }, [products]);
-  
+
   useEffect(() => {
     return () => {
       if (isSuccess) {
@@ -49,22 +54,21 @@ const SingleRecipe = () => {
     // eslint-disable-next-line
   }, [isError, message, id]);
 
-  const isOwner = activeUser.id === recipe.user
+  const isOwner = activeUser.id === recipe.user;
 
   const onDelete = (e) => {
     if (isOwner) {
-      dispatch(deleteRes(id))
+      dispatch(deleteRes(id));
       if (isSuccess) {
-        navigate('/')
+        navigate("/");
       }
     }
-  }
+  };
 
   const onUpdate = () => {
-    navigate(`/dobavi/${id}`)
-  }
+    navigate(`/dobavi/${id}`);
+  };
 
-  
   if (isLoading) {
     return <Spinner />;
   }
@@ -72,10 +76,10 @@ const SingleRecipe = () => {
   return (
     <main className={classes.background}>
       <section className={classes.center}>
-        <h1>{recipe.title}</h1>
+        <h1 className={classes.title}>{recipe.title}</h1>
         <div className={classes.line}></div>
         <div>
-          <h2>Необходими продукти</h2>
+          <h2 className={classes.product}>Необходими продукти</h2>
           {ingredients !== undefined
             ? ingredients.map((ingredient) => (
                 <SingleIngredient key={ingredient.item} product={ingredient} />
@@ -89,10 +93,12 @@ const SingleRecipe = () => {
           <div>
             <button>СГОТВИ</button>
           </div>
-          {isOwner ? (<div>
-            <button onClick={onUpdate}>РЕДАКТИРАЙ</button>
-            <button onClick={onDelete}>ИЗТРИЙ</button>
-          </div>) : null}
+          {isOwner ? (
+            <div>
+              <button onClick={onUpdate}>РЕДАКТИРАЙ</button>
+              <button onClick={onDelete}>ИЗТРИЙ</button>
+            </div>
+          ) : null}
         </div>
       </section>
     </main>

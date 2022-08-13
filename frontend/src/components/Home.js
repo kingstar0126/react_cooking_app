@@ -1,37 +1,40 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import classes from "./Home.module.css";
 import SmallRecipeItem from "./recipes/SmallRecipeItem";
 import Spinner from "./layout/Spinner";
 import { getAllRecipes, reset } from "../features/recipes/recipeSlice";
+import Button from "./layout/Button";
 
 const Home = () => {
-  const {recipes, isLoading, isSuccess} = useSelector(state => state.recipe)
-  const [threeRecipes, setThreeRecipes] = useState('');
+  const { recipes, isLoading, isSuccess } = useSelector(
+    (state) => state.recipe
+  );
+  const [threeRecipes, setThreeRecipes] = useState("");
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllRecipes())
-  }, [dispatch])
+    dispatch(getAllRecipes());
+  }, [dispatch]);
 
   useEffect(() => {
     return () => {
       if (isSuccess) {
-        dispatch(reset())
+        dispatch(reset());
       }
-    }
-  }, [isSuccess, dispatch])
-
+    };
+  }, [isSuccess, dispatch]);
 
   if (isLoading) {
-    return <Spinner />
+    return <Spinner />;
   }
 
   return (
-    <div>
-      <h1>Рецепта на деня</h1>
+    <div className={classes.recipeMain}>
+      <h1 className={classes.recipeOfTheDay}>Рецепта на деня</h1>
       <section className={classes.recipeMain}>
+        <h3 className={classes.recipeTitle}>Салатка</h3>
         <div>
           <img
             className={classes.main__recipe__image}
@@ -40,7 +43,6 @@ const Home = () => {
           ></img>
         </div>
         <div>
-          <h3>Салатка</h3>
           <div className={classes.line}></div>
           <p>
             Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -54,16 +56,13 @@ const Home = () => {
             PageMaker including versions of Lorem Ipsum.
           </p>
         </div>
-        <button>Виж повече</button>
+        <Button btnText={"Виж повече"}></Button>
       </section>
 
       <section>
         <ul className={classes.recipe__list}>
           {recipes.map((recipe) => (
-            <SmallRecipeItem
-              key={recipe._id}
-              recipe={recipe}
-            ></SmallRecipeItem>
+            <SmallRecipeItem key={recipe._id} recipe={recipe}></SmallRecipeItem>
           ))}
         </ul>
       </section>

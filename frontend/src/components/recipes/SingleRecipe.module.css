@@ -11,3 +11,29 @@
   max-width: 720px;
   text-align: center;
 }
+
+.title {
+  font-family: "Pacifico", cursive;
+  font-size: 48px;
+}
+
+.product {
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+}
+
+/*  
+    font-family: 'Pacifico', cursive;
+
+    font-family: 'Caveat', cursive;
+
+    font-family: 'Lobster', cursive;
+
+    font-family: 'Marck Script', cursive;
+
+    font-family: 'Montserrat', sans-serif;
+
+    font-family: 'Nunito', sans-serif;
+
+     
+*/

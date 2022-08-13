@@ -1,0 +1,30 @@
+.btn {
+  font-family: "Caveat", cursive;
+  color: black;
+  background-color: chartreuse;
+  padding: 12px 20px;
+  border-radius: 15px;
+  font-size: 18px;
+  text-transform: uppercase;
+  margin-top: 20px;
+}
+
+.btn:hover {
+  background-color: rgb(86, 168, 5);
+  color: black;
+  cursor: pointer;
+}
+
+/*  
+        font-family: 'Caveat', cursive;
+    
+        font-family: 'Lobster', cursive;
+    
+        font-family: 'Marck Script', cursive;
+    
+        font-family: 'Montserrat', sans-serif;
+    
+        font-family: 'Nunito', sans-serif;
+    
+        font-family: 'Pacifico', cursive; 
+    */

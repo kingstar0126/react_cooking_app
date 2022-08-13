@@ -5,15 +5,26 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import Spinner from "../layout/Spinner";
 import { useSelector, useDispatch } from "react-redux";
-import { createRecipe, reset, getSingleRecipe, updateRes } from "../../features/recipes/recipeSlice";
+import {
+  createRecipe,
+  reset,
+  getSingleRecipe,
+  updateRes,
+} from "../../features/recipes/recipeSlice";
+import { FaPlusCircle } from "react-icons/fa";
 
 const PostRecipe = () => {
-  const params = useParams()
-  const {recipeId} = params
+  const params = useParams();
+  const { recipeId } = params;
+  const [products, setProducts] = useState([]);
+  const [item, setItem] = useState("");
+  const [volume, setVolume] = useState("");
+  const [type, setType] = useState("грама");
+  const [uploadPhotos, setUploadPhotos] = useState(null);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
- 
+
   const { user } = useSelector((state) => state.auth);
   const { recipe, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.recipe
@@ -21,9 +32,9 @@ const PostRecipe = () => {
 
   useEffect(() => {
     if (recipeId !== undefined) {
-      dispatch(getSingleRecipe(recipeId))
+      dispatch(getSingleRecipe(recipeId));
     }
-  }, [dispatch, recipeId])
+  }, [dispatch, recipeId]);
 
   const [formData, setFormData] = useState({
     title: "",
@@ -32,10 +43,7 @@ const PostRecipe = () => {
     suitableFor: "",
   });
 
-  const [products, setProducts] = useState([]);
-  const [item, setItem] = useState("");
-  const [volume, setVolume] = useState("");
-  const [type, setType] = useState("грама");
+  console.log(recipe);
 
   const { title, preparation, suitableFor } = formData;
 
@@ -87,6 +95,10 @@ const PostRecipe = () => {
     }));
   };
 
+  const onFileUpload = (e) => {
+    console.log(e.target);
+  };
+
   useEffect(() => {
     if (isError) {
       toast.error(message);
@@ -100,10 +112,6 @@ const PostRecipe = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-
-    // if (!title || !products || !preparation || !suitableFor) {
-    //   toast.error("Моля въведете всички полета");
-    // }
 
     const recipe = {
       title,
@@ -160,7 +168,7 @@ const PostRecipe = () => {
                   />
                   <input
                     className={`${classes.inpitOpacity} ${classes.inputField}`}
-                    type="number"
+                    type="text"
                     placeholder="количество..."
                     name="quantity"
                     id="quantity"
@@ -182,7 +190,7 @@ const PostRecipe = () => {
                     className={classes.addIngredient}
                     onClick={onProductAdd}
                   >
-                    +
+                    <FaPlusCircle />
                   </button>
                 </article>
 
@@ -226,6 +234,18 @@ const PostRecipe = () => {
                     </span>
                     човека.
                   </p>
+                </div>
+
+                <div>
+                  <input
+                    // className={`${classes.inpitOpacity} ${classes.inputField}`}
+                    type="file"
+                    placeholder="качи снимки..."
+                    name="file"
+                    id="file"
+                    onChange={onFileUpload}
+                    required
+                  />
                 </div>
 
                 <button className={classes.buttonMain}>ДОБАВИ РЕЦЕПТА</button>

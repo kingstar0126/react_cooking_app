@@ -60,16 +60,16 @@ h2 {
   text-transform: uppercase;
 }
 
-.button-main {
+.buttonMain {
   margin-top: 20px;
-  font-family: "Fredoka", sans-serif;
+  font-family: "Montserrat", sans-serif;
   letter-spacing: 2px;
   background-color: yellowgreen;
   border: none;
   border-radius: 10px;
   color: black;
   text-transform: uppercase;
-  padding: 15px;
+  padding: 16px;
   font-size: 22px;
   font-weight: 700;
   margin-bottom: 40px;
@@ -124,3 +124,17 @@ h2 {
   display: flex;
   justify-content: space-between;
 }
+
+/*  
+        font-family: 'Caveat', cursive;
+    
+        font-family: 'Lobster', cursive;
+    
+        font-family: 'Marck Script', cursive;
+    
+        font-family: 'Montserrat', sans-serif;
+    
+        font-family: 'Nunito', sans-serif;
+    
+        font-family: 'Pacifico', cursive; 
+    */
