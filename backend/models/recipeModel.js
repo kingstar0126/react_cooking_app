@@ -5,7 +5,7 @@ const recipeSchema = mongoose.Schema(
     user: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref: 'User'
+      ref: "User",
     },
     title: {
       type: String,
@@ -15,6 +15,7 @@ const recipeSchema = mongoose.Schema(
       type: Array,
       required: [true, "Моля добавете продукти"],
     },
+    pics: { type: Array, required: [true, "Моля добавете снимки"] },
     preparation: { type: String, required: [true, "Моля добавете стъпки"] },
     suitableFor: { type: Number, required: true, enum: [1, 2, 4, 6] },
   },

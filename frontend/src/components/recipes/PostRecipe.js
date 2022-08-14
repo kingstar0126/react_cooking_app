@@ -20,7 +20,8 @@ const PostRecipe = () => {
   const [item, setItem] = useState("");
   const [volume, setVolume] = useState("");
   const [type, setType] = useState("грама");
-  const [uploadPhotos, setUploadPhotos] = useState(null);
+  const [uploadedPhotos, setUploadPhotos] = useState([]);
+  const [fileName, setFilename] = useState();
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -41,9 +42,8 @@ const PostRecipe = () => {
     products: [],
     preparation: "",
     suitableFor: "",
+    photos: [],
   });
-
-  console.log(recipe);
 
   const { title, preparation, suitableFor } = formData;
 
@@ -80,6 +80,10 @@ const PostRecipe = () => {
     }));
   };
 
+  const onProductsUpdate = (updatedProducts) => {
+    setProducts((prevState) => [...prevState, updatedProducts]);
+  };
+
   const onProductAdd = (e) => {
     e.preventDefault();
 
@@ -88,15 +92,24 @@ const PostRecipe = () => {
       volume,
       type,
     };
+
     setProducts((prevState) => [...prevState, newProduct]);
     setFormData((prevState) => ({
       ...prevState,
       products: products,
     }));
+    setItem("");
+    setType("грама");
+    setVolume("");
   };
 
   const onFileUpload = (e) => {
-    console.log(e.target);
+    setUploadPhotos((prevState) => [...prevState, e.target.files[0]]);
+    setFilename(e.target.files[0].name);
+    setFormData((prevState) => ({
+      ...prevState,
+      photos: uploadedPhotos,
+    }));
   };
 
   useEffect(() => {
@@ -118,6 +131,7 @@ const PostRecipe = () => {
       products,
       preparation,
       suitableFor,
+      uploadedPhotos,
     };
 
     dispatch(createRecipe(recipe));
@@ -152,7 +166,12 @@ const PostRecipe = () => {
                 <p className={classes.para}>Съставки:</p>
                 {products.length > 0
                   ? products.map((product) => (
-                      <SingleIngredient product={product} key={product.item} />
+                      <SingleIngredient
+                        product={product}
+                        key={product.item}
+                        products={products}
+                        onProductsUpdate={onProductsUpdate}
+                      />
                     ))
                   : null}
                 <article className={classes.ingredient}>
@@ -194,7 +213,9 @@ const PostRecipe = () => {
                   </button>
                 </article>
 
-                <p>Добави стъпките за приготвянето на твоя шедьовър</p>
+                <p className={classes.para}>
+                  Добави стъпките за приготвянето на твоя шедьовър
+                </p>
                 <textarea
                   className={classes.inpitOpacity}
                   name="preparation"
@@ -206,7 +227,7 @@ const PostRecipe = () => {
                   required
                 ></textarea>
 
-                {/* <p>Добави категории</p>
+                {/* <p className={classes.para}>Добави категории</p>
                 <article className={classes.categories}>
                   <ul className={classes.checkboxItems}>
                     <li className={classes.checkbox}>
@@ -216,9 +237,9 @@ const PostRecipe = () => {
                 </article> */}
 
                 <div className={classes.suitable}>
-                  <p>
+                  <p className={classes.para}>
                     Подходяща за
-                    <span>
+                    <span className={`${classes.para} ${classes.spanText}`}>
                       <select
                         name="suitableFor"
                         id="suitable"
@@ -237,12 +258,15 @@ const PostRecipe = () => {
                 </div>
 
                 <div>
+                  <label className={classes.para} htmlFor="image">
+                    Качи снимки
+                  </label>
                   <input
+                    // className={classes.fileUp}
                     // className={`${classes.inpitOpacity} ${classes.inputField}`}
                     type="file"
-                    placeholder="качи снимки..."
-                    name="file"
-                    id="file"
+                    name="image"
+                    id="image"
                     onChange={onFileUpload}
                     required
                   />

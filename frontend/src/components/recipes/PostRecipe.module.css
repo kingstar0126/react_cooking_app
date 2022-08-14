@@ -2,7 +2,7 @@
   background-image: url("../../assets/chushka.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 110vh;
+  min-height: 110vh;
 }
 
 .content {
@@ -52,12 +52,6 @@
   font-size: 20px;
   letter-spacing: 1px;
   font-weight: 700;
-}
-
-h2 {
-  font-family: "Josefin Sans", sans-serif;
-  text-align: center;
-  text-transform: uppercase;
 }
 
 .buttonMain {
@@ -112,6 +106,10 @@ h2 {
   font-weight: 700;
 }
 
+.spanText {
+  margin-right: 1rem;
+}
+
 .addIngredient {
   padding: 5px;
   border: none;
@@ -123,6 +121,10 @@ h2 {
 .ingredient {
   display: flex;
   justify-content: space-between;
+}
+
+.fileUp {
+  visibility: hidden;
 }
 
 /*  

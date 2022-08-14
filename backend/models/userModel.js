@@ -8,6 +8,7 @@ const userSchema = mongoose.Schema(
       required: [true, "Моля добавете имейл"],
       unique: true,
     },
+    profilePic: { type: String, required: false },
     password: { type: String, required: [true, "Моля добавете парола"] },
   },
   { timestamps: true }
