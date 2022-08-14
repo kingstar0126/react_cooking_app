@@ -9,9 +9,11 @@ const {
   deleteRecipeById,
 } = require("../controllers/recipesController");
 const { protect } = require("../middleware/authMiddleware");
-const { upload } = require("../middleware/fileUploadMiddleware");
+//const { upload } = require("../middleware/fileUploadMiddleware");
 // POST and EDIT and DELETE a recipe
-router.post("/", protect, upload.single("image"), postRecipe);
+//upload.single("image")
+
+router.post("/", protect, postRecipe);
 router.put("/:id", protect, editRecipe);
 router.delete("/:id", protect, deleteRecipeById);
 

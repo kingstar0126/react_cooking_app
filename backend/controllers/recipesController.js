@@ -32,18 +32,6 @@ const getRecipeById = asyncHandler(async (req, res) => {
 // @access      for registered and logged in Users only
 const postRecipe = asyncHandler(async (req, res) => {
   const { title, products, preparation, suitableFor } = req.body;
-  if (req.files === null) {
-    return res.status(400).json({ msg: "Моля добевете снимки" });
-  }
-
-  const file = req.files.uploadedPhotos;
-  console.log(file);
-  file.mv(`../../frontend/public/uploads/${file.name}`, (err) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).send(err);
-    }
-  });
 
   // Validation
   if (!title || !products || !preparation || !suitableFor) {
@@ -66,7 +54,7 @@ const postRecipe = asyncHandler(async (req, res) => {
     products,
     preparation,
     suitableFor,
-    pics: file,
+    //pics: file,
   });
 
   if (recipe) {

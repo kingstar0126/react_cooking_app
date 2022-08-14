@@ -103,14 +103,14 @@ const PostRecipe = () => {
     setVolume("");
   };
 
-  const onFileUpload = (e) => {
-    setUploadPhotos((prevState) => [...prevState, e.target.files[0]]);
-    setFilename(e.target.files[0].name);
-    setFormData((prevState) => ({
-      ...prevState,
-      photos: uploadedPhotos,
-    }));
-  };
+  // const onFileUpload = (e) => {
+  //   setUploadPhotos((prevState) => [...prevState, e.target.files[0]]);
+  //   setFilename(e.target.files[0].name);
+  //   setFormData((prevState) => ({
+  //     ...prevState,
+  //     photos: uploadedPhotos,
+  //   }));
+  // };
 
   useEffect(() => {
     if (isError) {
@@ -257,7 +257,7 @@ const PostRecipe = () => {
                   </p>
                 </div>
 
-                <div>
+                {/* <div>
                   <label className={classes.para} htmlFor="image">
                     Качи снимки
                   </label>
@@ -270,7 +270,7 @@ const PostRecipe = () => {
                     onChange={onFileUpload}
                     required
                   />
-                </div>
+                </div> */}
 
                 <button className={classes.buttonMain}>ДОБАВИ РЕЦЕПТА</button>
               </form>

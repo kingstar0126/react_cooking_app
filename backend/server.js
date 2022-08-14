@@ -1,8 +1,6 @@
 const express = require("express");
-const path = require("path");
 const dotenv = require("dotenv").config();
 const colors = require("colors");
-const multer = require("multer");
 const connectDB = require("./config/db");
 const { errorHandler } = require("./middleware/errorMiddleware");
 const PORT = process.env.PORT || 8000;
@@ -12,17 +10,6 @@ connectDB();
 
 const app = express();
 
-// const storage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cd(null, "images");
-//   },
-//   filename: (req, file, cb) => {
-//     console.log(file);
-//     cb(null, Date.now() + path.extname(file.originalname));
-//   },
-// });
-
-// const upload = multer({ storage: storage });
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
