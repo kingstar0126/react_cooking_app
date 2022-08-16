@@ -13,10 +13,12 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import MyProfile from "./components/profile/MyProfile";
 import PostRecipe from "./components/recipes/PostRecipe";
-import Recipes from './components/recipes/Recipes';
+import Recipes from "./components/recipes/Recipes";
 import SingleRecipe from "./components/recipes/SingleRecipe";
+import EditProfile from "./components/profile/EditProfile";
 
 import React from "react";
+import UploadFile from "./components/layout/UploadFile";
 
 function App() {
   return (
@@ -32,13 +34,18 @@ function App() {
         <Route path="/profil" element={<PrivateRoute />}>
           <Route path="/profil" element={<MyProfile />} />
         </Route>
+        <Route path="/profile/:profileId" element={<MyProfile />}></Route>
+        <Route path="/profile/edit/:profileId" element={<EditProfile />} />
         <Route path="/recepti" element={<Recipes />}></Route>
         <Route path="/recepti/:id" element={<SingleRecipe />}></Route>
         <Route path="/dobavi/:recipeId" element={<PrivateRoute />}>
           <Route path="/dobavi/:recipeId" element={<PostRecipe />} />
         </Route>
-      </Routes>
 
+
+         {/* Testing upload route */}
+         <Route path="/upload" element={<UploadFile />}></Route>
+      </Routes>
 
       <Footer />
       <ToastContainer />

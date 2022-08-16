@@ -32,7 +32,7 @@ const getRecipeById = asyncHandler(async (req, res) => {
 // @access      for registered and logged in Users only
 const postRecipe = asyncHandler(async (req, res) => {
   const { title, products, preparation, suitableFor } = req.body;
-
+  const photos = req.file.filename;
   // Validation
   if (!title || !products || !preparation || !suitableFor) {
     res.status(400);
@@ -54,7 +54,7 @@ const postRecipe = asyncHandler(async (req, res) => {
     products,
     preparation,
     suitableFor,
-    //pics: file,
+    photos,
   });
 
   if (recipe) {
@@ -150,4 +150,5 @@ module.exports = {
   getRecipeById,
   getRecipes,
   deleteRecipeById,
+  uploadPhoto
 };

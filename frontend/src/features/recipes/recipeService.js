@@ -16,6 +16,23 @@ const addRecipe = async (recipe, token) => {
   }
 };
 
+// Upload photo
+const uploadPhoto = async (recipe, token) => {
+  const response = await fetch("http://localhost:5000/api/posts/upload", {
+    method: "POST",
+    body: JSON.stringify(recipe),
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "multipart/form-data",
+    },
+  });
+
+  if (response.status === 201) {
+    const uploadedPhoto = await response.json();
+    return uploadedPhoto;
+  }
+};
+
 // GET My recipes
 const getMine = async (token) => {
   const response = await fetch("http://localhost:5000/api/posts/myRecipes", {
@@ -90,7 +107,8 @@ const recipeService = {
     getAllRecipes,
     getSingle,
     deleteRecipe,
-    updateRecipe
+    updateRecipe,
+    uploadPhoto
 }
 
 export default recipeService

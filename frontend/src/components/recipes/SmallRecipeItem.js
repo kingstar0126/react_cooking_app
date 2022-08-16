@@ -4,6 +4,8 @@ import classes from "./SmallRecipeItem.module.css";
 
 const SmallRecipeItem = ({ recipe }) => {
   const recipeExcerpt = recipe.preparation.substring(0, 150) + "...";
+  const user = recipe.user
+  console.log(user)
 
   return (
     <React.Fragment>
@@ -14,6 +16,7 @@ const SmallRecipeItem = ({ recipe }) => {
         ></img>
         <div>
           <h4 className={classes.recipeTitle}>{recipe.title}</h4>
+          <Link to={`/profile/${user}`}>Виж</Link>
           <p className={classes.recipeExerpt}>{recipeExcerpt}</p>
         </div>
         <Link to={`/recepti/${recipe._id}`}>ВИЖ ПОВЕЧЕ</Link>

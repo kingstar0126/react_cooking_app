@@ -4,6 +4,7 @@ import SingleIngredient from "./SingleIngredient";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import Spinner from "../layout/Spinner";
+import UploadFile from "../layout/UploadFile";
 import { useSelector, useDispatch } from "react-redux";
 import {
   createRecipe,
@@ -20,8 +21,7 @@ const PostRecipe = () => {
   const [item, setItem] = useState("");
   const [volume, setVolume] = useState("");
   const [type, setType] = useState("грама");
-  const [uploadedPhotos, setUploadPhotos] = useState([]);
-  const [fileName, setFilename] = useState();
+  const [fileNames, setFilenames] = useState([]);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -31,11 +31,11 @@ const PostRecipe = () => {
     (state) => state.recipe
   );
 
-  useEffect(() => {
-    if (recipeId !== undefined) {
-      dispatch(getSingleRecipe(recipeId));
-    }
-  }, [dispatch, recipeId]);
+  // useEffect(() => {
+  //   if (recipeId !== undefined) {
+  //     dispatch(getSingleRecipe(recipeId));
+  //   }
+  // }, [dispatch, recipeId]);
 
   const [formData, setFormData] = useState({
     title: "",
@@ -59,24 +59,17 @@ const PostRecipe = () => {
     setType(e.target.value);
   };
 
-  const onAddTitle = (e) => {
+  const onMutate = (e) => {
+    if (e.target.name === "suitableFor") {
+      setFormData((prevState) => ({
+        ...prevState,
+        [e.target.name]: Number(e.target.value),
+      }));
+    }
+
     setFormData((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
-    }));
-  };
-
-  const onAddDesc = (e) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  const onSelectSuitable = (e) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      [e.target.name]: Number(e.target.value),
     }));
   };
 
@@ -102,7 +95,16 @@ const PostRecipe = () => {
     setType("грама");
     setVolume("");
   };
-
+  
+  const onFilenameSet = (picName) => {
+    console.log(picName)
+    setFilenames((prevState) => [...prevState, picName])
+    console.log(fileNames)
+    setFormData((prevState) => ({
+      ...prevState,
+      photos: fileNames
+    }));
+  }
   // const onFileUpload = (e) => {
   //   setUploadPhotos((prevState) => [...prevState, e.target.files[0]]);
   //   setFilename(e.target.files[0].name);
@@ -131,9 +133,9 @@ const PostRecipe = () => {
       products,
       preparation,
       suitableFor,
-      uploadedPhotos,
+      photos: fileNames,
     };
-
+    
     dispatch(createRecipe(recipe));
   };
 
@@ -160,7 +162,7 @@ const PostRecipe = () => {
                   name="title"
                   id="title"
                   value={title}
-                  onChange={onAddTitle}
+                  onChange={onMutate}
                   required
                 />
                 <p className={classes.para}>Съставки:</p>
@@ -223,7 +225,7 @@ const PostRecipe = () => {
                   cols="10"
                   rows="4"
                   value={preparation}
-                  onChange={onAddDesc}
+                  onChange={onMutate}
                   required
                 ></textarea>
 
@@ -243,7 +245,7 @@ const PostRecipe = () => {
                       <select
                         name="suitableFor"
                         id="suitable"
-                        onChange={onSelectSuitable}
+                        onChange={onMutate}
                         value={suitableFor}
                         required
                       >
@@ -256,7 +258,7 @@ const PostRecipe = () => {
                     човека.
                   </p>
                 </div>
-
+                <UploadFile onUploadClick={onFilenameSet}/>
                 {/* <div>
                   <label className={classes.para} htmlFor="image">
                     Качи снимки

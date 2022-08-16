@@ -30,6 +30,26 @@ export const createRecipe = createAsyncThunk(
   }
 );
 
+// CREATE new recipe
+export const uploadNewPhoto = createAsyncThunk(
+  "recipe/upload",
+  async (image, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token;
+      return await recipeService.uploadPhoto(image, token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 // UPDATE existing recipe
 export const updateRes = createAsyncThunk(
   "recipe/update",
@@ -200,6 +220,19 @@ export const recipeSlice = createSlice({
         state.recipe = {};
       })
       .addCase(deleteRes.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      // Upload Photo
+      .addCase(uploadNewPhoto.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(uploadNewPhoto.fulfilled, (state) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+      })
+      .addCase(uploadNewPhoto.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

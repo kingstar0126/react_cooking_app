@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import classes from "./Home.module.css";
 import SmallRecipeItem from "./recipes/SmallRecipeItem";
@@ -10,7 +10,6 @@ const Home = () => {
   const { recipes, isLoading, isSuccess } = useSelector(
     (state) => state.recipe
   );
-  const [threeRecipes, setThreeRecipes] = useState("");
 
   const dispatch = useDispatch();
 
@@ -62,7 +61,7 @@ const Home = () => {
       <section>
         <ul className={classes.recipe__list}>
           {recipes.map((recipe) => (
-            <SmallRecipeItem key={recipe._id} recipe={recipe}></SmallRecipeItem>
+            <SmallRecipeItem key={recipe._id} user={recipe.user} recipe={recipe}></SmallRecipeItem>
           ))}
         </ul>
       </section>

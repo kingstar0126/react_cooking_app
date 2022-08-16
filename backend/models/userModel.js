@@ -10,6 +10,7 @@ const userSchema = mongoose.Schema(
     },
     profilePic: { type: String, required: false },
     password: { type: String, required: [true, "Моля добавете парола"] },
+    postedRecipes: {type: Number, required: false},
   },
   { timestamps: true }
 );
