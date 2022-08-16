@@ -9,25 +9,26 @@ const {
   deleteRecipeById,
   uploadPhoto,
 } = require("../controllers/recipesController");
+
 const { protect } = require("../middleware/authMiddleware");
 const multer = require("multer");
 const path = require("path");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cd(null, "../images");
+    cb(null, "./frontend/public/uploads");
   },
   filename: (req, file, cb) => {
     console.log(file);
 
-    cb(null, file.originalname)
+    cb(null, file.originalname);
     // UNUQIE FILENAME
     //cb(null, Date.now() + path.extname(file.originalname));
   },
 });
 const upload = multer({ storage: storage });
 
-router.post("/", protect, upload.single('image'), postRecipe);
+router.post("/", protect, upload.single("photos"), postRecipe);
 
 router.put("/:id", protect, editRecipe);
 router.delete("/:id", protect, deleteRecipeById);

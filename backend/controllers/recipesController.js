@@ -32,12 +32,14 @@ const getRecipeById = asyncHandler(async (req, res) => {
 // @access      for registered and logged in Users only
 const postRecipe = asyncHandler(async (req, res) => {
   const { title, products, preparation, suitableFor } = req.body;
-  const photos = req.file.filename;
-  // Validation
-  if (!title || !products || !preparation || !suitableFor) {
-    res.status(400);
-    throw new Error("Моля попълнете всички полета");
-  }
+
+  console.log(req.body);
+  console.log(req.file);
+  //Validation;
+  // if (!title || !products || !preparation || !suitableFor) {
+  //   res.status(400);
+  //   throw new Error("Моля попълнете всички полета");
+  // }
 
   // Get user using the id in the JWT
   const user = await User.findById(req.user.id);
@@ -54,7 +56,7 @@ const postRecipe = asyncHandler(async (req, res) => {
     products,
     preparation,
     suitableFor,
-    photos,
+    photos: req.file.originalname,
   });
 
   if (recipe) {
@@ -150,5 +152,4 @@ module.exports = {
   getRecipeById,
   getRecipes,
   deleteRecipeById,
-  uploadPhoto
 };

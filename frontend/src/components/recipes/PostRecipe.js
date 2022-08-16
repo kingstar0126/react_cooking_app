@@ -4,7 +4,6 @@ import SingleIngredient from "./SingleIngredient";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import Spinner from "../layout/Spinner";
-import UploadFile from "../layout/UploadFile";
 import { useSelector, useDispatch } from "react-redux";
 import {
   createRecipe,
@@ -21,7 +20,7 @@ const PostRecipe = () => {
   const [item, setItem] = useState("");
   const [volume, setVolume] = useState("");
   const [type, setType] = useState("грама");
-  const [fileNames, setFilenames] = useState([]);
+  const [uploadedPhotos, setUploadedPhotos] = useState([]);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -42,10 +41,10 @@ const PostRecipe = () => {
     products: [],
     preparation: "",
     suitableFor: "",
-    photos: [],
+    photos: "",
   });
 
-  const { title, preparation, suitableFor } = formData;
+  const { photos, title, preparation, suitableFor } = formData;
 
   const onItemAdd = (e) => {
     setItem(e.target.value);
@@ -65,12 +64,12 @@ const PostRecipe = () => {
         ...prevState,
         [e.target.name]: Number(e.target.value),
       }));
+    } else {
+      setFormData((prevState) => ({
+        ...prevState,
+        [e.target.name]: e.target.value,
+      }));
     }
-
-    setFormData((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
   };
 
   const onProductsUpdate = (updatedProducts) => {
@@ -95,24 +94,14 @@ const PostRecipe = () => {
     setType("грама");
     setVolume("");
   };
-  
-  const onFilenameSet = (picName) => {
-    console.log(picName)
-    setFilenames((prevState) => [...prevState, picName])
-    console.log(fileNames)
+
+  const handlePhotoUpload = (e) => {
+    // setUploadedPhotos((prevState) => [...prevState, e.target.files[0]]);
     setFormData((prevState) => ({
       ...prevState,
-      photos: fileNames
+      photos: e.target.files[0],
     }));
-  }
-  // const onFileUpload = (e) => {
-  //   setUploadPhotos((prevState) => [...prevState, e.target.files[0]]);
-  //   setFilename(e.target.files[0].name);
-  //   setFormData((prevState) => ({
-  //     ...prevState,
-  //     photos: uploadedPhotos,
-  //   }));
-  // };
+  };
 
   useEffect(() => {
     if (isError) {
@@ -128,20 +117,41 @@ const PostRecipe = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    const recipe = {
-      title,
-      products,
-      preparation,
-      suitableFor,
-      photos: fileNames,
-    };
-    
-    dispatch(createRecipe(recipe));
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("products", products);
+    formData.append("preparation", preparation);
+    formData.append("suitableFor", suitableFor);
+    formData.append("photos", photos);
+
+    try {
+      const response = await fetch("http://localhost:5000/api/posts", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+          // "Content-Type": "multipart/form-data: boundary=XXX",
+        },
+      });
+
+      if (response.status === 201) {
+        const addedRecipe = await response.json();
+        return addedRecipe;
+      }
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      console.log(message);
+    }
   };
 
-  if (isLoading) {
-    return <Spinner />;
-  }
+  // if (isLoading) {
+  //   return <Spinner />;
+  // }
 
   return (
     <Fragment>
@@ -154,7 +164,11 @@ const PostRecipe = () => {
               <div className={classes.line}></div>
             </div>
             <div className={classes.form}>
-              <form className={classes.formInside} onSubmit={onSubmit}>
+              <form
+                className={classes.formInside}
+                onSubmit={onSubmit}
+                encType="multipart/form-data"
+              >
                 <input
                   className={`${classes.inpitOpacity} ${classes.inputField}`}
                   type="text"
@@ -258,21 +272,19 @@ const PostRecipe = () => {
                     човека.
                   </p>
                 </div>
-                <UploadFile onUploadClick={onFilenameSet}/>
-                {/* <div>
-                  <label className={classes.para} htmlFor="image">
-                    Качи снимки
-                  </label>
+                {/* <UploadFile onUploadClick={onFilenameSet} /> */}
+                <div>
+                  <label htmlFor="photos">Качи снимки</label>
                   <input
-                    // className={classes.fileUp}
-                    // className={`${classes.inpitOpacity} ${classes.inputField}`}
                     type="file"
-                    name="image"
-                    id="image"
-                    onChange={onFileUpload}
+                    accept=".png, .jpg, .jpeg"
+                    name="photos"
+                    id="photos"
+                    filename="photos"
+                    onChange={handlePhotoUpload}
                     required
                   />
-                </div> */}
+                </div>
 
                 <button className={classes.buttonMain}>ДОБАВИ РЕЦЕПТА</button>
               </form>

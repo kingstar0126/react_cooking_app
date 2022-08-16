@@ -22,14 +22,14 @@ const UploadFile = (props) => {
 
     const formData = new FormData();
     formData.append("image", uploadedPhotos);
-    console.log(formData.values)
-   dispatch(uploadNewPhoto(formData));
-   if(isSuccess) {
-    navigate('/')
-   }
-   if(isError) {
-    console.log(message)
-   }
+    console.log(formData.values);
+    dispatch(uploadNewPhoto(formData));
+    if (isSuccess) {
+      navigate("/");
+    }
+    if (isError) {
+      console.log(message);
+    }
   };
 
   return (
@@ -38,9 +38,9 @@ const UploadFile = (props) => {
         <label htmlFor="image">Качи снимки</label>
         <input
           type="file"
-          name="image"
-          id="image"
-          filename="image"
+          accept=".png, .jpg, .jpeg"
+          name="photo"
+          id="photo"
           onChange={onFileUpload}
           required
         />
