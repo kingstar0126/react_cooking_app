@@ -6,4 +6,7 @@
 
 .footer p {
   vertical-align: middle;
+  color: white;
+  padding-left: 40px;
+  padding-top: 1.5rem;
 }

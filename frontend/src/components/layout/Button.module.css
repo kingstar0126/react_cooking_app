@@ -15,6 +15,10 @@
   cursor: pointer;
 }
 
+.btnWarning {
+  background-color: orange;
+}
+
 /*  
         font-family: 'Caveat', cursive;
     

@@ -31,11 +31,11 @@ const getRecipeById = asyncHandler(async (req, res) => {
 // @route       POST /api/posts
 // @access      for registered and logged in Users only
 const postRecipe = asyncHandler(async (req, res) => {
-  const { title, products, preparation, suitableFor } = req.body;
-
-  console.log(req.body);
-  console.log(req.file);
-  //Validation;
+  const { title, preparation, suitableFor } = req.body;
+  const photos = req.file.filename;
+  const products = JSON.parse(req.body.products)
+  console.log(products)
+  // Validation
   // if (!title || !products || !preparation || !suitableFor) {
   //   res.status(400);
   //   throw new Error("Моля попълнете всички полета");
@@ -56,7 +56,7 @@ const postRecipe = asyncHandler(async (req, res) => {
     products,
     preparation,
     suitableFor,
-    photos: req.file.originalname,
+    photos,
   });
 
   if (recipe) {

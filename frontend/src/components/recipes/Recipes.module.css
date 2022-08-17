@@ -1,0 +1,11 @@
+.background {
+    background-image: url("../../assets/healthy-diet.jpg");
+    min-height: 110vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .recipeBlock {
+    display: flex;
+    flex-direction: row;
+  }

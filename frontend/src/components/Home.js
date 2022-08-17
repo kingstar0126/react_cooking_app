@@ -30,42 +30,49 @@ const Home = () => {
   }
 
   return (
-    <div className={classes.recipeMain}>
-      <h1 className={classes.recipeOfTheDay}>Рецепта на деня</h1>
-      <section className={classes.recipeMain}>
-        <h3 className={classes.recipeTitle}>Салатка</h3>
-        <div>
-          <img
-            className={classes.main__recipe__image}
-            src={require(`../assets/fresh-salad.jpg`)}
-            alt="fresh-salad"
-          ></img>
-        </div>
-        <div>
-          <div className={classes.line}></div>
-          <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s
-            with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus
-            PageMaker including versions of Lorem Ipsum.
-          </p>
-        </div>
-        <Button btnText={"Виж повече"}></Button>
-      </section>
+    <main className={classes.background}>
+      <div className={classes.recipeMain}>
+        <h1 className={classes.recipeOfTheDay}>Рецепта на деня</h1>
+        <section className={classes.recipeMain}>
+          <h3 className={classes.recipeTitle}>Салатка</h3>
+          <div>
+            <img
+              className={classes.main__recipe__image}
+              src={require(`../assets/fresh-salad.jpg`)}
+              alt="fresh-salad"
+            ></img>
+          </div>
+          <div>
+            <div className={classes.line}></div>
+            <p className={classes.para}>
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer took a galley of
+              type and scrambled it to make a type specimen book. It has
+              survived not only five centuries, but also the leap into
+              electronic typesetting, remaining essentially unchanged. It was
+              popularised in the 1960s with the release of Letraset sheets
+              containing Lorem Ipsum passages, and more recently with desktop
+              publishing software like Aldus PageMaker including versions of
+              Lorem Ipsum.
+            </p>
+          </div>
+          <Button btnText={"Виж повече"}></Button>
+        </section>
 
-      <section>
-        <ul className={classes.recipe__list}>
-          {recipes.map((recipe) => (
-            <SmallRecipeItem key={recipe._id} user={recipe.user} recipe={recipe}></SmallRecipeItem>
-          ))}
-        </ul>
-      </section>
-    </div>
+        <section>
+          <ul className={classes.recipe__list}>
+            {recipes.map((recipe) => (
+              <SmallRecipeItem
+                key={recipe._id}
+                user={recipe.user}
+                recipe={recipe}
+              ></SmallRecipeItem>
+            ))}
+          </ul>
+        </section>
+      </div>
+    </main>
   );
 };
 

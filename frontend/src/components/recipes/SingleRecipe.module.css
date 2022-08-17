@@ -1,6 +1,6 @@
 .background {
   background-image: url("../../assets/healthy-diet.jpg");
-  height: 110vh;
+  min-height: 110vh;
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -20,6 +20,23 @@
 .product {
   font-family: "Montserrat", sans-serif;
   font-size: 18px;
+}
+
+.singlePhoto {
+  max-width: 300px;
+  max-height: 300px;
+  border: 10px double rgba(92,92,92,0.5);
+border-radius: 20px;
+-webkit-box-shadow: 5px 5px 15px 5px #000000; 
+box-shadow: 5px 5px 15px 5px #000000;
+}
+
+.card {
+  border: 10px double rgba(92,92,92,0.5);
+  border-radius: 20px;
+  -webkit-box-shadow: 5px 5px 15px 5px #000000; 
+box-shadow: 5px 5px 15px 5px #000000;
+  background-color: #88898877;
 }
 
 /*  

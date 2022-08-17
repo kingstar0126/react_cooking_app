@@ -6,12 +6,12 @@ const SmallRecipeItem = ({ recipe }) => {
   const recipeExcerpt = recipe.preparation.substring(0, 150) + "...";
   const user = recipe.user
   console.log(user)
-
+console.log(recipe)
   return (
     <React.Fragment>
       <div className={classes.recipesList}>
         <img
-          src={require(`../../assets/chicken-breast.jpg`)}
+          src={require(`../../../public/uploads/${recipe.photos}`)}
           alt="chicken-breast"
         ></img>
         <div>

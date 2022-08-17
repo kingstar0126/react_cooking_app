@@ -21,12 +21,13 @@ const PostRecipe = () => {
   const [volume, setVolume] = useState("");
   const [type, setType] = useState("грама");
   const [uploadedPhotos, setUploadedPhotos] = useState([]);
+  const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { user } = useSelector((state) => state.auth);
-  const { recipe, isLoading, isError, isSuccess, message } = useSelector(
+  const { recipe, isError, isSuccess, message } = useSelector(
     (state) => state.recipe
   );
 
@@ -116,10 +117,11 @@ const PostRecipe = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true)
 
     const formData = new FormData();
     formData.append("title", title);
-    formData.append("products", products);
+    formData.append("products", JSON.stringify(products));
     formData.append("preparation", preparation);
     formData.append("suitableFor", suitableFor);
     formData.append("photos", photos);
@@ -136,7 +138,10 @@ const PostRecipe = () => {
 
       if (response.status === 201) {
         const addedRecipe = await response.json();
+        setLoading(false)
+        navigate('/')
         return addedRecipe;
+       
       }
     } catch (error) {
       const message =
@@ -147,11 +152,12 @@ const PostRecipe = () => {
         error.toString();
       console.log(message);
     }
+   
   };
 
-  // if (isLoading) {
-  //   return <Spinner />;
-  // }
+  if (loading) {
+    return <Spinner />;
+  }
 
   return (
     <Fragment>

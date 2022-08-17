@@ -1,5 +1,6 @@
 import classes from "./SingleRecipe.module.css";
 import Spinner from "../layout/Spinner";
+import Button from "../layout/Button";
 
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -8,8 +9,7 @@ import { toast } from "react-toastify";
 import {
   getSingleRecipe,
   reset,
-  deleteRes,
-  getAllRecipes,
+  deleteRes
 } from "../../features/recipes/recipeSlice";
 import SingleIngredient from "./SingleIngredient";
 
@@ -76,29 +76,43 @@ const SingleRecipe = () => {
   return (
     <main className={classes.background}>
       <section className={classes.center}>
-        <h1 className={classes.title}>{recipe.title}</h1>
-        <div className={classes.line}></div>
-        <div>
-          <h2 className={classes.product}>Необходими продукти</h2>
-          {ingredients !== undefined
-            ? ingredients.map((ingredient) => (
-                <SingleIngredient key={ingredient.item} product={ingredient} />
-              ))
-            : null}
-        </div>
-        <div>
-          <p>{recipe.preparation}</p>
-        </div>
-        <div>
-          <div>
-            <button>СГОТВИ</button>
-          </div>
-          {isOwner ? (
+        <div className={classes.card}>
+          <h1 className={classes.title}>{recipe.title}</h1>
+          <div className={classes.line}></div>
+          {recipe.photos !== undefined ? (
             <div>
-              <button onClick={onUpdate}>РЕДАКТИРАЙ</button>
-              <button onClick={onDelete}>ИЗТРИЙ</button>
+              <img
+                className={classes.singlePhoto}
+                src={require(`../../../public/uploads/${recipe.photos}`)}
+                alt="recipe"
+              ></img>
             </div>
           ) : null}
+          <div>
+            <h2 className={classes.product}>Необходими продукти</h2>
+            {ingredients !== undefined
+              ? ingredients.map((ingredient) => (
+                  <SingleIngredient
+                    key={ingredient.item}
+                    product={ingredient}
+                  />
+                ))
+              : null}
+          </div>
+          <div>
+            <p>{recipe.preparation}</p>
+          </div>
+          <div>
+            <div>
+              <Button btnText={"Сготви"}></Button>
+            </div>
+            {isOwner ? (
+              <div>
+                <button onClick={onUpdate}>РЕДАКТИРАЙ</button>
+                <button onClick={onDelete}>ИЗТРИЙ</button>
+              </div>
+            ) : null}
+          </div>
         </div>
       </section>
     </main>
