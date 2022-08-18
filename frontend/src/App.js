@@ -6,8 +6,8 @@ import { Routes, Route } from "react-router-dom";
 
 import Footer from "./components/layout/Footer";
 import MainNavigation from "./components/layout/MainNavigation";
-
 import PrivateRoute from "./components/PrivateRoute";
+
 import Register from "./components/Register";
 import Home from "./components/Home";
 import Login from "./components/Login";
@@ -16,9 +16,9 @@ import PostRecipe from "./components/recipes/PostRecipe";
 import Recipes from "./components/recipes/Recipes";
 import SingleRecipe from "./components/recipes/SingleRecipe";
 import EditProfile from "./components/profile/EditProfile";
+import EditRecipe from './components/recipes/EditRecipe'
 
 import React from "react";
-import UploadFile from "./components/layout/UploadFile";
 
 function App() {
   return (
@@ -39,12 +39,8 @@ function App() {
         <Route path="/recepti" element={<Recipes />}></Route>
         <Route path="/recepti/:id" element={<SingleRecipe />}></Route>
         <Route path="/dobavi/:recipeId" element={<PrivateRoute />}>
-          <Route path="/dobavi/:recipeId" element={<PostRecipe />} />
+          <Route path="/dobavi/:recipeId" element={<EditRecipe />} />
         </Route>
-
-
-         {/* Testing upload route */}
-         <Route path="/upload" element={<UploadFile />}></Route>
       </Routes>
 
       <Footer />

@@ -34,7 +34,7 @@ router.put("/:id", protect, editRecipe);
 router.delete("/:id", protect, deleteRecipeById);
 
 // GET list of user's recipes
-router.get("/myRecipes", protect, getMyRecipes);
+router.get("/myRecipes", getMyRecipes);
 
 // GET public recipes and single recipe
 router.get("/", getRecipes);

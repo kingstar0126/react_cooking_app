@@ -1,36 +1,23 @@
-import classes from "./PostRecipe.module.css";
-import { Fragment, useState, useEffect } from "react";
-import SingleIngredient from "./SingleIngredient";
-import { useNavigate, useParams } from "react-router-dom";
+import classes from "./EditRecipe.module.css";
+
+import { useParams, useNavigate } from "react-router-dom";
+import { useState, useEffect, Fragment } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getSingleRecipe, reset } from "../../features/recipes/recipeSlice";
+import { FaPlusCircle } from "react-icons/fa";
 import { toast } from "react-toastify";
 import Spinner from "../layout/Spinner";
-import { useSelector, useDispatch } from "react-redux";
-import { createRecipe, reset } from "../../features/recipes/recipeSlice";
-import { FaPlusCircle } from "react-icons/fa";
+import SingleIngredient from "./SingleIngredient";
 
-const PostRecipe = () => {
+const EditRecipe = () => {
   const params = useParams();
+  const { recipeId } = params;
   const [products, setProducts] = useState([]);
   const [item, setItem] = useState("");
   const [volume, setVolume] = useState("");
   const [type, setType] = useState("грама");
   const [loading, setLoading] = useState(false);
-  const editMode = true;
-
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const { user } = useSelector((state) => state.auth);
-  const { recipe, isError, isSuccess, message } = useSelector(
-    (state) => state.recipe
-  );
-
-  // useEffect(() => {
-  //   if (recipeId !== undefined) {
-  //     dispatch(getSingleRecipe(recipeId));
-  //   }
-  // }, [dispatch, recipeId]);
-
+  const [oldProducts, setOldProducts] = useState([]);
   const [formData, setFormData] = useState({
     title: "",
     products: [],
@@ -38,6 +25,43 @@ const PostRecipe = () => {
     suitableFor: "",
     photos: "",
   });
+
+  const edit = true;
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (recipeId !== undefined) {
+      dispatch(getSingleRecipe(recipeId));
+    }
+  }, [dispatch, recipeId]);
+
+  const { user } = useSelector((state) => state.auth);
+  const { recipe, isError, isSuccess, message } = useSelector(
+    (state) => state.recipe
+  );
+
+  useEffect(() => {
+    setFormData((prevState) => ({
+      ...prevState,
+      title: recipe.title,
+      products: recipe.products,
+      preparation: recipe.preparation,
+      suitableFor: recipe.suitableFor,
+      photos: recipe.photos,
+    }));
+  }, []);
+
+  
+
+  useEffect(() => {
+    setProducts(formData.products)
+  }, [formData.products])
+  // useEffect(() => {
+  //   setOldProducts(formData.products)
+  // }, [formData.products])
+  
 
   const { photos, title, preparation, suitableFor } = formData;
 
@@ -68,9 +92,18 @@ const PostRecipe = () => {
   };
 
   const onProductsUpdate = (item) => {
-    setProducts(products.filter((product) => product.item !== item));
+    const updatedProducts = products.filter((product) => product.item !== item)
+    
+    setProducts(updatedProducts)
+    setFormData((prevState) => ({
+      ...prevState,
+      products: updatedProducts,
+    }));
+    
+   // setOldProducts(updatedProducts);
   };
-
+  console.log(products)
+  
   const onProductAdd = (e) => {
     e.preventDefault();
 
@@ -85,13 +118,14 @@ const PostRecipe = () => {
       ...prevState,
       products: products,
     }));
+    console.log(products)
+    console.log(formData)
     setItem("");
     setType("грама");
     setVolume("");
   };
 
   const handlePhotoUpload = (e) => {
-    // setUploadedPhotos((prevState) => [...prevState, e.target.files[0]]);
     setFormData((prevState) => ({
       ...prevState,
       photos: e.target.files[0],
@@ -121,20 +155,23 @@ const PostRecipe = () => {
     formData.append("photos", photos);
 
     try {
-      const response = await fetch("http://localhost:5000/api/posts", {
-        method: "POST",
-        body: formData,
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-          // "Content-Type": "multipart/form-data: boundary=XXX",
-        },
-      });
+      const response = await fetch(
+        `http://localhost:5000/api/posts/${recipeId}`,
+        {
+          method: "PUT",
+          body: formData,
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+            // "Content-Type": "multipart/form-data: boundary=XXX",
+          },
+        }
+      );
 
       if (response.status === 201) {
-        const addedRecipe = await response.json();
+        const updatedRecipe = await response.json();
         setLoading(false);
         navigate("/");
-        return addedRecipe;
+        return updatedRecipe;
       }
     } catch (error) {
       const message =
@@ -158,7 +195,10 @@ const PostRecipe = () => {
           <section className={classes.content}>
             <div className={classes.title}>
               <h1>Здравей, {user.name}</h1>
-              <h2>Добави своята страхотна рецепта!</h2>
+              <h2>
+                Намерил си начин да подобриш вкуса на своята рецепта? Добави
+                промените оттук!
+              </h2>
               <div className={classes.line}></div>
             </div>
             <div className={classes.form}>
@@ -181,14 +221,25 @@ const PostRecipe = () => {
                 {products.length > 0
                   ? products.map((product) => (
                       <SingleIngredient
-                        edit={editMode}
                         product={product}
                         key={product.item}
                         products={products}
                         onProductsUpdate={onProductsUpdate}
+                        edit={edit}
                       />
                     ))
                   : null}
+                {/* {oldProducts.length > 0
+                  ? oldProducts.map((oldProduct) => (
+                      <SingleIngredient
+                        product={oldProduct}
+                        key={oldProduct.item}
+                        products={oldProducts}
+                        onProductsUpdate={onProductsUpdate}
+                        edit={edit}
+                      />
+                    ))
+                  : null} */}
                 <article className={classes.ingredient}>
                   <input
                     className={`${classes.inpitOpacity} ${classes.inputField}`}
@@ -243,13 +294,13 @@ const PostRecipe = () => {
                 ></textarea>
 
                 {/* <p className={classes.para}>Добави категории</p>
-                <article className={classes.categories}>
-                  <ul className={classes.checkboxItems}>
-                    <li className={classes.checkbox}>
-                      <input type="checkbox" name="item" required />
-                    </li>
-                  </ul>
-                </article> */}
+                  <article className={classes.categories}>
+                    <ul className={classes.checkboxItems}>
+                      <li className={classes.checkbox}>
+                        <input type="checkbox" name="item" required />
+                      </li>
+                    </ul>
+                  </article> */}
 
                 <div className={classes.suitable}>
                   <p className={classes.para}>
@@ -285,7 +336,7 @@ const PostRecipe = () => {
                   />
                 </div>
 
-                <button className={classes.buttonMain}>ДОБАВИ РЕЦЕПТА</button>
+                <button className={classes.buttonMain}>РЕДАКТИРАЙ</button>
               </form>
             </div>
           </section>
@@ -295,4 +346,4 @@ const PostRecipe = () => {
   );
 };
 
-export default PostRecipe;
+export default EditRecipe;

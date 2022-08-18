@@ -5,7 +5,6 @@ import classes from "../Register.module.css";
 import {useSelector, useDispatch} from 'react-redux';
 import { register, reset } from "../../features/auth/authSlice";
 import Spinner from "../layout/Spinner";
-import UploadFile from "../layout/UploadFile";
 
 const EditProfile = (props) => {
     const { user } = useSelector((state) => state.auth);

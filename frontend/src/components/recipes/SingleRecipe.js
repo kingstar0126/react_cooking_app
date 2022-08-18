@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 import {
   getSingleRecipe,
   reset,
-  deleteRes
+  deleteRes,
 } from "../../features/recipes/recipeSlice";
 import SingleIngredient from "./SingleIngredient";
 
@@ -20,6 +20,7 @@ const SingleRecipe = () => {
   const { id } = useParams();
   const [ingredients, setIngredient] = useState([]);
   const [activeUser, setActiveUser] = useState(false);
+  const editMode = false;
 
   const { user } = useSelector((state) => state.auth);
   const { recipe, isSuccess, isLoading, isError, message } = useSelector(
@@ -93,6 +94,7 @@ const SingleRecipe = () => {
             {ingredients !== undefined
               ? ingredients.map((ingredient) => (
                   <SingleIngredient
+                    edit={editMode}
                     key={ingredient.item}
                     product={ingredient}
                   />
