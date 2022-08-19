@@ -12,6 +12,7 @@ import {
   deleteRes,
 } from "../../features/recipes/recipeSlice";
 import SingleIngredient from "./SingleIngredient";
+import Line from '../layout/Line';
 
 const SingleRecipe = () => {
   const dispatch = useDispatch();
@@ -91,6 +92,7 @@ const SingleRecipe = () => {
           ) : null}
           <div>
             <h2 className={classes.product}>Необходими продукти</h2>
+            
             {ingredients !== undefined
               ? ingredients.map((ingredient) => (
                   <SingleIngredient
@@ -101,7 +103,7 @@ const SingleRecipe = () => {
                 ))
               : null}
           </div>
-          <div>
+          <div className={classes.preparation}>
             <p>{recipe.preparation}</p>
           </div>
           <div>
@@ -109,9 +111,9 @@ const SingleRecipe = () => {
               <Button btnText={"Сготви"}></Button>
             </div>
             {isOwner ? (
-              <div>
-                <button onClick={onUpdate}>РЕДАКТИРАЙ</button>
-                <button onClick={onDelete}>ИЗТРИЙ</button>
+              <div className={classes.buttons}>
+                <button className={classes.buttons__warn} onClick={onUpdate}>РЕДАКТИРАЙ</button>
+                <button className={classes.buttons__red} onClick={onDelete}>ИЗТРИЙ</button>
               </div>
             ) : null}
           </div>

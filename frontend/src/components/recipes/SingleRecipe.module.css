@@ -14,15 +14,19 @@
 
 .title {
   font-family: "Pacifico", cursive;
-  font-size: 48px;
+  font-size: 40px;
+  margin-top: 20px;
 }
 
 .product {
+  margin-top: 28px;
+  margin-bottom: 18px;
   font-family: "Montserrat", sans-serif;
-  font-size: 18px;
+  font-size: 22px;
 }
 
 .singlePhoto {
+  margin-top: 40px;
   max-width: 300px;
   max-height: 300px;
   border: 10px double rgba(92,92,92,0.5);
@@ -31,14 +35,68 @@ border-radius: 20px;
 box-shadow: 5px 5px 15px 5px #000000;
 }
 
+.preparation {
+  padding-left: 24px;
+  padding-right: 24px;
+  margin-top: 28px
+}
+
+.preparation p {
+  text-align: left;
+  font-size: 16px;
+  font-family: 'Nunito', sans-serif;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
 .card {
   border: 10px double rgba(92,92,92,0.5);
   border-radius: 20px;
   -webkit-box-shadow: 5px 5px 15px 5px #000000; 
-box-shadow: 5px 5px 15px 5px #000000;
+  box-shadow: 5px 5px 15px 5px #000000;
   background-color: #88898877;
 }
 
+.buttons__warn {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+    color: black;
+    background-color: orange;
+    padding: 12px 20px;
+    border-radius: 15px;
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-top: 20px;
+}
+
+.buttons__red {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+    color: black;
+    background-color:rgb(214, 59, 3);
+    padding: 12px 20px;
+    border-radius: 15px;
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-top: 20px;
+}
+
+.buttons__red:hover, .buttons__warn:hover {
+  cursor: pointer;
+}
+.buttons__red:hover {
+background-color: orangered;
+}
+
+.buttons__warn:hover {
+  background-color: rgb(255, 204, 0);
+}
 /*  
     font-family: 'Pacifico', cursive;
 

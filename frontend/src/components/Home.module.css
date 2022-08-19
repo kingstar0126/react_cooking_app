@@ -8,7 +8,7 @@
 
 .background {
   background-image: url("../assets/healthy-diet.jpg");
-  min-height: 110vh;
+  min-height: 180vh;
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -16,16 +16,17 @@
 .main__recipe__image {
   max-width: 720px;
   max-height: 520px;
-  border: 10px double rgba(92,92,92,0.5);
-  border-radius: 20px;
-  -webkit-box-shadow: 5px 5px 15px 5px #000000; 
-  box-shadow: 5px 5px 15px 5px #000000;
+  margin-top: 40px;
+  -webkit-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.5); 
+box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.5);
+border-radius: 20px;
 }
 
 .recipeMain {
   max-width: 720px;
   margin: auto;
   padding-top: 20px;
+
 }
 
 
@@ -46,6 +47,7 @@
 }
 
 .para {
+  padding-top: 24px;
   font-family: 'Montserrat', sans-serif;
 }
 /*  

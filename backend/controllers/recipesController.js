@@ -33,8 +33,7 @@ const getRecipeById = asyncHandler(async (req, res) => {
 const postRecipe = asyncHandler(async (req, res) => {
   const { title, preparation, suitableFor } = req.body;
   const photos = req.file.filename;
-  const products = JSON.parse(req.body.products)
-  console.log(products)
+  const products = JSON.parse(req.body.products);
   // Validation
   // if (!title || !products || !preparation || !suitableFor) {
   //   res.status(400);
@@ -71,7 +70,12 @@ const postRecipe = asyncHandler(async (req, res) => {
 // @route   PUT api/posts/:id
 // @access  private
 const editRecipe = asyncHandler(async (req, res) => {
+  const { title, preparation, suitableFor } = req.body;
+  const photos = req.file.filename;
+  const products = JSON.parse(req.body.products);
   const user = await User.findById(req.user.id);
+  const recipeId = req.params;
+
   if (!user) {
     res.status(401);
     throw new Error("User not found");
@@ -84,12 +88,20 @@ const editRecipe = asyncHandler(async (req, res) => {
     throw new Error("Рецептата не е намерена");
   }
 
-  if (recipe.user.toString() !== req.user.id) {
+  if (recipe.user.toString() !== user.id) {
     res.status(401);
     throw new Error("Not authorized");
   }
 
-  const updatedRecipe = await Recipe.findByIdAndUpdate(req.params, req.body, {
+  const recipeUpdate = {
+    title,
+    products,
+    preparation,
+    suitableFor,
+    photos,
+  };
+
+  const updatedRecipe = await Recipe.findOneAndUpdate(recipeId, recipeUpdate, {
     new: true,
   });
 

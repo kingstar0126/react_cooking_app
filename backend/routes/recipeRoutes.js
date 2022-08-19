@@ -30,7 +30,7 @@ const upload = multer({ storage: storage });
 
 router.post("/", protect, upload.single("photos"), postRecipe);
 
-router.put("/:id", protect, editRecipe);
+router.put("/:id", protect, upload.single("photos"), editRecipe);
 router.delete("/:id", protect, deleteRecipeById);
 
 // GET list of user's recipes

@@ -153,7 +153,8 @@ const EditRecipe = () => {
     formData.append("preparation", preparation);
     formData.append("suitableFor", suitableFor);
     formData.append("photos", photos);
-
+console.log(user)
+console.log(formData)
     try {
       const response = await fetch(
         `http://localhost:5000/api/posts/${recipeId}`,
@@ -167,7 +168,7 @@ const EditRecipe = () => {
         }
       );
 
-      if (response.status === 201) {
+      if (response.status === 200) {
         const updatedRecipe = await response.json();
         setLoading(false);
         navigate("/");
