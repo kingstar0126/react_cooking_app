@@ -33,6 +33,16 @@
     color: white;
     border-radius: 15px;
   }
+
+  .textArea {
+    background-color: rgba(0, 0, 0, 0.349);
+    border: none;
+    color: white;
+    border-radius: 15px;
+    padding: 12px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+  }
   
   .inputField {
     font-family: "Josefin Sans", sans-serif;
@@ -75,14 +85,6 @@
     gap: 80px;
   }
   
-  .caterory-list1,
-  .category-list2,
-  .category-list3,
-  .category-list4 {
-    display: flex;
-    flex-direction: column;
-  }
-  
   .checkboxItems {
     display: flex;
     gap: 15px;
@@ -111,11 +113,12 @@
   }
   
   .addIngredient {
-    padding: 5px;
+    padding: 8px;
     border: none;
-    border-radius: 10px;
+    border-radius: 50%;
     background-color: yellowgreen;
     color: black;
+    cursor: pointer;
   }
   
   .ingredient {

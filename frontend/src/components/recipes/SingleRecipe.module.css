@@ -30,15 +30,16 @@
   max-width: 300px;
   max-height: 300px;
   border: 10px double rgba(92,92,92,0.5);
-border-radius: 20px;
--webkit-box-shadow: 5px 5px 15px 5px #000000; 
-box-shadow: 5px 5px 15px 5px #000000;
+  border-radius: 20px;
+  -webkit-box-shadow: 5px 5px 15px 5px #000000; 
+  box-shadow: 5px 5px 15px 5px #000000;
 }
 
 .preparation {
   padding-left: 24px;
   padding-right: 24px;
-  margin-top: 28px
+  margin-top: 28px;
+  margin-bottom: 28px;
 }
 
 .preparation p {
@@ -66,32 +67,32 @@ box-shadow: 5px 5px 15px 5px #000000;
 .buttons__warn {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-    color: black;
-    background-color: orange;
-    padding: 12px 20px;
-    border-radius: 15px;
-    font-size: 18px;
-    text-transform: uppercase;
-    margin-top: 20px;
+  color: black;
+  background-color: orange;
+  padding: 12px 20px;
+  border-radius: 15px;
+  font-size: 18px;
+  text-transform: uppercase;
+  margin-top: 20px;
 }
 
 .buttons__red {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-    color: black;
-    background-color:rgb(214, 59, 3);
-    padding: 12px 20px;
-    border-radius: 15px;
-    font-size: 18px;
-    text-transform: uppercase;
-    margin-top: 20px;
+  color: black;
+  background-color:rgb(214, 59, 3);
+  padding: 12px 20px;
+  border-radius: 15px;
+  font-size: 18px;
+  text-transform: uppercase;
+  margin-top: 20px;
 }
 
 .buttons__red:hover, .buttons__warn:hover {
   cursor: pointer;
 }
 .buttons__red:hover {
-background-color: orangered;
+  background-color: orangered;
 }
 
 .buttons__warn:hover {

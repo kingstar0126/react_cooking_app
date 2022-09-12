@@ -67,20 +67,19 @@
   font-size: 22px;
   font-weight: 700;
   margin-bottom: 40px;
+  cursor: pointer;
+  transition:ease-in-out 300ms;
+}
+
+.buttonMain:hover {
+  background-color: yellow;
+  transform:scale(1.05);
 }
 
 .categories {
   display: flex;
   justify-content: center;
   gap: 80px;
-}
-
-.caterory-list1,
-.category-list2,
-.category-list3,
-.category-list4 {
-  display: flex;
-  flex-direction: column;
 }
 
 .checkboxItems {
@@ -111,11 +110,12 @@
 }
 
 .addIngredient {
-  padding: 5px;
+  padding: 8px;
   border: none;
-  border-radius: 10px;
+  border-radius: 50%;
   background-color: yellowgreen;
   color: black;
+  cursor: pointer;
 }
 
 .ingredient {
@@ -125,6 +125,32 @@
 
 .fileUp {
   visibility: hidden;
+}
+
+.textArea {
+  background-color: rgba(0, 0, 0, 0.349);
+  border: none;
+  color: white;
+  border-radius: 15px;
+  padding: 12px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+}
+
+.upload {
+  color: black;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  background-color: rgb(2, 176, 176);
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 15px;
+  
+}
+
+.upload:hover {
+  background-color: aqua;
 }
 
 /*  
@@ -140,3 +166,4 @@
     
         font-family: 'Pacifico', cursive; 
     */
+

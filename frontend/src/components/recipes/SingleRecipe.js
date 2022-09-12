@@ -107,9 +107,9 @@ const SingleRecipe = () => {
             <p>{recipe.preparation}</p>
           </div>
           <div>
-            <div>
+            {/* <div>
               <Button btnText={"Сготви"}></Button>
-            </div>
+            </div> */}
             {isOwner ? (
               <div className={classes.buttons}>
                 <button className={classes.buttons__warn} onClick={onUpdate}>РЕДАКТИРАЙ</button>

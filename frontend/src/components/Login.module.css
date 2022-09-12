@@ -111,6 +111,14 @@ input[type="radio"]:before {
   background-color: rgb(146, 146, 3);
 }
 
+.para {
+  font-family: 'Nunito', sans-serif;
+  margin-top: 14px;
+}
+
+.link__to {
+  color: yellow;
+}
 /*  
         font-family: 'Caveat', cursive;
     

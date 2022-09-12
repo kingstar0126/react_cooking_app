@@ -8,10 +8,10 @@ const User = require("../models/userModel");
 // @route   /api/users
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, gender } = req.body;
 
   // Validation
-  if (!name || !email || !password) {
+  if (!name || !email || !password || !gender) {
     res.status(400);
     throw new Error("Моля въведете всички полета");
   }
@@ -33,6 +33,7 @@ const registerUser = asyncHandler(async (req, res) => {
     name,
     email,
     password: hashedPassword,
+    gender,
   });
 
   if (user) {
@@ -41,6 +42,7 @@ const registerUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       token: generateToken(user._id),
+      gender: user.gender
     });
   } else {
     res.status(400);

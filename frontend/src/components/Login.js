@@ -87,9 +87,9 @@ const Login = (props) => {
             ВЛЕЗ
           </button>
         </form>
-        <p>
+        <p className={classes.para}>
           Ако все още нямаш регистрация с нас{" "}
-          <Link to="/register">регистрирай се тук</Link>
+          <Link className={classes.link__to} to="/register">регистрирай се тук</Link>
         </p>
       </div>
     </div>

@@ -245,7 +245,7 @@ console.log(formData)
                   <input
                     className={`${classes.inpitOpacity} ${classes.inputField}`}
                     type="text"
-                    placeholder="Морков, домат, лук, червен пипер..."
+                    placeholder="Морков, домат, лук..."
                     name="product"
                     id="product"
                     value={item}
@@ -284,11 +284,11 @@ console.log(formData)
                   Добави стъпките за приготвянето на твоя шедьовър
                 </p>
                 <textarea
-                  className={classes.inpitOpacity}
+                  className={classes.textArea}
                   name="preparation"
                   id="preparation"
                   cols="10"
-                  rows="4"
+                  rows="10"
                   value={preparation}
                   onChange={onMutate}
                   required

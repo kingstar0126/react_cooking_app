@@ -36,7 +36,7 @@ function App() {
         </Route>
         <Route path="/profile/:profileId" element={<MyProfile />}></Route>
         <Route path="/profile/edit/:profileId" element={<EditProfile />} />
-        <Route path="/recepti" element={<Recipes />}></Route>
+        {/* <Route path="/recepti" element={<Recipes />}></Route> */}
         <Route path="/recepti/:id" element={<SingleRecipe />}></Route>
         <Route path="/dobavi/:recipeId" element={<PrivateRoute />}>
           <Route path="/dobavi/:recipeId" element={<EditRecipe />} />

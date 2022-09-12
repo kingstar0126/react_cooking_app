@@ -32,7 +32,7 @@ const Home = () => {
   return (
     <main className={classes.background}>
       <div className={classes.recipeMain}>
-        <h1 className={classes.recipeOfTheDay}>Рецепта на деня</h1>
+        {/* <h1 className={classes.recipeOfTheDay}>Рецепта на деня</h1>
         <section className={classes.recipeMain}>
           <h3 className={classes.recipeTitle}>Салатка</h3>
           <div>
@@ -58,7 +58,7 @@ const Home = () => {
             </p>
           </div>
           <Button btnText={"Виж повече"}></Button>
-        </section>
+        </section> */}
 
         <section>
           <ul className={classes.recipe__list}>

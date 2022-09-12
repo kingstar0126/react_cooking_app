@@ -12,11 +12,12 @@ const Register = (props) => {
     email: "",
     password: "",
     repass: "",
+    gender: ""
   });
 
   const navigate = useNavigate();
 
-  const { name, email, password, repass } = formData;
+  const { name, email, password, repass, gender } = formData;
 
   const dispatch = useDispatch();
   const {user, isLoading, isError ,isSuccess, message} = useSelector(state => state.auth)
@@ -40,6 +41,13 @@ const Register = (props) => {
     }));
   };
 
+  const onGenderSelect = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+    [e.target.name]: e.target.id
+    }))
+  }
+
   const onSubmit = async (e) => {
     e.preventDefault();
 
@@ -56,6 +64,7 @@ const Register = (props) => {
       name,
       email,
       password,
+      gender
     };
 
     dispatch(register(userData))
@@ -108,7 +117,7 @@ const Register = (props) => {
             placeholder="Въведете парола"
             required
           ></input>
-          <p>Паролата трябва да е между 6 и 12 символа</p>
+          <p className={classes.para}>Паролата трябва да е между 6 и 12 символа</p>
           <label className={classes.genLabel} htmlFor="rePass">
             Повтори парола
           </label>
@@ -122,7 +131,7 @@ const Register = (props) => {
             placeholder="Повторете паролата"
             required
           ></input>
-          {/* <label className={classes.genLabel} htmlFor="male">
+          <label className={classes.genLabel} htmlFor="male">
             Пол
           </label>
           <label className={classes.genRadioLabel} htmlFor="male">
@@ -134,24 +143,25 @@ const Register = (props) => {
             type="radio"
             value={gender}
             name="gender"
-            onChange={genderRadio}
-          />{" "}
+            onChange={onGenderSelect}
+          />
           <label className={classes.genRadioLabel} htmlFor="female">
             Жена
           </label>
           <input
+            id="female"
             className={classes.genRadio}
             type="radio"
             value={gender}
             name="gender"
-            onChange={genderRadio}
-          />{" "} */}
+            onChange={onGenderSelect}
+          />
           <button className={classes.regButton} type="submit">
             РЕГИСТРИРАЙ СЕ
           </button>
         </form>
-        <p>
-          Ако имаш регистрация вече <Link to="/login">Влез тук</Link>
+        <p className={classes.para_second}>
+          Ако вече имаш регистрация <Link className={classes.link__to} to="/login">Влез тук</Link>
         </p>
       </div>
     </div>

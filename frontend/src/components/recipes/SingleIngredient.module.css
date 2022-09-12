@@ -1,7 +1,12 @@
 .center {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   margin: 0.2rem;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
 }
 
 .product_name {
@@ -14,6 +19,15 @@
 
 .remove {
   padding-left: 2rem;
+}
+
+.addIngredient {
+  padding: 8px;
+  border: none;
+  border-radius: 50%;
+  background-color: red;
+  color: black;
+  cursor: pointer;
 }
 
 /*  

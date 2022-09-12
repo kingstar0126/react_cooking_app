@@ -193,7 +193,7 @@ const PostRecipe = () => {
                   <input
                     className={`${classes.inpitOpacity} ${classes.inputField}`}
                     type="text"
-                    placeholder="Морков, домат, лук, червен пипер..."
+                    placeholder="Морков, домат, лук..."
                     name="product"
                     id="product"
                     value={item}
@@ -232,11 +232,11 @@ const PostRecipe = () => {
                   Добави стъпките за приготвянето на твоя шедьовър
                 </p>
                 <textarea
-                  className={classes.inpitOpacity}
+                  className={classes.textArea}
                   name="preparation"
                   id="preparation"
                   cols="10"
-                  rows="4"
+                  rows="10"
                   value={preparation}
                   onChange={onMutate}
                   required
@@ -271,10 +271,10 @@ const PostRecipe = () => {
                     човека.
                   </p>
                 </div>
-                {/* <UploadFile onUploadClick={onFilenameSet} /> */}
                 <div>
-                  <label htmlFor="photos">Качи снимки</label>
+                  <label className={classes.upload} htmlFor="photos">Качи снимки</label>
                   <input
+                    style={{display: 'none'}}
                     type="file"
                     accept=".png, .jpg, .jpeg"
                     name="photos"
@@ -284,6 +284,7 @@ const PostRecipe = () => {
                     required
                   />
                 </div>
+                
 
                 <button className={classes.buttonMain}>ДОБАВИ РЕЦЕПТА</button>
               </form>

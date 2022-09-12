@@ -7,12 +7,12 @@ const SingleIngredient = ({ product, products, onProductsUpdate, edit }) => {
     onProductsUpdate(product.item);
   };
   return (
-    <div className={classes.center}>
+    <div className={`${edit ? classes.center : classes.centered}`}>
       <p className={classes.product_name}>
         {product.item} - {product.volume} {product.type}
       </p>
       {edit ? (
-        <button className={classes.remove} onClick={onDelete}>
+        <button className={classes.addIngredient} onClick={onDelete}>
           <FaMinus />
         </button>
       ) : null}

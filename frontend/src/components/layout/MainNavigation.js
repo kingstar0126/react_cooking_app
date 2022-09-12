@@ -23,16 +23,16 @@ const MainNavigation = (props) => {
       <nav>
         <ul className={classes.lis}>
           <li>
-            <Link to="/">НАЧАЛО</Link>
+            <Link to="/">РЕЦЕПТИ</Link>
           </li>
           {user && (
             <li>
               <Link to="/dobavi">ДОБАВИ РЕЦЕПТА</Link>
             </li>
           )}
-          <li>
+          {/* <li>
             <Link to="/recepti">РЕЦЕПТИ</Link>
-          </li>
+          </li> */}
           {!user && (
             <li>
               <Link to="/login">ВЛЕЗ</Link>
