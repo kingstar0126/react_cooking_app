@@ -1,6 +1,6 @@
 import classes from "./SingleRecipe.module.css";
 import Spinner from "../layout/Spinner";
-import Button from "../layout/Button";
+//import Button from "../layout/Button";
 
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -12,12 +12,13 @@ import {
   deleteRes,
 } from "../../features/recipes/recipeSlice";
 import SingleIngredient from "./SingleIngredient";
-import Line from '../layout/Line';
+import Comments from "./Comments";
+//import Line from "../layout/Line";
 
 const SingleRecipe = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const params = useParams();
+  //const params = useParams();
   const { id } = useParams();
   const [ingredients, setIngredient] = useState([]);
   const [activeUser, setActiveUser] = useState(false);
@@ -71,6 +72,14 @@ const SingleRecipe = () => {
     navigate(`/dobavi/${id}`);
   };
 
+  const onCommentHandler = (e) => {
+    e.preventDefault();
+  };
+
+  const onCommentAdd = (e) => {
+    e.preventDefault();
+  };
+
   if (isLoading) {
     return <Spinner />;
   }
@@ -92,7 +101,7 @@ const SingleRecipe = () => {
           ) : null}
           <div>
             <h2 className={classes.product}>Необходими продукти</h2>
-            
+
             {ingredients !== undefined
               ? ingredients.map((ingredient) => (
                   <SingleIngredient
@@ -112,11 +121,30 @@ const SingleRecipe = () => {
             </div> */}
             {isOwner ? (
               <div className={classes.buttons}>
-                <button className={classes.buttons__warn} onClick={onUpdate}>РЕДАКТИРАЙ</button>
-                <button className={classes.buttons__red} onClick={onDelete}>ИЗТРИЙ</button>
+                <button className={classes.buttons__warn} onClick={onUpdate}>
+                  РЕДАКТИРАЙ
+                </button>
+                <button className={classes.buttons__red} onClick={onDelete}>
+                  ИЗТРИЙ
+                </button>
               </div>
             ) : null}
           </div>
+        </div>
+        <div className={classes.card}>
+          <Comments />
+          <form onSubmit={onCommentAdd}>
+            <input
+              className={`${classes.inpitOpacity} ${classes.inputField}`}
+              type="text"
+              placeholder="Страхотна рецепта..."
+              name="comment"
+              id="comment"
+              onChange={onCommentHandler}
+              required
+            />
+            <button>Добави коментар</button>
+          </form>
         </div>
       </section>
     </main>

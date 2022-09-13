@@ -7,7 +7,7 @@ const {
   getRecipeById,
   getRecipes,
   deleteRecipeById,
-  uploadPhoto,
+  getLastThree,
 } = require("../controllers/recipesController");
 
 const { protect } = require("../middleware/authMiddleware");
@@ -38,6 +38,7 @@ router.get("/myRecipes", getMyRecipes);
 
 // GET public recipes and single recipe
 router.get("/", getRecipes);
+router.get("/lastThree", getLastThree);
 router.get("/:id", getRecipeById);
 
 module.exports = router;

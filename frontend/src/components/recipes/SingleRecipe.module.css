@@ -29,9 +29,9 @@
   margin-top: 40px;
   max-width: 300px;
   max-height: 300px;
-  border: 10px double rgba(92,92,92,0.5);
+  border: 10px double rgba(92, 92, 92, 0.5);
   border-radius: 20px;
-  -webkit-box-shadow: 5px 5px 15px 5px #000000; 
+  -webkit-box-shadow: 5px 5px 15px 5px #000000;
   box-shadow: 5px 5px 15px 5px #000000;
 }
 
@@ -45,7 +45,7 @@
 .preparation p {
   text-align: left;
   font-size: 16px;
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
 }
 
 .buttons {
@@ -57,15 +57,15 @@
   padding-right: 40px;
 }
 .card {
-  border: 10px double rgba(92,92,92,0.5);
+  border: 10px double rgba(92, 92, 92, 0.5);
   border-radius: 20px;
-  -webkit-box-shadow: 5px 5px 15px 5px #000000; 
+  -webkit-box-shadow: 5px 5px 15px 5px #000000;
   box-shadow: 5px 5px 15px 5px #000000;
   background-color: #88898877;
 }
 
 .buttons__warn {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 700;
   color: black;
   background-color: orange;
@@ -77,10 +77,10 @@
 }
 
 .buttons__red {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 700;
   color: black;
-  background-color:rgb(214, 59, 3);
+  background-color: rgb(214, 59, 3);
   padding: 12px 20px;
   border-radius: 15px;
   font-size: 18px;
@@ -88,7 +88,8 @@
   margin-top: 20px;
 }
 
-.buttons__red:hover, .buttons__warn:hover {
+.buttons__red:hover,
+.buttons__warn:hover {
   cursor: pointer;
 }
 .buttons__red:hover {
@@ -97,6 +98,27 @@
 
 .buttons__warn:hover {
   background-color: rgb(255, 204, 0);
+}
+
+.inpitOpacity {
+  background-color: rgba(0, 0, 0, 0.349);
+  border: none;
+  color: white;
+  border-radius: 15px;
+}
+
+.inputField {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 80%;
+  font-family: "Josefin Sans", sans-serif;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 15px;
+}
+
+.inpitOpacity:focus {
+  outline: none;
 }
 /*  
     font-family: 'Pacifico', cursive;
@@ -110,6 +132,4 @@
     font-family: 'Montserrat', sans-serif;
 
     font-family: 'Nunito', sans-serif;
-
-     
 */

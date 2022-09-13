@@ -13,10 +13,9 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import MyProfile from "./components/profile/MyProfile";
 import PostRecipe from "./components/recipes/PostRecipe";
-import Recipes from "./components/recipes/Recipes";
 import SingleRecipe from "./components/recipes/SingleRecipe";
 import EditProfile from "./components/profile/EditProfile";
-import EditRecipe from './components/recipes/EditRecipe'
+import EditRecipe from "./components/recipes/EditRecipe";
 
 import React from "react";
 

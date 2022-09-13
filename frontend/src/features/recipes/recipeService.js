@@ -40,6 +40,16 @@ const getAllRecipes = async () => {
   }
 };
 
+// GET Last Three recipes
+const getLastThree = async () => {
+  const response = await fetch("http://localhost:5000/api/posts/lastThree");
+
+  if (response.status === 200) {
+    const recipes = await response.json();
+    return recipes;
+  }
+};
+
 // GET Single Recipe
 const getSingle = async (recipeId) => {
   const response = await fetch("http://localhost:5000/api/posts/" + recipeId);
@@ -50,7 +60,7 @@ const getSingle = async (recipeId) => {
   }
 };
 
-// DELETe a recipe
+// DELETE a recipe
 const deleteRecipe = async (recipeId, token) => {
   const response = await fetch("http://localhost:5000/api/posts/" + recipeId, {
     method: "DELETE",
@@ -89,6 +99,7 @@ const recipeService = {
   getSingle,
   deleteRecipe,
   updateRecipe,
+  getLastThree,
 };
 
 export default recipeService;

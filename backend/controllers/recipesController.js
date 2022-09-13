@@ -13,6 +13,17 @@ const getRecipes = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc    Get latest 3 recipes
+// @route   GET api/posts
+// @access  public
+const getLastThree = asyncHandler(async (req, res) => {
+  const recipes = await Recipe.find({}).sort({ createdAt: -1 }).limit(3);
+
+  if (recipes) {
+    res.status(200).json(recipes);
+  }
+});
+
 // @desc    Get single recipe
 // @route   api/posts/:id
 // @access  public
@@ -164,4 +175,5 @@ module.exports = {
   getRecipeById,
   getRecipes,
   deleteRecipeById,
+  getLastThree,
 };

@@ -9,7 +9,6 @@ import { createRecipe, reset } from "../../features/recipes/recipeSlice";
 import { FaPlusCircle } from "react-icons/fa";
 
 const PostRecipe = () => {
-  const params = useParams();
   const [products, setProducts] = useState([]);
   const [item, setItem] = useState("");
   const [volume, setVolume] = useState("");
@@ -198,7 +197,6 @@ const PostRecipe = () => {
                     id="product"
                     value={item}
                     onChange={onItemAdd}
-                    required
                   />
                   <input
                     className={`${classes.inpitOpacity} ${classes.inputField}`}
@@ -272,9 +270,11 @@ const PostRecipe = () => {
                   </p>
                 </div>
                 <div>
-                  <label className={classes.upload} htmlFor="photos">Качи снимки</label>
+                  <label className={classes.upload} htmlFor="photos">
+                    Качи снимки
+                  </label>
                   <input
-                    style={{display: 'none'}}
+                    style={{ display: "none" }}
                     type="file"
                     accept=".png, .jpg, .jpeg"
                     name="photos"
@@ -284,7 +284,6 @@ const PostRecipe = () => {
                     required
                   />
                 </div>
-                
 
                 <button className={classes.buttonMain}>ДОБАВИ РЕЦЕПТА</button>
               </form>

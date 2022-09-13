@@ -30,26 +30,6 @@ export const createRecipe = createAsyncThunk(
   }
 );
 
-// CREATE new recipe
-export const uploadNewPhoto = createAsyncThunk(
-  "recipe/upload",
-  async (image, thunkAPI) => {
-    try {
-      const token = thunkAPI.getState().auth.user.token;
-      return await recipeService.uploadPhoto(image, token);
-    } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-);
-
 // UPDATE existing recipe
 export const updateRes = createAsyncThunk(
   "recipe/update",
@@ -96,6 +76,25 @@ export const getAllRecipes = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       return await recipeService.getAllRecipes();
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+// GET Last Three Recipes
+export const getLastThree = createAsyncThunk(
+  "recipe/getLastThree",
+  async (_, thunkAPI) => {
+    try {
+      return await recipeService.getLastThree();
     } catch (error) {
       const message =
         (error.response &&
@@ -196,6 +195,20 @@ export const recipeSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       })
+      // GET Last three recipes/ public
+      .addCase(getLastThree.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getLastThree.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.recipes = action.payload;
+      })
+      .addCase(getLastThree.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
       // GET Single recipe/ public
       .addCase(getSingleRecipe.pending, (state) => {
         state.isLoading = true;
@@ -223,20 +236,7 @@ export const recipeSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
-      })
-      // Upload Photo
-      .addCase(uploadNewPhoto.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(uploadNewPhoto.fulfilled, (state) => {
-        state.isLoading = false;
-        state.isSuccess = true;
-      })
-      .addCase(uploadNewPhoto.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.message = action.payload;
-      })
+      });
   },
 });
 

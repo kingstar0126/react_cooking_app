@@ -3,18 +3,18 @@ import { useSelector, useDispatch } from "react-redux";
 import classes from "./Home.module.css";
 import SmallRecipeItem from "./recipes/SmallRecipeItem";
 import Spinner from "./layout/Spinner";
-import { getAllRecipes, reset } from "../features/recipes/recipeSlice";
-import Button from "./layout/Button";
+import { getLastThree, reset } from "../features/recipes/recipeSlice";
+//import Button from "./layout/Button";
 
 const Home = () => {
   const { recipes, isLoading, isSuccess } = useSelector(
     (state) => state.recipe
   );
-
+  console.log(recipes);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllRecipes());
+    dispatch(getLastThree());
   }, [dispatch]);
 
   useEffect(() => {
