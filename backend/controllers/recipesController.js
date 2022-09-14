@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
 const Recipe = require("../models/recipeModel");
+const Comment = require("../models/commentModel");
 
 // @desc    Get all recipes
 // @route   GET api/posts
@@ -168,6 +169,40 @@ const deleteRecipeById = asyncHandler(async (req, res) => {
   res.status(200).json({ sucess: true });
 });
 
+// @desc        Post a comment
+// @route       POST /api/comments
+// @access      for registered and logged in Users only
+const postComment = asyncHandler(async (req, res) => {
+  const { recipeId, name, comment } = req.body;
+  // Validation
+  // if (!title || !products || !preparation || !suitableFor) {
+  //   res.status(400);
+  //   throw new Error("Моля попълнете всички полета");
+  // }
+
+  // Get user using the id in the JWT
+  const user = await User.findById(req.user.id);
+
+  if (!user) {
+    res.status(401);
+    throw new Error("User not found");
+  }
+
+  // POST comment
+  const newComment = await Comment.create({
+    recipe: recipeId,
+    name,
+    comment,
+  });
+
+  if (newComment) {
+    res.status(201).json(newComment);
+  } else {
+    res.status(400);
+    throw new Error("Невалидно въведена информация");
+  }
+});
+
 module.exports = {
   postRecipe,
   getMyRecipes,
@@ -176,4 +211,5 @@ module.exports = {
   getRecipes,
   deleteRecipeById,
   getLastThree,
+  postComment,
 };

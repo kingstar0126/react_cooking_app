@@ -2,17 +2,17 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import classes from "./Register.module.css";
-import {useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
 import { register, reset } from "../features/auth/authSlice";
 import Spinner from "./layout/Spinner";
 
-const Register = (props) => {
+const Register = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
     repass: "",
-    gender: ""
+    gender: "",
   });
 
   const navigate = useNavigate();
@@ -20,19 +20,21 @@ const Register = (props) => {
   const { name, email, password, repass, gender } = formData;
 
   const dispatch = useDispatch();
-  const {user, isLoading, isError ,isSuccess, message} = useSelector(state => state.auth)
+  const { user, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  );
 
   useEffect(() => {
     if (isError) {
-      toast.error(message)
+      toast.error(message);
     }
 
     if (isSuccess || user) {
-      navigate('/')
+      navigate("/");
     }
 
-    dispatch(reset())
-  }, [isError, isSuccess, user, message, navigate, dispatch])
+    dispatch(reset());
+  }, [isError, isSuccess, user, message, navigate, dispatch]);
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -44,9 +46,9 @@ const Register = (props) => {
   const onGenderSelect = (e) => {
     setFormData((prevState) => ({
       ...prevState,
-    [e.target.name]: e.target.id
-    }))
-  }
+      [e.target.name]: e.target.id,
+    }));
+  };
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -64,14 +66,14 @@ const Register = (props) => {
       name,
       email,
       password,
-      gender
+      gender,
     };
 
-    dispatch(register(userData))
+    dispatch(register(userData));
   };
 
   if (isLoading) {
-    return <Spinner />
+    return <Spinner />;
   }
 
   return (
@@ -117,7 +119,9 @@ const Register = (props) => {
             placeholder="Въведете парола"
             required
           ></input>
-          <p className={classes.para}>Паролата трябва да е между 6 и 12 символа</p>
+          <p className={classes.para}>
+            Паролата трябва да е между 6 и 12 символа
+          </p>
           <label className={classes.genLabel} htmlFor="rePass">
             Повтори парола
           </label>
@@ -161,7 +165,10 @@ const Register = (props) => {
           </button>
         </form>
         <p className={classes.para_second}>
-          Ако вече имаш регистрация <Link className={classes.link__to} to="/login">Влез тук</Link>
+          Ако вече имаш регистрация{" "}
+          <Link className={classes.link__to} to="/login">
+            Влез тук
+          </Link>
         </p>
       </div>
     </div>

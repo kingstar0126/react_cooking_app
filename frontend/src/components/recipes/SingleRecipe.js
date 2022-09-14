@@ -10,6 +10,7 @@ import {
   getSingleRecipe,
   reset,
   deleteRes,
+  addComment,
 } from "../../features/recipes/recipeSlice";
 import SingleIngredient from "./SingleIngredient";
 import Comments from "./Comments";
@@ -18,10 +19,10 @@ import Comments from "./Comments";
 const SingleRecipe = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  //const params = useParams();
   const { id } = useParams();
   const [ingredients, setIngredient] = useState([]);
   const [activeUser, setActiveUser] = useState(false);
+  const [comment, setComment] = useState("");
   const editMode = false;
 
   const { user } = useSelector((state) => state.auth);
@@ -73,11 +74,24 @@ const SingleRecipe = () => {
   };
 
   const onCommentHandler = (e) => {
-    e.preventDefault();
+    setComment(e.target.value);
   };
 
-  const onCommentAdd = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
+
+    if (comment.length < 5) {
+      toast.error("Коментарът трябва да е минимум 5 символа");
+      return;
+    }
+
+    const commentData = {
+      recipeId: id,
+      name: user.name,
+      comment: comment,
+    };
+    console.log(commentData);
+    dispatch(addComment(commentData));
   };
 
   if (isLoading) {
@@ -133,18 +147,22 @@ const SingleRecipe = () => {
         </div>
         <div className={classes.card}>
           <Comments />
-          <form onSubmit={onCommentAdd}>
-            <input
-              className={`${classes.inpitOpacity} ${classes.inputField}`}
-              type="text"
-              placeholder="Страхотна рецепта..."
-              name="comment"
-              id="comment"
-              onChange={onCommentHandler}
-              required
-            />
-            <button>Добави коментар</button>
-          </form>
+          {user ? (
+            <form onSubmit={onSubmit}>
+              <input
+                className={`${classes.inpitOpacity} ${classes.inputField}`}
+                type="text"
+                placeholder="Страхотна рецепта..."
+                name="comment"
+                id="comment"
+                onChange={onCommentHandler}
+                required
+              />
+              <div className={classes.form__button}>
+                <button className={classes.button__add}>Добави коментар</button>
+              </div>
+            </form>
+          ) : null}
         </div>
       </section>
     </main>

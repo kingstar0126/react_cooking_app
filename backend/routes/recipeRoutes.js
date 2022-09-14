@@ -8,6 +8,7 @@ const {
   getRecipes,
   deleteRecipeById,
   getLastThree,
+  postComment,
 } = require("../controllers/recipesController");
 
 const { protect } = require("../middleware/authMiddleware");
@@ -28,8 +29,8 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
+// POST, EDIT and DELETE recipes
 router.post("/", protect, upload.single("photos"), postRecipe);
-
 router.put("/:id", protect, upload.single("photos"), editRecipe);
 router.delete("/:id", protect, deleteRecipeById);
 
@@ -40,5 +41,8 @@ router.get("/myRecipes", getMyRecipes);
 router.get("/", getRecipes);
 router.get("/lastThree", getLastThree);
 router.get("/:id", getRecipeById);
+
+// POST and DELETE comments
+router.post("/comments", protect, postComment);
 
 module.exports = router;
