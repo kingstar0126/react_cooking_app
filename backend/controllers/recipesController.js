@@ -203,6 +203,21 @@ const postComment = asyncHandler(async (req, res) => {
   }
 });
 
+// GET all comments
+// @desc    Get single recipe
+// @route   api/posts/:id
+// @access  public
+const getAllComments = asyncHandler(async (req, res) => {
+  const comments = await Comment.find({ recipe: req.params.id });
+
+  if (!comments) {
+    res.status(404);
+    throw new Error("Няма коментари към таци рецепта");
+  }
+
+  res.status(200).json(comments);
+});
+
 module.exports = {
   postRecipe,
   getMyRecipes,
@@ -212,4 +227,5 @@ module.exports = {
   deleteRecipeById,
   getLastThree,
   postComment,
+  getAllComments,
 };

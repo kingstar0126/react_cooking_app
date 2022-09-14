@@ -10,7 +10,6 @@ const Home = () => {
   const { recipes, isLoading, isSuccess } = useSelector(
     (state) => state.recipe
   );
-  console.log(recipes);
   const dispatch = useDispatch();
 
   useEffect(() => {

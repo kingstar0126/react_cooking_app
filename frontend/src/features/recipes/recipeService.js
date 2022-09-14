@@ -92,23 +92,6 @@ const updateRecipe = async (recipe, recipeId, token) => {
   }
 };
 
-// Add comment
-const addComment = async (comment, token) => {
-  const response = await fetch("http://localhost:5000/api/posts/comments", {
-    method: "POST",
-    body: JSON.stringify(comment),
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-  });
-
-  if (response.status === 201) {
-    const addedComment = await response.json();
-    return addedComment;
-  }
-};
-
 const recipeService = {
   addRecipe,
   getMine,
@@ -117,7 +100,6 @@ const recipeService = {
   deleteRecipe,
   updateRecipe,
   getLastThree,
-  addComment,
 };
 
 export default recipeService;

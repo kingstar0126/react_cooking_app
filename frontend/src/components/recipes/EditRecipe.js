@@ -17,7 +17,6 @@ const EditRecipe = () => {
   const [volume, setVolume] = useState("");
   const [type, setType] = useState("грама");
   const [loading, setLoading] = useState(false);
-  const [oldProducts, setOldProducts] = useState([]);
   const [formData, setFormData] = useState({
     title: "",
     products: [],
@@ -53,15 +52,12 @@ const EditRecipe = () => {
     }));
   }, []);
 
-  
-
   useEffect(() => {
-    setProducts(formData.products)
-  }, [formData.products])
+    setProducts(formData.products);
+  }, [formData.products]);
   // useEffect(() => {
   //   setOldProducts(formData.products)
   // }, [formData.products])
-  
 
   const { photos, title, preparation, suitableFor } = formData;
 
@@ -92,18 +88,15 @@ const EditRecipe = () => {
   };
 
   const onProductsUpdate = (item) => {
-    const updatedProducts = products.filter((product) => product.item !== item)
-    
-    setProducts(updatedProducts)
+    const updatedProducts = products.filter((product) => product.item !== item);
+
+    setProducts(updatedProducts);
     setFormData((prevState) => ({
       ...prevState,
       products: updatedProducts,
     }));
-    
-   // setOldProducts(updatedProducts);
   };
-  console.log(products)
-  
+
   const onProductAdd = (e) => {
     e.preventDefault();
 
@@ -118,8 +111,6 @@ const EditRecipe = () => {
       ...prevState,
       products: products,
     }));
-    console.log(products)
-    console.log(formData)
     setItem("");
     setType("грама");
     setVolume("");
@@ -153,8 +144,8 @@ const EditRecipe = () => {
     formData.append("preparation", preparation);
     formData.append("suitableFor", suitableFor);
     formData.append("photos", photos);
-console.log(user)
-console.log(formData)
+    console.log(user);
+    console.log(formData);
     try {
       const response = await fetch(
         `http://localhost:5000/api/posts/${recipeId}`,
@@ -230,17 +221,6 @@ console.log(formData)
                       />
                     ))
                   : null}
-                {/* {oldProducts.length > 0
-                  ? oldProducts.map((oldProduct) => (
-                      <SingleIngredient
-                        product={oldProduct}
-                        key={oldProduct.item}
-                        products={oldProducts}
-                        onProductsUpdate={onProductsUpdate}
-                        edit={edit}
-                      />
-                    ))
-                  : null} */}
                 <article className={classes.ingredient}>
                   <input
                     className={`${classes.inpitOpacity} ${classes.inputField}`}
@@ -323,7 +303,6 @@ console.log(formData)
                     човека.
                   </p>
                 </div>
-                {/* <UploadFile onUploadClick={onFilenameSet} /> */}
                 <div>
                   <label htmlFor="photos">Качи снимки</label>
                   <input

@@ -147,26 +147,6 @@ export const deleteRes = createAsyncThunk(
   }
 );
 
-// ADD new comment
-export const addComment = createAsyncThunk(
-  "recipe/comment",
-  async (comment, thunkAPI) => {
-    try {
-      const token = thunkAPI.getState().auth.user.token;
-      return await recipeService.addComment(comment, token);
-    } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-);
-
 export const recipeSlice = createSlice({
   name: "recipe",
   initialState,
@@ -253,19 +233,6 @@ export const recipeSlice = createSlice({
         state.recipe = {};
       })
       .addCase(deleteRes.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.message = action.payload;
-      })
-      // Create comment
-      .addCase(addComment.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(addComment.fulfilled, (state) => {
-        state.isLoading = false;
-        state.isSuccess = true;
-      })
-      .addCase(addComment.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

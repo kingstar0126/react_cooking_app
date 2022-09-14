@@ -9,6 +9,7 @@ const {
   deleteRecipeById,
   getLastThree,
   postComment,
+  getAllComments,
 } = require("../controllers/recipesController");
 
 const { protect } = require("../middleware/authMiddleware");
@@ -42,7 +43,8 @@ router.get("/", getRecipes);
 router.get("/lastThree", getLastThree);
 router.get("/:id", getRecipeById);
 
-// POST and DELETE comments
+// GET, POST and DELETE comments
 router.post("/comments", protect, postComment);
+router.get("/:id/comments", getAllComments);
 
 module.exports = router;

@@ -10,8 +10,11 @@ import {
   getSingleRecipe,
   reset,
   deleteRes,
-  addComment,
 } from "../../features/recipes/recipeSlice";
+import {
+  addComment,
+  getAllComments,
+} from "../../features/recipes/commentSlice";
 import SingleIngredient from "./SingleIngredient";
 import Comments from "./Comments";
 //import Line from "../layout/Line";
@@ -22,15 +25,21 @@ const SingleRecipe = () => {
   const { id } = useParams();
   const [ingredients, setIngredient] = useState([]);
   const [activeUser, setActiveUser] = useState(false);
-  const [comment, setComment] = useState("");
+  const [newComment, setNewComment] = useState("");
   const editMode = false;
 
   const { user } = useSelector((state) => state.auth);
   const { recipe, isSuccess, isLoading, isError, message } = useSelector(
     (state) => state.recipe
   );
+  const { comments } = useSelector((state) => state.comment);
   const { products } = recipe;
 
+  useEffect(() => {
+    dispatch(getAllComments(id));
+  }, []);
+
+  console.log(comments);
   useEffect(() => {
     if (user) {
       setActiveUser(user);
@@ -74,13 +83,13 @@ const SingleRecipe = () => {
   };
 
   const onCommentHandler = (e) => {
-    setComment(e.target.value);
+    setNewComment(e.target.value);
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (comment.length < 5) {
+    if (newComment.length < 5) {
       toast.error("Коментарът трябва да е минимум 5 символа");
       return;
     }
@@ -88,9 +97,8 @@ const SingleRecipe = () => {
     const commentData = {
       recipeId: id,
       name: user.name,
-      comment: comment,
+      comment: newComment,
     };
-    console.log(commentData);
     dispatch(addComment(commentData));
   };
 
@@ -146,7 +154,11 @@ const SingleRecipe = () => {
           </div>
         </div>
         <div className={classes.card}>
-          <Comments />
+          {comments !== undefined ? (
+            comments.map((comment) => <Comments comment={comment} />)
+          ) : (
+            <p>Все още няма нито един коментар към тази рецепта</p>
+          )}
           {user ? (
             <form onSubmit={onSubmit}>
               <input
