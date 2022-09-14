@@ -3,10 +3,10 @@ import commentService from "./commentService";
 
 const initialState = {
   comments: [],
-  isError: false,
-  isSuccess: false,
-  isLoading: false,
-  message: "",
+  isCommentError: false,
+  isCommentSuccess: false,
+  isCommentLoading: false,
+  messageComment: "",
 };
 
 // ADD new comment
@@ -21,7 +21,7 @@ export const addComment = createAsyncThunk(
         (error.response &&
           error.response.data &&
           error.response.data.message) ||
-        error.message ||
+        error.messageComment ||
         error.toString();
 
       return thunkAPI.rejectWithValue(message);
@@ -40,7 +40,7 @@ export const getAllComments = createAsyncThunk(
         (error.response &&
           error.response.data &&
           error.response.data.message) ||
-        error.message ||
+        error.messageComment ||
         error.toString();
 
       return thunkAPI.rejectWithValue(message);
@@ -58,30 +58,30 @@ export const commentSlice = createSlice({
     builder
       // Create comment
       .addCase(addComment.pending, (state) => {
-        state.isLoading = true;
+        state.isCommentLoading = true;
       })
       .addCase(addComment.fulfilled, (state) => {
-        state.isLoading = false;
-        state.isSuccess = true;
+        state.isCommentLoading = false;
+        state.isCommentSuccess = true;
       })
       .addCase(addComment.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.message = action.payload;
+        state.isCommentLoading = false;
+        state.isCommentError = true;
+        state.messageComment = action.payload;
       })
       // GET all comments/ public
       .addCase(getAllComments.pending, (state) => {
-        state.isLoading = true;
+        state.isCommentLoading = true;
       })
       .addCase(getAllComments.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.isSuccess = true;
+        state.isCommentSuccess = true;
         state.comments = action.payload;
       })
       .addCase(getAllComments.rejected, (state, action) => {
         state.isLoading = false;
-        state.isError = true;
-        state.message = action.payload;
+        state.isCommentError = true;
+        state.messageComment = action.payload;
       });
   },
 });

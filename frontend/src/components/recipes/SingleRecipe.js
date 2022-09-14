@@ -32,14 +32,16 @@ const SingleRecipe = () => {
   const { recipe, isSuccess, isLoading, isError, message } = useSelector(
     (state) => state.recipe
   );
-  const { comments } = useSelector((state) => state.comment);
+  const { comments, isCommentLoading } = useSelector((state) => state.comment);
   const { products } = recipe;
 
   useEffect(() => {
     dispatch(getAllComments(id));
-  }, []);
+    // eslint-disable-next-line
+  }, [isCommentLoading]);
 
   console.log(comments);
+
   useEffect(() => {
     if (user) {
       setActiveUser(user);
@@ -100,6 +102,7 @@ const SingleRecipe = () => {
       comment: newComment,
     };
     dispatch(addComment(commentData));
+    setNewComment("");
   };
 
   if (isLoading) {
@@ -154,8 +157,10 @@ const SingleRecipe = () => {
           </div>
         </div>
         <div className={classes.card}>
-          {comments !== undefined ? (
-            comments.map((comment) => <Comments comment={comment} />)
+          {comments.length > 0 ? (
+            comments.map((comment) => (
+              <Comments key={comment._id} comment={comment} />
+            ))
           ) : (
             <p>Все още няма нито един коментар към тази рецепта</p>
           )}
@@ -167,6 +172,7 @@ const SingleRecipe = () => {
                 placeholder="Страхотна рецепта..."
                 name="comment"
                 id="comment"
+                value={newComment}
                 onChange={onCommentHandler}
                 required
               />
