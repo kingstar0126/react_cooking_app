@@ -72,23 +72,6 @@
   color: white;
 }
 
-input[type="radio"] {
-  height: 30px;
-  width: 30px;
-  vertical-align: middle;
-}
-
-input[type="radio"]:before {
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  border: 2px solid red;
-  border-radius: 15px;
-  position: relative;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
-  margin: 0.25rem;
-}
-
 .regButton {
   display: block;
   font-family: "Montserrat", sans-serif;
@@ -112,18 +95,18 @@ input[type="radio"]:before {
 }
 
 .para {
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   margin-bottom: 20px;
   margin-top: -20px;
 }
 
 .para_second {
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   margin-top: 14px;
 }
 
 .link__to {
-color: yellow;
+  color: yellow;
 }
 
 /*  
