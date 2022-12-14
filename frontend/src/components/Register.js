@@ -84,7 +84,6 @@ const Register = () => {
             Вашите имена
           </label>
           <input
-            className={classes.genInput}
             type="text"
             id="name"
             name="name"
@@ -97,7 +96,6 @@ const Register = () => {
             И-мейл адрес
           </label>
           <input
-            className={classes.genInput}
             placeholder="geri_chef@abv.bg"
             type="email"
             id="email"
@@ -110,7 +108,6 @@ const Register = () => {
             Парола
           </label>
           <input
-            className={classes.genInput}
             type="password"
             id="password"
             name="password"
@@ -126,7 +123,6 @@ const Register = () => {
             Повтори парола
           </label>
           <input
-            className={classes.genInput}
             type="password"
             id="repass"
             name="repass"

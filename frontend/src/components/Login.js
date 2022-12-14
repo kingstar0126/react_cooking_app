@@ -61,7 +61,6 @@ const Login = (props) => {
             И-мейл адрес
           </label>
           <input
-            className={classes.genInput}
             placeholder="geri_chef@abv.bg"
             type="email"
             id="email"
@@ -74,7 +73,6 @@ const Login = (props) => {
             Парола
           </label>
           <input
-            className={classes.genInput}
             type="password"
             id="password"
             name="password"
@@ -89,7 +87,9 @@ const Login = (props) => {
         </form>
         <p className={classes.para}>
           Ако все още нямаш регистрация с нас{" "}
-          <Link className={classes.link__to} to="/register">регистрирай се тук</Link>
+          <Link className={classes.link__to} to="/register">
+            регистрирай се тук
+          </Link>
         </p>
       </div>
     </div>
