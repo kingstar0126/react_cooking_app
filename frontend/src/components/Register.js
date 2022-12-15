@@ -80,7 +80,7 @@ const Register = () => {
     <div className={classes.background}>
       <div className={classes.reg}>
         <form onSubmit={onSubmit}>
-          <label className={classes.genLabel} htmlFor="name">
+          <label className="genLabel" htmlFor="name">
             Вашите имена
           </label>
           <input
@@ -92,7 +92,7 @@ const Register = () => {
             placeholder="Гергана Иванова"
             required
           ></input>
-          <label className={classes.genLabel} htmlFor="email">
+          <label className="genLabel" htmlFor="email">
             И-мейл адрес
           </label>
           <input
@@ -104,7 +104,7 @@ const Register = () => {
             onChange={onChange}
             required
           ></input>
-          <label className={classes.genLabel} htmlFor="password">
+          <label className="genLabel" htmlFor="password">
             Парола
           </label>
           <input
@@ -119,7 +119,7 @@ const Register = () => {
           <p className={classes.para}>
             Паролата трябва да е между 6 и 12 символа
           </p>
-          <label className={classes.genLabel} htmlFor="rePass">
+          <label className="genLabel" htmlFor="rePass">
             Повтори парола
           </label>
           <input
@@ -131,7 +131,7 @@ const Register = () => {
             placeholder="Повторете паролата"
             required
           ></input>
-          <label className={classes.genLabel} htmlFor="male">
+          <label className="genLabel" htmlFor="male">
             Пол
           </label>
           <label className={classes.genRadioLabel} htmlFor="male">

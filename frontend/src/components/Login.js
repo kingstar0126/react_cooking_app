@@ -57,7 +57,7 @@ const Login = (props) => {
     <div className={classes.background}>
       <div className={classes.reg}>
         <form onSubmit={onSubmit}>
-          <label className={classes.genLabel} htmlFor="email">
+          <label className="genLabel" htmlFor="email">
             И-мейл адрес
           </label>
           <input
@@ -69,7 +69,7 @@ const Login = (props) => {
             onChange={onChange}
             required
           ></input>
-          <label className={classes.genLabel} htmlFor="password">
+          <label className="genLabel" htmlFor="password">
             Парола
           </label>
           <input

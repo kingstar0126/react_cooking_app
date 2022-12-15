@@ -17,6 +17,21 @@
   margin-bottom: 1rem;
 }
 
+.genRadioLabel {
+  font-size: 20px;
+  font-family: "Nunito", sans-serif;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  text-align: center;
+}
+
+.genRadio {
+  margin-top: 0.5rem;
+  display: inline;
+  font-size: 28px;
+  margin-bottom: 1.5rem;
+}
+
 .regButton {
   display: block;
   font-family: "Montserrat", sans-serif;
@@ -53,17 +68,3 @@
 .link__to {
   color: yellow;
 }
-
-/*  
-      font-family: 'Caveat', cursive;
-  
-      font-family: 'Lobster', cursive;
-  
-      font-family: 'Marck Script', cursive;
-  
-      font-family: 'Montserrat', sans-serif;
-  
-      font-family: 'Nunito', sans-serif;
-  
-      font-family: 'Pacifico', cursive; 
-  */ ;

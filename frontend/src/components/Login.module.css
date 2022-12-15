@@ -11,14 +11,6 @@
   max-width: 800px;
 }
 
-/* INPUT */
-
-.genLabel {
-  font-size: 20px;
-  font-family: "Nunito", sans-serif;
-  display: block;
-}
-
 .regButton {
   display: block;
   font-family: "Montserrat", sans-serif;
