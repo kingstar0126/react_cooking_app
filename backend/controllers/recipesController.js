@@ -212,7 +212,7 @@ const getAllComments = asyncHandler(async (req, res) => {
 
   if (!comments) {
     res.status(404);
-    throw new Error("Няма коментари към таци рецепта");
+    throw new Error("Няма коментари към тази рецепта");
   }
 
   res.status(200).json(comments);

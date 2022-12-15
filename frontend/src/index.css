@@ -12,7 +12,8 @@ body {
 
 input[type="text"],
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+select {
   margin-top: 0.5rem;
   margin-bottom: 2rem;
   width: 100%;
@@ -30,7 +31,8 @@ input[type="password"] {
 
 input[type="text"]:focus,
 input[type="email"]:focus,
-input[type="password"]:focus {
+input[type="password"]:focus,
+select {
   outline: none;
   border: none;
   border-radius: 10px;

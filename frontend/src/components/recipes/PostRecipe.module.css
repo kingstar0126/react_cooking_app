@@ -68,12 +68,12 @@
   font-weight: 700;
   margin-bottom: 40px;
   cursor: pointer;
-  transition:ease-in-out 300ms;
+  transition: ease-in-out 300ms;
 }
 
 .buttonMain:hover {
   background-color: yellow;
-  transform:scale(1.05);
+  transform: scale(1.05);
 }
 
 .categories {
@@ -121,7 +121,17 @@
 .ingredient {
   display: flex;
   justify-content: space-between;
+  gap: 1rem;
+  align-items: baseline;
 }
+
+/* select {
+  height: 2.2rem;
+  background-color: rgba(0, 0, 0, 0.359);
+  border: none;
+  color: white;
+  border-radius: 25%;
+} */
 
 .fileUp {
   visibility: hidden;
@@ -133,20 +143,19 @@
   color: white;
   border-radius: 15px;
   padding: 12px;
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   font-size: 16px;
 }
 
 .upload {
   color: black;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 700;
   text-transform: uppercase;
   background-color: rgb(2, 176, 176);
   padding: 8px;
   cursor: pointer;
   border-radius: 15px;
-  
 }
 
 .upload:hover {
@@ -166,4 +175,3 @@
     
         font-family: 'Pacifico', cursive; 
     */
-
