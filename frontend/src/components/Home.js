@@ -61,13 +61,15 @@ const Home = () => {
 
         <section>
           <ul className={classes.recipe__list}>
-            {recipes.map((recipe) => (
-              <SmallRecipeItem
-                key={recipe._id}
-                user={recipe.user}
-                recipe={recipe}
-              ></SmallRecipeItem>
-            ))}
+            {recipes
+              ? recipes.map((recipe) => (
+                  <SmallRecipeItem
+                    key={recipe._id}
+                    user={recipe.user}
+                    recipe={recipe}
+                  ></SmallRecipeItem>
+                ))
+              : null}
           </ul>
         </section>
       </div>
