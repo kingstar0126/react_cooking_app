@@ -148,7 +148,7 @@ const EditRecipe = () => {
     console.log(formData);
     try {
       const response = await fetch(
-        `http://localhost:5000/api/posts/${recipeId}`,
+        `${process.env.BACKEND_URI}/api/posts/${recipeId}`,
         {
           method: "PUT",
           body: formData,

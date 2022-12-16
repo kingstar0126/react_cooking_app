@@ -1,13 +1,16 @@
 // POST comment
 const addComment = async (comment, token) => {
-  const response = await fetch("http://localhost:5000/api/posts/comments", {
-    method: "POST",
-    body: JSON.stringify(comment),
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-  });
+  const response = await fetch(
+    `${process.env.BACKEND_URI}/api/posts/comments`,
+    {
+      method: "POST",
+      body: JSON.stringify(comment),
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    }
+  );
 
   if (response.status === 201) {
     const addedComment = await response.json();
@@ -18,7 +21,7 @@ const addComment = async (comment, token) => {
 // GET comments
 const getAllComments = async (id) => {
   const response = await fetch(
-    `http://localhost:5000/api/posts/${id}/comments`
+    `${process.env.BACKEND_URI}/api/posts/${id}/comments`
   );
 
   if (response.status === 200) {

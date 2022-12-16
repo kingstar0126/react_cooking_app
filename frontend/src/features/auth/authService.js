@@ -1,6 +1,6 @@
 // REGISTER USER
 const register = async (userData) => {
-  const response = await fetch(`http://localhost:5000/api/users`, {
+  const response = await fetch(`${process.env.BACKEND_URI}/api/users`, {
     method: "POST",
     body: JSON.stringify(userData),
     headers: {
@@ -21,7 +21,7 @@ const register = async (userData) => {
 
 // LOGIN user
 const login = async (userData) => {
-  const response = await fetch(`http://localhost:5000/api/users/login`, {
+  const response = await fetch(`${process.env.BACKEND_URI}/api/users/login`, {
     method: "POST",
     body: JSON.stringify(userData),
     headers: {

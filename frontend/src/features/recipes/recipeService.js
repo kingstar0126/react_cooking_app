@@ -1,6 +1,6 @@
 // CREATE recipe
 const addRecipe = async (recipe, token) => {
-  const response = await fetch("http://localhost:5000/api/posts", {
+  const response = await fetch(`${process.env.BACKEND_URI}/api/posts`, {
     method: "POST",
     body: JSON.stringify(recipe),
     headers: {
@@ -16,13 +16,16 @@ const addRecipe = async (recipe, token) => {
 
 // GET My recipes
 const getMine = async (token) => {
-  const response = await fetch("http://localhost:5000/api/posts/myRecipes", {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-  });
+  const response = await fetch(
+    `${process.env.BACKEND_URI}/api/posts/myRecipes`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    }
+  );
 
   if (response.status === 200) {
     const recipes = await response.json();
@@ -32,7 +35,7 @@ const getMine = async (token) => {
 
 // GET All recipes
 const getAllRecipes = async () => {
-  const response = await fetch("http://localhost:5000/api/posts");
+  const response = await fetch(`${process.env.BACKEND_URI}/api/posts`);
 
   if (response.status === 200) {
     const recipes = await response.json();
@@ -42,7 +45,9 @@ const getAllRecipes = async () => {
 
 // GET Last Three recipes
 const getLastThree = async () => {
-  const response = await fetch("http://localhost:5000/api/posts/lastThree");
+  const response = await fetch(
+    `${process.env.BACKEND_URI}/api/posts/lastThree`
+  );
 
   if (response.status === 200) {
     const recipes = await response.json();
@@ -52,7 +57,9 @@ const getLastThree = async () => {
 
 // GET Single Recipe
 const getSingle = async (recipeId) => {
-  const response = await fetch("http://localhost:5000/api/posts/" + recipeId);
+  const response = await fetch(
+    `${process.env.BACKEND_URI}/api/posts/` + recipeId
+  );
 
   if (response.status === 200) {
     const recipe = await response.json();
@@ -62,13 +69,16 @@ const getSingle = async (recipeId) => {
 
 // DELETE a recipe
 const deleteRecipe = async (recipeId, token) => {
-  const response = await fetch("http://localhost:5000/api/posts/" + recipeId, {
-    method: "DELETE",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-  });
+  const response = await fetch(
+    `${process.env.BACKEND_URI}/api/posts/` + recipeId,
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    }
+  );
 
   if (response.status === 200) {
     return response.message;
@@ -77,14 +87,17 @@ const deleteRecipe = async (recipeId, token) => {
 
 // UPDATE a recipe
 const updateRecipe = async (recipe, recipeId, token) => {
-  const response = await fetch("http://localhost:5000/api/posts/" + recipeId, {
-    method: "PUT",
-    body: JSON.stringify(recipe),
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-  });
+  const response = await fetch(
+    `${process.env.BACKEND_URI}/api/posts/` + recipeId,
+    {
+      method: "PUT",
+      body: JSON.stringify(recipe),
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    }
+  );
 
   if (response.status === 201) {
     const updatedRecipe = await response.json();

@@ -120,7 +120,7 @@ const PostRecipe = () => {
     formData.append("photos", photos);
 
     try {
-      const response = await fetch("http://localhost:5000/api/posts", {
+      const response = await fetch(`${process.env.BACKEND_URI}/api/posts`, {
         method: "POST",
         body: formData,
         headers: {
