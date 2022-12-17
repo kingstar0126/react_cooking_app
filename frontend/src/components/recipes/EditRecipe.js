@@ -148,7 +148,7 @@ const EditRecipe = () => {
     console.log(formData);
     try {
       const response = await fetch(
-        `${process.env.BACKEND_URI}/api/posts/${recipeId}`,
+        `https://cook-master.onrender.com/api/posts/${recipeId}`,
         {
           method: "PUT",
           body: formData,

@@ -1,6 +1,6 @@
 // REGISTER USER
 const register = async (userData) => {
-  const response = await fetch(`${process.env.BACKEND_URI}/api/users`, {
+  const response = await fetch(`https://cook-master.onrender.com/api/users`, {
     method: "POST",
     body: JSON.stringify(userData),
     headers: {
@@ -21,13 +21,16 @@ const register = async (userData) => {
 
 // LOGIN user
 const login = async (userData) => {
-  const response = await fetch(`${process.env.BACKEND_URI}/api/users/login`, {
-    method: "POST",
-    body: JSON.stringify(userData),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const response = await fetch(
+    `https://cook-master.onrender.com/api/users/login`,
+    {
+      method: "POST",
+      body: JSON.stringify(userData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
 
   if (response.status === 401) {
     throw new Error("Невалидни имейл или парола");
