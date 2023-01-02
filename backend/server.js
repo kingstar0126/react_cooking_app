@@ -34,19 +34,19 @@ app.use("/api/users", require("./routes/userRoutes"));
 app.use("/api/posts", require("./routes/recipeRoutes"));
 
 // Server Frontend
-if (process.env.NODE_ENV === "production") {
-  // Set build folder as static
-  app.use(express.static(path.join(__dirname, "../frontend/build")));
+// if (process.env.NODE_ENV === "production") {
+//   // Set build folder as static
+//   app.use(express.static(path.join(__dirname, "../frontend/build")));
 
-  app.get("*", (req, res) =>
-    res.sendFile(__dirname, "../", "frontend", "build", "index.html")
-  );
-} else {
-  // ADDED API here!!!
-  app.get("/api", (req, res) => {
-    res.send("Hello");
-  });
-}
+//   app.get("*", (req, res) =>
+//     res.sendFile(__dirname, "../", "frontend", "build", "index.html")
+//   );
+// } else {
+//   // ADDED API here!!!
+//   app.get("/api", (req, res) => {
+//     res.send("Hello");
+//   });
+// }
 
 app.use(errorHandler);
 
