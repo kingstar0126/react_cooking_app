@@ -1,7 +1,7 @@
 // POST comment
 const addComment = async (comment, token) => {
   const response = await fetch(
-    `https://cook-master.onrender.com/api/posts/comments`,
+    `${process.env.BACKEND_URI}/api/posts/comments`,
     {
       method: "POST",
       body: JSON.stringify(comment),
@@ -21,7 +21,7 @@ const addComment = async (comment, token) => {
 // GET comments
 const getAllComments = async (id) => {
   const response = await fetch(
-    `https://cook-master.onrender.com/api/posts/${id}/comments`
+    `${process.env.BACKEND_URI}/api/posts/${id}/comments`
   );
 
   if (response.status === 200) {

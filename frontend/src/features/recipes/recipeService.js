@@ -1,6 +1,6 @@
 // CREATE recipe
 const addRecipe = async (recipe, token) => {
-  const response = await fetch(`https://cook-master.onrender.com/api/posts`, {
+  const response = await fetch(`${process.env.BACKEND_URI}/api/posts`, {
     method: "POST",
     body: JSON.stringify(recipe),
     headers: {
@@ -17,7 +17,7 @@ const addRecipe = async (recipe, token) => {
 // GET My recipes
 const getMine = async (token) => {
   const response = await fetch(
-    `https://cook-master.onrender.com/api/posts/myRecipes`,
+    `${process.env.BACKEND_URI}/api/posts/myRecipes`,
     {
       method: "GET",
       headers: {
@@ -35,7 +35,7 @@ const getMine = async (token) => {
 
 // GET All recipes
 const getAllRecipes = async () => {
-  const response = await fetch(`https://cook-master.onrender.com/api/posts`);
+  const response = await fetch(`${process.env.BACKEND_URI}/api/posts`);
 
   if (response.status === 200) {
     const recipes = await response.json();
@@ -46,7 +46,7 @@ const getAllRecipes = async () => {
 // GET Last Three recipes
 const getLastThree = async () => {
   const response = await fetch(
-    `https://cook-master.onrender.com/api/posts/lastThree`
+    `${process.env.BACKEND_URI}/api/posts/lastThree`
   );
 
   if (response.status === 200) {
@@ -58,7 +58,7 @@ const getLastThree = async () => {
 // GET Single Recipe
 const getSingle = async (recipeId) => {
   const response = await fetch(
-    `https://cook-master.onrender.com/api/posts/` + recipeId
+    `${process.env.BACKEND_URI}/api/posts/` + recipeId
   );
 
   if (response.status === 200) {
