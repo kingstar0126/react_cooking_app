@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npm install && cd frontend && npm install && npm run build",
-    "start": "node backend/server.js",
-    "server": "nodemon backend/server.js"
+    "build": "npm install",
+    "start": "node server.js",
+    "server": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
