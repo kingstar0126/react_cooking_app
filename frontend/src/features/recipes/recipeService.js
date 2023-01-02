@@ -46,7 +46,7 @@ const getAllRecipes = async () => {
 // GET Last Three recipes
 const getLastThree = async () => {
   const response = await fetch(
-    `${process.env.BACKEND_URI}/api/posts/lastThree`
+    `https://cook-master-backend.onrender.com/api/posts/lastThree`
   );
 
   if (response.status === 200) {
