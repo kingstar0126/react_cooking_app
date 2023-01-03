@@ -156,7 +156,7 @@ const Register = () => {
             name="gender"
             onChange={onGenderSelect}
           />
-          <button className={classes.regButton} type="submit">
+          <button className="regButton" type="submit">
             РЕГИСТРИРАЙ СЕ
           </button>
         </form>

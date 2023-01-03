@@ -1,7 +1,7 @@
 .line {
-border-bottom: 3px double rgba(26,228,133,0.7);
-border-radius: 0px 0px 25px 25px;
-width: 60%;
-margin-top: 16px;
-margin-bottom: 16px;
+  border-bottom: 3px double var(--purple);
+  border-radius: 0px 0px 25px 25px;
+  width: 60%;
+  margin-top: 16px;
+  margin-bottom: 16px;
 }

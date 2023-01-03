@@ -1,5 +1,5 @@
 .background {
-  background-image: url("../../assets/healthy-diet.jpg");
+  background-image: url("../../assets/healthy-dietwebp.webp");
   min-height: 110vh;
   background-repeat: no-repeat;
   background-size: cover;
@@ -22,7 +22,6 @@
 }
 
 .title {
-  font-family: "Pacifico", cursive;
   font-size: 40px;
   margin-top: 20px;
 }
@@ -30,8 +29,6 @@
 .product {
   margin-top: 28px;
   margin-bottom: 18px;
-  font-family: "Montserrat", sans-serif;
-  font-size: 22px;
 }
 
 .singlePhoto {
@@ -64,81 +61,16 @@
   padding-right: 40px;
 }
 
-.buttons__warn {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 700;
-  color: black;
-  background-color: orange;
-  padding: 12px 20px;
-  border-radius: 15px;
-  font-size: 18px;
-  text-transform: uppercase;
-  margin-top: 20px;
+.btn_warn {
+  background-color: var(--pinky);
 }
 
-.buttons__red {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 700;
-  color: black;
-  background-color: rgb(214, 59, 3);
-  padding: 12px 20px;
-  border-radius: 15px;
-  font-size: 18px;
-  text-transform: uppercase;
-  margin-top: 20px;
-}
-
-.buttons__red:hover,
-.buttons__warn:hover {
-  cursor: pointer;
-}
-.buttons__red:hover {
-  background-color: orangered;
-}
-
-.buttons__warn:hover {
-  background-color: rgb(255, 204, 0);
-}
-
-.inpitOpacity {
-  background-color: rgba(0, 0, 0, 0.349);
-  border: none;
-  color: white;
-  border-radius: 15px;
-}
-
-.inputField {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  width: 80%;
-  font-family: "Josefin Sans", sans-serif;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  padding-left: 15px;
-}
-
-.inpitOpacity:focus {
-  outline: none;
+.btn_warn:hover {
+  background-color: pink;
 }
 
 .form__button {
   display: flex;
   justify-content: center;
+  margin-bottom: 2rem;
 }
-
-.button__add {
-  width: 80%;
-}
-/*  
-    font-family: 'Pacifico', cursive;
-
-    font-family: 'Caveat', cursive;
-
-    font-family: 'Lobster', cursive;
-
-    font-family: 'Marck Script', cursive;
-
-    font-family: 'Montserrat', sans-serif;
-
-    font-family: 'Nunito', sans-serif;
-*/

@@ -113,7 +113,7 @@ const SingleRecipe = () => {
     <main className={classes.background}>
       <section className={classes.center}>
         <div className={classes.card}>
-          <h1 className={classes.title}>{recipe.title}</h1>
+          <h2 className={classes.title}>{recipe.title}</h2>
           <div className={classes.line}></div>
           {recipe.photos !== undefined ? (
             <div>
@@ -125,7 +125,7 @@ const SingleRecipe = () => {
             </div>
           ) : null}
           <div>
-            <h2 className={classes.product}>Необходими продукти</h2>
+            <h3 className={classes.product}>Необходими продукти</h3>
 
             {ingredients !== undefined
               ? ingredients.map((ingredient) => (
@@ -146,10 +146,13 @@ const SingleRecipe = () => {
             </div> */}
             {isOwner ? (
               <div className={classes.buttons}>
-                <button className={classes.buttons__warn} onClick={onUpdate}>
+                <button className="btn__primary" onClick={onUpdate}>
                   РЕДАКТИРАЙ
                 </button>
-                <button className={classes.buttons__red} onClick={onDelete}>
+                <button
+                  className={`btn__primary ${classes.btn_warn}`}
+                  onClick={onDelete}
+                >
                   ИЗТРИЙ
                 </button>
               </div>
@@ -177,7 +180,7 @@ const SingleRecipe = () => {
                 required
               />
               <div className={classes.form__button}>
-                <button className={classes.button__add}>Добави коментар</button>
+                <button className="btn__primary">Добави коментар</button>
               </div>
             </form>
           ) : null}

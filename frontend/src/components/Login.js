@@ -81,7 +81,7 @@ const Login = (props) => {
             placeholder="Въведете парола"
             required
           ></input>
-          <button className={classes.regButton} type="submit">
+          <button className="regButton" type="submit">
             ВЛЕЗ
           </button>
         </form>

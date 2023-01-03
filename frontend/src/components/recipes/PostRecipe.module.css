@@ -54,23 +54,6 @@
   font-weight: 700;
 }
 
-.buttonMain {
-  margin-top: 20px;
-  font-family: "Montserrat", sans-serif;
-  letter-spacing: 2px;
-  background-color: yellowgreen;
-  border: none;
-  border-radius: 10px;
-  color: black;
-  text-transform: uppercase;
-  padding: 16px;
-  font-size: 22px;
-  font-weight: 700;
-  margin-bottom: 40px;
-  cursor: pointer;
-  transition: ease-in-out 300ms;
-}
-
 .buttonMain:hover {
   background-color: yellow;
   transform: scale(1.05);
@@ -110,10 +93,10 @@
 }
 
 .addIngredient {
-  padding: 8px;
+  padding: 10px;
   border: none;
   border-radius: 50%;
-  background-color: yellowgreen;
+  background-color: var(--violet);
   color: black;
   cursor: pointer;
 }

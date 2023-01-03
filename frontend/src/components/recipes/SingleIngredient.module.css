@@ -12,7 +12,7 @@
 .product_name {
   font-family: "Caveat", cursive;
   font-size: 30px;
-  color: white;
+  color: black;
   font-size: 20px;
   letter-spacing: 1px;
 }
@@ -25,7 +25,7 @@
   padding: 8px;
   border: none;
   border-radius: 50%;
-  background-color: red;
+  background-color: var(--pinky);
   color: black;
   cursor: pointer;
 }

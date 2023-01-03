@@ -11,33 +11,10 @@
   max-width: 800px;
 }
 
-.regButton {
-  display: block;
-  font-family: "Montserrat", sans-serif;
-  padding: 1rem;
-  width: 100%;
-  background-color: yellow;
-  border: none;
-  border-radius: 10px;
-  font-size: 22px;
-  font-weight: 700;
-  transition: 0.2s ease-in-out;
-}
-
-.regButton:hover {
-  background-color: rgb(201, 201, 0);
-  cursor: pointer;
-}
-
-.regButton:focus {
-  background-color: rgb(146, 146, 3);
-}
-
 .para {
-  font-family: "Nunito", sans-serif;
   margin-top: 14px;
 }
 
 .link__to {
-  color: yellow;
+  color: var(--pinky);
 }

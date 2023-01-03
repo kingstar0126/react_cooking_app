@@ -26,15 +26,37 @@ body {
   margin: 0;
 }
 
+h1 {
+  font-family: "Comfortaa", cursive;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+}
+
 h2 {
   font-family: "Marck Script", cursive;
   font-size: 2rem;
+}
+
+h3 {
+  font-family: "Comfortaa", cursive;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+  font-weight: 500;
 }
 
 p {
   font-family: "Comfortaa", cursive;
   letter-spacing: 1px;
   line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  font-family: "Comfortaa", cursive;
+  font-weight: 900;
+  letter-spacing: 2px;
+  font-size: 18px;
+  color: black;
 }
 
 input[type="text"],
@@ -51,9 +73,10 @@ select {
   background-color: rgba(105, 90, 205, 0.7);
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-  color: yellow;
+  color: white;
   font-size: 22px;
-  font-family: "Caveat", cursive;
+  letter-spacing: 1px;
+  font-family: "Marck Script", cursive;
 }
 
 input[type="text"]:focus,
@@ -67,8 +90,8 @@ select {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   caret-color: white;
-  color: yellow;
-  font-family: "Caveat", cursive;
+  color: white;
+  font-family: "Marck Script", cursive;
 }
 
 input[type="radio"] {
@@ -89,23 +112,58 @@ input[type="radio"]:before {
 }
 
 .btn__primary {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Nunito", sans-serif;
+  cursor: pointer;
   text-transform: uppercase;
   letter-spacing: 2px;
   word-spacing: 4px;
   color: black;
-
+  border: none;
+  background-color: var(--violet);
+  border-radius: 15px;
   padding: 12px 20px;
-
+  transition: all 300ms ease-in-out;
   font-size: 18px;
   margin-top: 20px;
+  box-shadow: 2px 4px 10px 2px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 2px 4px 10px 2px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 2px 4px 10px 2px rgba(0, 0, 0, 0.75);
+}
+
+.btn__primary:hover {
+  background-color: var(--pinky);
+}
+
+.regButton {
+  display: block;
+  cursor: pointer;
+  font-family: "Nunito", sans-serif;
+  letter-spacing: 2px;
+  word-spacing: 4px;
+  padding: 1rem;
+  width: 100%;
+  background-color: var(--violet);
+  border: none;
+  border-radius: 10px;
+  font-size: 22px;
+  font-weight: 700;
+  transition: 0.3s ease-in-out;
+}
+
+.regButton:hover {
+  background-color: var(--pinky);
+  cursor: pointer;
+}
+
+.regButton:focus {
+  background-color: var(--pinky);
 }
 
 /* INPUT */
 
 .genLabel {
   font-size: 20px;
-  font-family: "Nunito", sans-serif;
+  font-family: "Comfortaa", cursive;
   display: block;
 }
 

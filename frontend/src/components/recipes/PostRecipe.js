@@ -160,8 +160,7 @@ const PostRecipe = () => {
           <section className={classes.content}>
             <div className={classes.title}>
               <h1>Здравей, {user.name}</h1>
-              <h2>Добави своята страхотна рецепта!</h2>
-              <div className={classes.line}></div>
+              <h3>Добави своята страхотна рецепта!</h3>
             </div>
             <div className={classes.form}>
               <form
@@ -179,7 +178,7 @@ const PostRecipe = () => {
                   onChange={onMutate}
                   required
                 />
-                <p className={classes.para}>Съставки:</p>
+                <p>Съставки:</p>
                 {products.length > 0
                   ? products.map((product) => (
                       <SingleIngredient
@@ -288,7 +287,7 @@ const PostRecipe = () => {
                   />
                 </div>
 
-                <button className={classes.buttonMain}>ДОБАВИ РЕЦЕПТА</button>
+                <button className="btn__primary">ДОБАВИ РЕЦЕПТА</button>
               </form>
             </div>
           </section>
