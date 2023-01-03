@@ -11,7 +11,6 @@
 }
 
 .title {
-  font-family: "Josefin Sans", sans-serif;
   text-align: center;
   padding-top: 80px;
   color: white;
@@ -20,43 +19,11 @@
 }
 
 .formInside {
-  margin-top: 40px;
+  margin-top: 20px;
   padding: 30px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
-}
-
-.inpitOpacity {
-  background-color: rgba(0, 0, 0, 0.349);
-  border: none;
-  color: white;
-  border-radius: 15px;
-}
-
-.inputField {
-  font-family: "Josefin Sans", sans-serif;
-  padding-top: 12px;
-  padding-bottom: 8px;
-  padding-left: 15px;
-}
-
-.inpitOpacity:focus {
-  outline: none;
-}
-
-.para {
-  margin-top: 20px;
-  font-family: "Josefin Sans", sans-serif;
-  color: white;
-  font-size: 20px;
-  letter-spacing: 1px;
-  font-weight: 700;
-}
-
-.buttonMain:hover {
-  background-color: yellow;
-  transform: scale(1.05);
+  gap: 10px;
 }
 
 .categories {
@@ -71,7 +38,6 @@
 }
 
 .checkbox {
-  font-family: "Josefin Sans", sans-serif;
   font-weight: 500;
   color: white;
   font-size: 18px;
@@ -108,14 +74,6 @@
   align-items: baseline;
 }
 
-/* select {
-  height: 2.2rem;
-  background-color: rgba(0, 0, 0, 0.359);
-  border: none;
-  color: white;
-  border-radius: 25%;
-} */
-
 .fileUp {
   visibility: hidden;
 }
@@ -126,35 +84,22 @@
   color: white;
   border-radius: 15px;
   padding: 12px;
-  font-family: "Nunito", sans-serif;
   font-size: 16px;
+  outline: none;
 }
 
 .upload {
   color: black;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Nunito", sans-serif;
   font-weight: 700;
   text-transform: uppercase;
-  background-color: rgb(2, 176, 176);
-  padding: 8px;
+  background-color: var(--purple);
+  transition: 300ms ease-in-out;
+  padding: 12px;
   cursor: pointer;
   border-radius: 15px;
 }
 
 .upload:hover {
-  background-color: aqua;
+  background-color: var(--light-purple);
 }
-
-/*  
-        font-family: 'Caveat', cursive;
-    
-        font-family: 'Lobster', cursive;
-    
-        font-family: 'Marck Script', cursive;
-    
-        font-family: 'Montserrat', sans-serif;
-    
-        font-family: 'Nunito', sans-serif;
-    
-        font-family: 'Pacifico', cursive; 
-    */
