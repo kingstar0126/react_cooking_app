@@ -1,12 +1,15 @@
 // CREATE recipe
 const addRecipe = async (recipe, token) => {
-  const response = await fetch(`${process.env.BACKEND_URI}/api/posts`, {
-    method: "POST",
-    body: JSON.stringify(recipe),
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  const response = await fetch(
+    `https://cook-master-backend.onrender.com/api/posts`,
+    {
+      method: "POST",
+      body: JSON.stringify(recipe),
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
 
   if (response.status === 201) {
     const addedRecipe = await response.json();
@@ -17,7 +20,7 @@ const addRecipe = async (recipe, token) => {
 // GET My recipes
 const getMine = async (token) => {
   const response = await fetch(
-    `${process.env.BACKEND_URI}/api/posts/myRecipes`,
+    `https://cook-master-backend.onrender.com/api/posts/myRecipes`,
     {
       method: "GET",
       headers: {
@@ -35,7 +38,9 @@ const getMine = async (token) => {
 
 // GET All recipes
 const getAllRecipes = async () => {
-  const response = await fetch(`${process.env.BACKEND_URI}/api/posts`);
+  const response = await fetch(
+    `https://cook-master-backend.onrender.com/api/posts`
+  );
 
   if (response.status === 200) {
     const recipes = await response.json();
@@ -58,7 +63,7 @@ const getLastThree = async () => {
 // GET Single Recipe
 const getSingle = async (recipeId) => {
   const response = await fetch(
-    `${process.env.BACKEND_URI}/api/posts/` + recipeId
+    `https://cook-master-backend.onrender.com/api/posts/` + recipeId
   );
 
   if (response.status === 200) {
@@ -70,7 +75,7 @@ const getSingle = async (recipeId) => {
 // DELETE a recipe
 const deleteRecipe = async (recipeId, token) => {
   const response = await fetch(
-    `${process.env.BACKEND_URI}/api/posts/` + recipeId,
+    `https://cook-master-backend.onrender.com/api/posts/` + recipeId,
     {
       method: "DELETE",
       headers: {
@@ -88,7 +93,7 @@ const deleteRecipe = async (recipeId, token) => {
 // UPDATE a recipe
 const updateRecipe = async (recipe, recipeId, token) => {
   const response = await fetch(
-    `${process.env.BACKEND_URI}/api/posts/` + recipeId,
+    `https://cook-master-backend.onrender.com/api/posts/` + recipeId,
     {
       method: "PUT",
       body: JSON.stringify(recipe),

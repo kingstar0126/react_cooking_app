@@ -1,12 +1,15 @@
 // REGISTER USER
 const register = async (userData) => {
-  const response = await fetch(`${process.env.BACKEND_URI}/api/users`, {
-    method: "POST",
-    body: JSON.stringify(userData),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const response = await fetch(
+    `https://cook-master-backend.onrender.com/api/users`,
+    {
+      method: "POST",
+      body: JSON.stringify(userData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
 
   if (response.status === 400) {
     throw new Error("Акант с такъв имейл вече съществува");
@@ -21,13 +24,16 @@ const register = async (userData) => {
 
 // LOGIN user
 const login = async (userData) => {
-  const response = await fetch(`${process.env.BACKEND_URI}/api/users/login`, {
-    method: "POST",
-    body: JSON.stringify(userData),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const response = await fetch(
+    `https://cook-master-backend.onrender.com/api/users/login`,
+    {
+      method: "POST",
+      body: JSON.stringify(userData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
 
   if (response.status === 401) {
     throw new Error("Невалидни имейл или парола");
