@@ -7,7 +7,7 @@
 }
 
 .recipesList {
-  background-color:rgba(240, 248, 255, 0.5);
+  background-color: rgba(240, 248, 255, 0.5);
   min-height: 100px;
   max-width: 720px;
   padding: 28px;
@@ -17,41 +17,21 @@
   margin: auto;
   margin-top: 4rem;
   margin-bottom: 8rem;
-  border: 10px double rgba(92,92,92,0.5);
+  border: 10px double rgba(92, 92, 92, 0.5);
   border-radius: 20px;
-  -webkit-box-shadow: 5px 5px 15px 5px #000000; 
+  -webkit-box-shadow: 5px 5px 15px 5px #000000;
   box-shadow: 5px 5px 15px 5px #000000;
   opacity: 1;
 }
 
 .smallPic {
-  -webkit-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.5); 
-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.5);
-border-radius: 20px;
+  -webkit-box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
 }
 
 .recipesList img {
   max-height: 150px;
-}
-
-.recipeTitle {
-  font-family: "Marck Script", cursive;
-  font-size: 32px;
-}
-
-.recipeExerpt {
-  font-family: "Nunito", sans-serif;
-}
-
-.btn {
-  font-family: "Caveat", cursive;
-  color: black;
-  background-color: chartreuse;
-  padding: 12px 20px;
-  border-radius: 15px;
-  font-size: 18px;
-  text-transform: uppercase;
-  margin-top: 20px;
 }
 
 .btnDiv {
