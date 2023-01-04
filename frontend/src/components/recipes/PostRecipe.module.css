@@ -3,6 +3,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 110vh;
+  padding-bottom: 4rem;
 }
 
 .content {
@@ -46,18 +47,15 @@
 
 .suitable {
   display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: baseline;
   justify-content: center;
 }
 
-.suitable span {
-  padding-left: 10px;
-  font-weight: 700;
+.suitableSelect {
+  width: 50px;
 }
-
-.spanText {
-  margin-right: 1rem;
-}
-
 .addIngredient {
   padding: 10px;
   border: none;
@@ -79,7 +77,7 @@
 }
 
 .textArea {
-  background-color: rgba(0, 0, 0, 0.349);
+  background-color: rgba(105, 90, 205, 0.7);
   border: none;
   color: white;
   border-radius: 15px;
@@ -100,6 +98,14 @@
   border-radius: 15px;
 }
 
+.upload__button {
+  margin: 1rem auto;
+}
+
 .upload:hover {
   background-color: var(--light-purple);
+}
+
+.white {
+  color: white;
 }

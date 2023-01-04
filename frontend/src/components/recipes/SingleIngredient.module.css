@@ -10,11 +10,15 @@
 }
 
 .product_name {
-  font-family: "Caveat", cursive;
+  font-family: "Marck Script", cursive;
   font-size: 30px;
   color: black;
   font-size: 20px;
   letter-spacing: 1px;
+}
+
+.white {
+  color: white;
 }
 
 .remove {
@@ -29,17 +33,3 @@
   color: black;
   cursor: pointer;
 }
-
-/*  
-      font-family: 'Caveat', cursive;
-  
-      font-family: 'Lobster', cursive;
-  
-      font-family: 'Marck Script', cursive;
-  
-      font-family: 'Montserrat', sans-serif;
-  
-      font-family: 'Nunito', sans-serif;
-  
-      font-family: 'Pacifico', cursive; 
-  */ ;

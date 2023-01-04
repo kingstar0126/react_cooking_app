@@ -15,7 +15,7 @@ const PostRecipe = () => {
   const [type, setType] = useState("грама");
   const [loading, setLoading] = useState(false);
   const editMode = true;
-
+  const postRecipe = true;
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -178,7 +178,7 @@ const PostRecipe = () => {
                   onChange={onMutate}
                   required
                 />
-                <p>Съставки:</p>
+                <p className={classes.white}>Съставки:</p>
                 {products.length > 0
                   ? products.map((product) => (
                       <SingleIngredient
@@ -186,6 +186,7 @@ const PostRecipe = () => {
                         product={product}
                         key={product.item}
                         products={products}
+                        postRecipe={postRecipe}
                         onProductsUpdate={onProductsUpdate}
                       />
                     ))
@@ -228,7 +229,7 @@ const PostRecipe = () => {
                   </button>
                 </article>
 
-                <p className={classes.para}>
+                <p className={classes.white}>
                   Добави стъпките за приготвянето на твоя шедьовър
                 </p>
                 <textarea
@@ -252,9 +253,26 @@ const PostRecipe = () => {
                 </article> */}
 
                 <div className={classes.suitable}>
-                  <p className={classes.para}>
+                  <p className={classes.white}>Подходяща за</p>
+                  <select
+                    className={classes.suitableSelect}
+                    name="suitableFor"
+                    id="suitable"
+                    onChange={onMutate}
+                    value={suitableFor}
+                    required
+                  >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="4">4</option>
+                    <option value="6">6</option>
+                  </select>
+
+                  <p className={classes.white}>човека.</p>
+
+                  {/* <p className={classes.white}>
                     Подходяща за
-                    <span className={`${classes.para} ${classes.spanText}`}>
+                    <span className={`${classes.white} ${classes.spanText}`}>
                       <select
                         name="suitableFor"
                         id="suitable"
@@ -269,11 +287,11 @@ const PostRecipe = () => {
                       </select>
                     </span>
                     човека.
-                  </p>
+                  </p> */}
                 </div>
-                <div>
+                <div className={classes.upload__button}>
                   <label className={classes.upload} htmlFor="photos">
-                    Качи снимки
+                    Добави снимки
                   </label>
                   <input
                     style={{ display: "none" }}

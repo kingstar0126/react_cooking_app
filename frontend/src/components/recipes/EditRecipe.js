@@ -304,7 +304,7 @@ const EditRecipe = () => {
                   </p>
                 </div>
                 <div>
-                  <label htmlFor="photos">Качи снимки</label>
+                  <label htmlFor="photos">Добави снимки</label>
                   <input
                     type="file"
                     accept=".png, .jpg, .jpeg"
