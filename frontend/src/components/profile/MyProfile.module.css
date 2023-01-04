@@ -1,6 +1,6 @@
 .background {
   background-image: url("../../assets/fresh-raw-meat.jpg");
-  height: 100vh;
+  min-height: 100vh;
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -9,17 +9,22 @@
   max-width: 560px;
   margin-left: 10%;
   padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 
 .profile_name {
   margin-top: 12px;
   color: white;
-  font-family: 'Nunito', sans-serif;
-
 }
 
 .noPic {
+  margin: 1rem 0;
   color: white;
+}
+
+.profile__pic {
+  height: 250px;
+  border-radius: 15px;
 }
 /*  
         font-family: 'Caveat', cursive;

@@ -2,7 +2,7 @@ import classes from "./Comments.module.css";
 
 const Comments = ({ comment }) => {
   return (
-    <div>
+    <div className={classes.comments__section}>
       <p>{comment.name}</p>
       <p>{comment.comment}</p>
     </div>

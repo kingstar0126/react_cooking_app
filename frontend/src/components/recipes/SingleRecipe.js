@@ -160,25 +160,31 @@ const SingleRecipe = () => {
           </div>
         </div>
         <div className={classes.card}>
+          <h3>Коментари</h3>
           {comments.length > 0 ? (
             comments.map((comment) => (
-              <Comments key={comment._id} comment={comment} />
+              <div>
+                <Comments key={comment._id} comment={comment} />
+              </div>
             ))
           ) : (
             <p>Все още няма нито един коментар към тази рецепта</p>
           )}
           {user ? (
             <form onSubmit={onSubmit}>
-              <input
-                className={`${classes.inpitOpacity} ${classes.inputField}`}
-                type="text"
-                placeholder="Страхотна рецепта..."
-                name="comment"
-                id="comment"
-                value={newComment}
-                onChange={onCommentHandler}
-                required
-              />
+              <div className={classes.add__comment}>
+                <textarea
+                  className={classes.textArea}
+                  type="text"
+                  placeholder="Страхотна рецепта..."
+                  name="comment"
+                  id="comment"
+                  value={newComment}
+                  onChange={onCommentHandler}
+                  required
+                />
+              </div>
+
               <div className={classes.form__button}>
                 <button className="btn__primary">Добави коментар</button>
               </div>

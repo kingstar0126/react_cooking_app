@@ -193,7 +193,6 @@ const PostRecipe = () => {
                   : null}
                 <article className={classes.ingredient}>
                   <input
-                    className={`${classes.inpitOpacity} ${classes.inputField}`}
                     type="text"
                     placeholder="Морков, домат, лук..."
                     name="product"
@@ -202,7 +201,6 @@ const PostRecipe = () => {
                     onChange={onItemAdd}
                   />
                   <input
-                    className={`${classes.inpitOpacity} ${classes.inputField}`}
                     type="text"
                     placeholder="количество..."
                     name="quantity"

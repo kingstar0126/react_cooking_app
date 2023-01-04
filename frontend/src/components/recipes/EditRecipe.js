@@ -24,7 +24,7 @@ const EditRecipe = () => {
     suitableFor: "",
     photos: "",
   });
-
+  const postRecipe = true;
   const edit = true;
 
   const navigate = useNavigate();
@@ -187,10 +187,10 @@ const EditRecipe = () => {
           <section className={classes.content}>
             <div className={classes.title}>
               <h1>Здравей, {user.name}</h1>
-              <h2>
+              <h3>
                 Намерил си начин да подобриш вкуса на своята рецепта? Добави
                 промените оттук!
-              </h2>
+              </h3>
               <div className={classes.line}></div>
             </div>
             <div className={classes.form}>
@@ -209,10 +209,11 @@ const EditRecipe = () => {
                   onChange={onMutate}
                   required
                 />
-                <p className={classes.para}>Съставки:</p>
+                <p className={classes.white}>Съставки:</p>
                 {products.length > 0
                   ? products.map((product) => (
                       <SingleIngredient
+                        postRecipe={postRecipe}
                         product={product}
                         key={product.item}
                         products={products}
@@ -223,7 +224,6 @@ const EditRecipe = () => {
                   : null}
                 <article className={classes.ingredient}>
                   <input
-                    className={`${classes.inpitOpacity} ${classes.inputField}`}
                     type="text"
                     placeholder="Морков, домат, лук..."
                     name="product"
@@ -233,7 +233,6 @@ const EditRecipe = () => {
                     required
                   />
                   <input
-                    className={`${classes.inpitOpacity} ${classes.inputField}`}
                     type="text"
                     placeholder="количество..."
                     name="quantity"
@@ -260,8 +259,8 @@ const EditRecipe = () => {
                   </button>
                 </article>
 
-                <p className={classes.para}>
-                  Добави стъпките за приготвянето на твоя шедьовър
+                <p className={classes.white}>
+                  Стъпките за приготвянето на твоя шедьовър
                 </p>
                 <textarea
                   className={classes.textArea}
@@ -284,9 +283,26 @@ const EditRecipe = () => {
                   </article> */}
 
                 <div className={classes.suitable}>
-                  <p className={classes.para}>
+                  <p className={classes.white}>Подходяща за</p>
+                  <select
+                    className={classes.suitableSelect}
+                    name="suitableFor"
+                    id="suitable"
+                    onChange={onMutate}
+                    value={suitableFor}
+                    required
+                  >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="4">4</option>
+                    <option value="6">6</option>
+                  </select>
+
+                  <p className={classes.white}>човека.</p>
+
+                  {/* <p className={classes.white}>
                     Подходяща за
-                    <span className={`${classes.para} ${classes.spanText}`}>
+                    <span className={`${classes.white} ${classes.spanText}`}>
                       <select
                         name="suitableFor"
                         id="suitable"
@@ -301,11 +317,14 @@ const EditRecipe = () => {
                       </select>
                     </span>
                     човека.
-                  </p>
+                  </p> */}
                 </div>
-                <div>
-                  <label htmlFor="photos">Добави снимки</label>
+                <div className={classes.upload__button}>
+                  <label className={classes.upload} htmlFor="photos">
+                    Добави снимки
+                  </label>
                   <input
+                    style={{ display: "none" }}
                     type="file"
                     accept=".png, .jpg, .jpeg"
                     name="photos"
@@ -316,7 +335,7 @@ const EditRecipe = () => {
                   />
                 </div>
 
-                <button className={classes.buttonMain}>РЕДАКТИРАЙ</button>
+                <button className="btn__primary">РЕДАКТИРАЙ</button>
               </form>
             </div>
           </section>
